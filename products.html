@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products – OzzyPeps Research Peptides</title>
+  <meta name="description" content="Browse OzzyPeps' full catalogue of high-purity research peptides. For scientific and laboratory use only." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">O</div>
+        Ozzy<span>Peps</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" class="active">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="track-order.html">Track Order</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
+      <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="track-order.html">Track Order</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero text-center">
+    <div class="container">
+      <div class="section-label">Product Catalogue</div>
+      <h1 class="section-title">Research Peptides &amp; Compounds</h1>
+      <p class="section-sub">All products are for in-vitro research and scientific laboratory use only. Not for human or animal administration.</p>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div class="container" style="margin-bottom: 16px;">
+    <div class="disclaimer-banner">
+      <div class="disclaimer-icon">⚠️</div>
+      <div class="disclaimer-text">
+        <strong>Research Use Only.</strong> The compounds listed below are sold exclusively for laboratory and scientific research. To enquire about pricing and availability, or to place an order, please contact us on Telegram: <a href="https://t.me/fussyaussie" target="_blank" style="color:var(--accent);">@fussyaussie</a> or <a href="https://t.me/toyaussie" target="_blank" style="color:var(--accent);">@toyaussie</a>.
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH + FILTER -->
+  <section style="padding: 16px 0 0;">
+    <div class="container">
+      <div class="search-bar">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search products..." oninput="filterProducts()" />
+      </div>
+
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" onclick="setFilter('all', this)">All Products</button>
+        <button class="filter-tab" onclick="setFilter('healing', this)">Healing Peptides</button>
+        <button class="filter-tab" onclick="setFilter('glp1', this)">GLP-1 / Metabolic</button>
+        <button class="filter-tab" onclick="setFilter('ghrh', this)">GHRH / GH</button>
+        <button class="filter-tab" onclick="setFilter('melanocortin', this)">Melanocortin</button>
+        <button class="filter-tab" onclick="setFilter('nootropic', this)">Nootropic</button>
+        <button class="filter-tab" onclick="setFilter('other', this)">Other</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS GRID -->
+  <section style="padding: 12px 0 80px;">
+    <div class="container">
+      <div class="products-grid" id="productsGrid">
+
+        <!-- HEALING -->
+        <div class="product-card" data-cat="healing" data-name="bpc-157 pentadecapeptide healing tissue gut">
+          <div class="product-img">🧬<div class="product-badge hot">Popular</div></div>
+          <div class="product-body">
+            <div class="product-category">Healing Peptide</div>
+            <div class="product-name">BPC-157</div>
+            <div class="product-desc">Pentadecapeptide studied extensively for tissue repair, GI tract modelling, and tendon/ligament regeneration research. Stable in acidic environments.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.1% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="healing" data-name="tb-500 thymosin beta-4 muscle tissue vascular">
+          <div class="product-img">⚗️<div class="product-badge">Top Rated</div></div>
+          <div class="product-body">
+            <div class="product-category">Tissue Research</div>
+            <div class="product-name">TB-500 (Thymosin β4 Analogue)</div>
+            <div class="product-desc">Synthetic fragment of Thymosin Beta-4 used in studies related to muscle healing, vascular remodelling, and cellular migration pathways.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.3% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="healing" data-name="kpv anti-inflammatory tripeptide gut colitis">
+          <div class="product-img">🌿</div>
+          <div class="product-body">
+            <div class="product-category">Anti-Inflammatory</div>
+            <div class="product-name">KPV Tripeptide</div>
+            <div class="product-desc">A tripeptide (Lys-Pro-Val) fragment of alpha-MSH, explored for anti-inflammatory signalling in gastrointestinal research models.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.0% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="healing" data-name="ghrp-2 growth hormone releasing peptide">
+          <div class="product-img">🔧</div>
+          <div class="product-body">
+            <div class="product-category">GH Secretagogue</div>
+            <div class="product-name">GHRP-2</div>
+            <div class="product-desc">Synthetic hexapeptide that stimulates GH secretion via ghrelin receptor activation. Used in metabolic and growth hormone research studies.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 98.8% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- GLP-1 / METABOLIC -->
+        <div class="product-card" data-cat="glp1" data-name="semaglutide glp-1 metabolic obesity diabetes">
+          <div class="product-img">💊<div class="product-badge new">New</div></div>
+          <div class="product-body">
+            <div class="product-category">GLP-1 Analogue</div>
+            <div class="product-name">Semaglutide</div>
+            <div class="product-desc">Long-acting GLP-1 receptor agonist analogue for metabolic, insulin secretion, and appetite regulation research. High receptor affinity and extended half-life.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 98.9% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="glp1" data-name="tirzepatide gip glp-1 dual agonist">
+          <div class="product-img">🧪<div class="product-badge hot">Hot</div></div>
+          <div class="product-body">
+            <div class="product-category">Dual GIP/GLP-1</div>
+            <div class="product-name">Tirzepatide</div>
+            <div class="product-desc">Novel dual agonist targeting both GIP and GLP-1 receptors. Used in advanced metabolic syndrome and adipose tissue research.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 98.7% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="glp1" data-name="liraglutide glp-1 metabolic diabetes research">
+          <div class="product-img">💉</div>
+          <div class="product-body">
+            <div class="product-category">GLP-1 Analogue</div>
+            <div class="product-name">Liraglutide</div>
+            <div class="product-desc">Medium-acting GLP-1 receptor agonist analogue with wide use in insulin secretion, beta-cell function, and cardioprotective research.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.0% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- GHRH / GH -->
+        <div class="product-card" data-cat="ghrh" data-name="cjc-1295 dac ghrh growth hormone releasing">
+          <div class="product-img">🔭</div>
+          <div class="product-body">
+            <div class="product-category">GHRH Analogue</div>
+            <div class="product-name">CJC-1295 DAC</div>
+            <div class="product-desc">Modified GHRH analogue conjugated with a Drug Affinity Complex to extend plasma half-life. Widely used in GH secretion and IGF-1 modelling studies.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.0% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="ghrh" data-name="ipamorelin ghrelin mimetic growth hormone">
+          <div class="product-img">🌡️<div class="product-badge hot">Popular</div></div>
+          <div class="product-body">
+            <div class="product-category">Ghrelin Mimetic</div>
+            <div class="product-name">Ipamorelin</div>
+            <div class="product-desc">Highly selective GHRP with minimal side-effect profile in studies. Stimulates GH without significant cortisol or prolactin elevation in research models.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.4% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="ghrh" data-name="sermorelin ghrh growth hormone secretagogue">
+          <div class="product-img">📈</div>
+          <div class="product-body">
+            <div class="product-category">GHRH Fragment</div>
+            <div class="product-name">Sermorelin</div>
+            <div class="product-desc">Synthetic analogue of the first 29 amino acids of endogenous GHRH. Used in pituitary function and natural GH secretion research protocols.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 98.9% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="ghrh" data-name="ghrp-6 growth hormone releasing hexapeptide">
+          <div class="product-img">⚡</div>
+          <div class="product-body">
+            <div class="product-category">GH Secretagogue</div>
+            <div class="product-name">GHRP-6</div>
+            <div class="product-desc">Potent ghrelin receptor agonist studied for GH release and appetite stimulation pathways in animal research models.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.1% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="ghrh" data-name="hexarelin ghrp growth hormone pituitary">
+          <div class="product-img">🔬</div>
+          <div class="product-body">
+            <div class="product-category">GH Secretagogue</div>
+            <div class="product-name">Hexarelin</div>
+            <div class="product-desc">Synthetic hexapeptide with high GH-releasing potency. Studied for cardiac protective effects and IGF-1 elevation in research settings.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.0% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- MELANOCORTIN -->
+        <div class="product-card" data-cat="melanocortin" data-name="pt-141 bremelanotide melanocortin sexual">
+          <div class="product-img">🌙</div>
+          <div class="product-body">
+            <div class="product-category">Melanocortin</div>
+            <div class="product-name">PT-141 (Bremelanotide)</div>
+            <div class="product-desc">Melanocortin receptor 4 agonist studied in sexual dysfunction and CNS neuroendocrine research. Cyclic heptapeptide structure.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.2% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="melanocortin" data-name="melanotan ii mt2 tanning melanocyte">
+          <div class="product-img">☀️<div class="product-badge hot">Popular</div></div>
+          <div class="product-body">
+            <div class="product-category">Melanocortin</div>
+            <div class="product-name">Melanotan II (MT-II)</div>
+            <div class="product-desc">Analogue of alpha-MSH studied for melanogenesis stimulation, skin pigmentation pathways, and appetite suppression mechanisms.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.0% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOOTROPIC -->
+        <div class="product-card" data-cat="nootropic" data-name="selank anxiolytic nootropic cognitive anxiety">
+          <div class="product-img">🧠</div>
+          <div class="product-body">
+            <div class="product-category">Nootropic Peptide</div>
+            <div class="product-name">Selank</div>
+            <div class="product-desc">Heptapeptide analogue of tuftsin with anxiolytic and nootropic properties studied in stress-response and immune modulation research.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.1% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="nootropic" data-name="semax cognitive nootropic neurological bdnf">
+          <div class="product-img">💡</div>
+          <div class="product-body">
+            <div class="product-category">Nootropic Peptide</div>
+            <div class="product-name">Semax</div>
+            <div class="product-desc">Heptapeptide derived from ACTH(4-7) studied for BDNF upregulation, neuroprotection, and cognitive enhancement in neurological models.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 98.9% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="nootropic" data-name="dihexa nootropic brain cognitive alzheimer">
+          <div class="product-img">🔮</div>
+          <div class="product-body">
+            <div class="product-category">Nootropic Peptide</div>
+            <div class="product-name">Dihexa</div>
+            <div class="product-desc">Angiotensin IV analogue with high blood-brain barrier penetrance. Explored in Alzheimer's and neurodegenerative disease research models.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.0% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- OTHER -->
+        <div class="product-card" data-cat="other" data-name="epithalon epitalon telomere pineal aging">
+          <div class="product-img">✨<div class="product-badge new">New</div></div>
+          <div class="product-body">
+            <div class="product-category">Longevity Research</div>
+            <div class="product-name">Epithalon</div>
+            <div class="product-desc">Synthetic tetrapeptide analogue of the pineal hormone Epithalamin. Studied extensively in telomere biology and anti-aging research models.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.3% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="other" data-name="ll-37 antimicrobial cathelicidin immune peptide">
+          <div class="product-img">🛡️</div>
+          <div class="product-body">
+            <div class="product-category">Antimicrobial Peptide</div>
+            <div class="product-name">LL-37</div>
+            <div class="product-desc">Human cathelicidin antimicrobial peptide studied for immunomodulatory, wound healing, and anti-biofilm properties in laboratory settings.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 98.8% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="other" data-name="fgl peptide fibronectin neuroprotection neural">
+          <div class="product-img">🕸️</div>
+          <div class="product-body">
+            <div class="product-category">Neural Research</div>
+            <div class="product-name">FGL Peptide</div>
+            <div class="product-desc">Fibronectin-derived NCAM-binding peptide studied for neuroprotective properties and synaptic plasticity enhancement in CNS research models.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.0% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="other" data-name="ss-31 mitochondria oxidative stress cardioprotective">
+          <div class="product-img">⚙️</div>
+          <div class="product-body">
+            <div class="product-category">Mitochondrial Research</div>
+            <div class="product-name">SS-31 (Elamipretide)</div>
+            <div class="product-desc">Mitochondria-targeted tetrapeptide studied for reducing oxidative stress, improving cardiac function, and mitochondrial membrane stabilisation.</div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99.2% Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- No results -->
+      <div class="no-results" id="noResults">
+        <div class="no-results-icon">🔍</div>
+        <h3>No products found</h3>
+        <p style="margin-top:8px;color:var(--text-muted);">Try a different search term or filter.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section style="padding: 0 0 80px;">
+    <div class="container">
+      <div class="cta-section">
+        <h2 class="section-title" style="font-size:28px;">Don't see what you're looking for?</h2>
+        <p style="color:var(--text-secondary);margin: 12px 0 28px;font-size:16px;">Contact us on Telegram — we can often source compounds not listed here. Send us your shopping list and we'll get back to you promptly.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://t.me/fussyaussie" target="_blank" class="btn btn-primary">✈ @fussyaussie</a>
+          <a href="https://t.me/toyaussie" target="_blank" class="btn btn-outline">✈ @toyaussie</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo-wrap">
+            <div class="logo-icon" style="width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;">O</div>
+            Ozzy<span style="color:var(--accent)">Peps</span>
+          </div>
+          <p class="footer-desc">Premium research-grade peptides supplied to qualified scientists and research facilities. For laboratory use only.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Support</div>
+          <ul class="footer-links">
+            <li><a href="track-order.html">Track Order</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="about.html#legal">Legal &amp; Disclaimer</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Order via Telegram</div>
+          <a href="https://t.me/fussyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @fussyaussie</a>
+          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;">✈ @toyaussie</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 OzzyPeps. All rights reserved. For research use only.</div>
+        <div style="font-size:12px;color:var(--text-muted);">Not for human consumption · Not a therapeutic product</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    let activeFilter = 'all';
+
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    function setFilter(cat, el) {
+      activeFilter = cat;
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      filterProducts();
+    }
+
+    function filterProducts() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.product-card');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const cat = card.dataset.cat;
+        const name = (card.dataset.name || '').toLowerCase();
+        const catMatch = activeFilter === 'all' || cat === activeFilter;
+        const searchMatch = !query || name.includes(query);
+
+        if (catMatch && searchMatch) {
+          card.style.display = '';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const noRes = document.getElementById('noResults');
+      if (visible === 0) noRes.classList.add('visible');
+      else noRes.classList.remove('visible');
+    }
+
+    window.addEventListener('scroll', () => {
+      const st = document.getElementById('scrollTop');
+      if (window.scrollY > 400) st.classList.add('visible');
+      else st.classList.remove('visible');
+    });
+  </script>
+</body>
+</html>
