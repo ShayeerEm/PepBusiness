@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Order – OzzyPeps</title>
+  <meta name="description" content="Track your OzzyPeps research peptide order using your order ID and email address." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">O</div>
+        Ozzy<span>Peps</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="track-order.html" class="active">Track Order</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
+      <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="track-order.html">Track Order</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero text-center">
+    <div class="container">
+      <div class="section-label">Track Your Order</div>
+      <h1 class="section-title">Where Is My Order?</h1>
+      <p class="section-sub">Enter your order ID and email address below to see your current delivery status and timeline.</p>
+    </div>
+  </section>
+
+  <!-- TRACK FORM -->
+  <section style="padding: 0 0 80px;">
+    <div class="container">
+
+      <div class="track-form">
+        <div class="form-group">
+          <label class="form-label" for="orderId">Order ID</label>
+          <input class="form-input" type="text" id="orderId" placeholder="e.g. OP-2025-00471" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="orderEmail">Email Address</label>
+          <input class="form-input" type="email" id="orderEmail" placeholder="your@email.com" />
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="trackOrder()">Track Order →</button>
+
+        <!-- ERROR STATE -->
+        <div id="trackError" style="display:none;margin-top:20px;">
+          <div class="disclaimer-banner" style="background:rgba(255,77,109,0.06);border-color:rgba(255,77,109,0.2);">
+            <div class="disclaimer-icon">❌</div>
+            <div class="disclaimer-text">
+              <strong style="color:#ff4d6d;">Order not found.</strong> Please double-check your Order ID and email address. If you're still having trouble, contact us on Telegram.
+            </div>
+          </div>
+        </div>
+
+        <!-- TRACKING RESULT -->
+        <div class="track-result" id="trackResult">
+
+          <div class="track-status-header">
+            <div class="track-status-icon" id="statusIcon"></div>
+            <div class="track-status-text">
+              <div class="track-order-id" id="displayOrderId"></div>
+              <div class="track-status-label" id="displayStatus"></div>
+            </div>
+          </div>
+
+          <!-- Shipping details -->
+          <div id="shippingDetails" style="margin-bottom: 24px; padding: 16px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius);">
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Shipment Details</div>
+            <div id="carrierInfo" style="font-size:14px;color:var(--text-secondary);line-height:1.9;"></div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="timeline" id="timeline"></div>
+
+          <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border);text-align:center;">
+            <p style="font-size:14px;color:var(--text-secondary);">Need help with your order? Contact us on Telegram.</p>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap;">
+              <a href="https://t.me/fussyaussie" target="_blank" class="btn btn-ghost" style="font-size:13px;padding:9px 18px;">✈ @fussyaussie</a>
+              <a href="https://t.me/toyaussie" target="_blank" class="btn btn-ghost" style="font-size:13px;padding:9px 18px;">✈ @toyaussie</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO CARDS -->
+      <div class="features-grid" style="margin-top: 48px; max-width: 900px; margin-left: auto; margin-right: auto;">
+        <div class="feature-card">
+          <div class="feature-icon">📬</div>
+          <div class="feature-title">When will I receive my Order ID?</div>
+          <div class="feature-desc">Your Order ID is sent via Telegram once your order is confirmed and payment is received. Check your Telegram chat history.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚚</div>
+          <div class="feature-title">Typical Delivery Times</div>
+          <div class="feature-desc">Metro areas: 1–3 business days. Regional areas: 3–5 business days. Express shipping is available — ask us on Telegram.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <div class="feature-title">Packaging & Discretion</div>
+          <div class="feature-desc">All orders are shipped in plain, unmarked packaging. No product names or company branding appear on the outside of the parcel.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo-wrap">
+            <div class="logo-icon" style="width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;">O</div>
+            Ozzy<span style="color:var(--accent)">Peps</span>
+          </div>
+          <p class="footer-desc">Premium research-grade peptides supplied to qualified scientists and research facilities. For laboratory use only.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Support</div>
+          <ul class="footer-links">
+            <li><a href="track-order.html">Track Order</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="about.html#legal">Legal &amp; Disclaimer</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Order via Telegram</div>
+          <a href="https://t.me/fussyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @fussyaussie</a>
+          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;">✈ @toyaussie</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 OzzyPeps. All rights reserved. For research use only.</div>
+        <div style="font-size:12px;color:var(--text-muted);">Not for human consumption · Not a therapeutic product</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    window.addEventListener('scroll', () => {
+      const st = document.getElementById('scrollTop');
+      if (window.scrollY > 400) st.classList.add('visible');
+      else st.classList.remove('visible');
+    });
+
+    /* Demo order data for UI demonstration */
+    const demoOrders = {
+      'OP-2025-00471': {
+        email: 'demo@research.com',
+        status: 'shipped',
+        statusLabel: 'In Transit',
+        carrier: 'Australia Post Express',
+        tracking: '1Z999AA10123456789',
+        eta: '11 May 2025',
+        steps: [
+          { label: 'Order Confirmed', date: '7 May 2025 · 10:14 AM', state: 'done' },
+          { label: 'Payment Received', date: '7 May 2025 · 10:32 AM', state: 'done' },
+          { label: 'Packed & Ready', date: '7 May 2025 · 2:05 PM', state: 'done' },
+          { label: 'Dispatched', date: '8 May 2025 · 9:20 AM', state: 'done' },
+          { label: 'In Transit', date: '9 May 2025 · 7:41 AM', state: 'active' },
+          { label: 'Delivered', date: 'Estimated 11 May 2025', state: 'pending' },
+        ]
+      },
+      'OP-2025-00388': {
+        email: 'researcher@lab.edu',
+        status: 'delivered',
+        statusLabel: 'Delivered',
+        carrier: 'StarTrack',
+        tracking: 'STR9871230912AU',
+        eta: 'Delivered 5 May 2025',
+        steps: [
+          { label: 'Order Confirmed', date: '2 May 2025 · 9:00 AM', state: 'done' },
+          { label: 'Payment Received', date: '2 May 2025 · 9:15 AM', state: 'done' },
+          { label: 'Packed & Ready', date: '2 May 2025 · 1:00 PM', state: 'done' },
+          { label: 'Dispatched', date: '3 May 2025 · 8:50 AM', state: 'done' },
+          { label: 'In Transit', date: '4 May 2025 · 6:30 AM', state: 'done' },
+          { label: 'Delivered', date: '5 May 2025 · 11:22 AM', state: 'done' },
+        ]
+      },
+      'OP-2025-00512': {
+        email: 'test@example.com',
+        status: 'processing',
+        statusLabel: 'Processing',
+        carrier: 'Pending assignment',
+        tracking: 'Not yet assigned',
+        eta: 'Estimated 14 May 2025',
+        steps: [
+          { label: 'Order Confirmed', date: '10 May 2025 · 8:02 AM', state: 'done' },
+          { label: 'Payment Received', date: '10 May 2025 · 8:20 AM', state: 'done' },
+          { label: 'Packed & Ready', date: 'In progress…', state: 'active' },
+          { label: 'Dispatched', date: 'Pending', state: 'pending' },
+          { label: 'In Transit', date: 'Pending', state: 'pending' },
+          { label: 'Delivered', date: 'Pending', state: 'pending' },
+        ]
+      }
+    };
+
+    function trackOrder() {
+      const orderId = document.getElementById('orderId').value.trim().toUpperCase();
+      const email = document.getElementById('orderEmail').value.trim().toLowerCase();
+
+      const errorEl = document.getElementById('trackError');
+      const resultEl = document.getElementById('trackResult');
+
+      errorEl.style.display = 'none';
+      resultEl.classList.remove('visible');
+
+      if (!orderId || !email) {
+        errorEl.style.display = 'block';
+        errorEl.querySelector('.disclaimer-text').innerHTML =
+          '<strong style="color:#ff4d6d;">Please fill in both fields.</strong> Enter your Order ID and the email address used when ordering.';
+        return;
+      }
+
+      const order = demoOrders[orderId];
+      if (!order || order.email !== email) {
+        errorEl.style.display = 'block';
+        errorEl.querySelector('.disclaimer-text').innerHTML =
+          '<strong style="color:#ff4d6d;">Order not found.</strong> Please double-check your Order ID and email address. If you\'re still having trouble, contact us on Telegram.';
+        return;
+      }
+
+      /* Populate status */
+      const iconEl = document.getElementById('statusIcon');
+      const statusLabelEl = document.getElementById('displayStatus');
+      const orderIdEl = document.getElementById('displayOrderId');
+
+      orderIdEl.textContent = 'Order ' + orderId;
+      statusLabelEl.textContent = order.statusLabel;
+
+      iconEl.className = 'track-status-icon';
+      if (order.status === 'delivered') {
+        iconEl.classList.add('status-delivered');
+        iconEl.textContent = '✓';
+      } else if (order.status === 'shipped') {
+        iconEl.classList.add('status-shipped');
+        iconEl.textContent = '🚚';
+      } else {
+        iconEl.classList.add('status-processing');
+        iconEl.textContent = '⏳';
+      }
+
+      /* Carrier info */
+      document.getElementById('carrierInfo').innerHTML =
+        `<span style="color:var(--text-primary);font-weight:600;">Carrier:</span> ${order.carrier}<br>` +
+        `<span style="color:var(--text-primary);font-weight:600;">Tracking #:</span> ${order.tracking}<br>` +
+        `<span style="color:var(--text-primary);font-weight:600;">ETA:</span> ${order.eta}`;
+
+      /* Build timeline */
+      const timeline = document.getElementById('timeline');
+      timeline.innerHTML = '';
+
+      order.steps.forEach(step => {
+        const dotClass = step.state === 'done' ? 'dot-done' : step.state === 'active' ? 'dot-active' : 'dot-pending';
+        const dotIcon = step.state === 'done' ? '✓' : step.state === 'active' ? '●' : '○';
+        timeline.innerHTML += `
+          <div class="timeline-item">
+            <div class="timeline-dot ${dotClass}">${dotIcon}</div>
+            <div class="timeline-content">
+              <div class="timeline-title" style="${step.state === 'pending' ? 'color:var(--text-muted)' : ''}">${step.label}</div>
+              <div class="timeline-date">${step.date}</div>
+            </div>
+          </div>`;
+      });
+
+      resultEl.classList.add('visible');
+      resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    /* Allow Enter key to submit */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter') trackOrder();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact &amp; Order – OzzyPeps</title>
+  <meta name="description" content="Contact OzzyPeps to place your peptide order. Reach us on Telegram at @fussyaussie or @toyaussie." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      position: relative;
+      transition: all var(--transition);
+    }
+
+    .step-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .step-num {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #000;
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .step-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+    }
+
+    .info-icon { font-size: 22px; flex-shrink: 0; }
+    .info-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .info-value { font-size: 15px; color: var(--text-primary); font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">O</div>
+        Ozzy<span>Peps</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="track-order.html">Track Order</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
+      <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="track-order.html">Track Order</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero text-center">
+    <div class="container">
+      <div class="section-label">Get in Touch</div>
+      <h1 class="section-title">Contact &amp; Place Your Order</h1>
+      <p class="section-sub">We handle all orders and enquiries directly through Telegram. It's fast, secure, and private. Message us your shopping list and we'll take care of the rest.</p>
+
+      <!-- TELEGRAM CARDS -->
+      <div class="tg-cards">
+        <div class="tg-card">
+          <div class="tg-avatar">✈</div>
+          <div class="tg-handle">@fussyaussie</div>
+          <div class="tg-role">Primary Contact · Orders &amp; Enquiries</div>
+          <a href="https://t.me/fussyaussie" target="_blank" class="tg-btn">Open Telegram →</a>
+        </div>
+        <div class="tg-card">
+          <div class="tg-avatar">✈</div>
+          <div class="tg-handle">@toyaussie</div>
+          <div class="tg-role">Secondary Contact · Orders &amp; Support</div>
+          <a href="https://t.me/toyaussie" target="_blank" class="tg-btn">Open Telegram →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO ORDER -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-label">How to Order</div>
+        <h2 class="section-title">Simple. Fast. Secure.</h2>
+        <p class="section-sub">Our ordering process is intentionally straightforward. No accounts, no complicated checkouts — just a Telegram message.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-title">Browse Products</div>
+          <div class="step-desc">Review our full product catalogue and note the items you're interested in. Check our FAQ if you have questions about specific compounds.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-title">Message Us on Telegram</div>
+          <div class="step-desc">Contact @fussyaussie or @toyaussie on Telegram with your shopping list — product names, quantities, and any specific requirements.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-title">Confirm &amp; Pay</div>
+          <div class="step-desc">We'll confirm availability and pricing, then provide payment instructions. We accept bank transfer and cryptocurrency.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-title">Receive &amp; Track</div>
+          <div class="step-desc">Once payment is received, your order is packed and dispatched — typically same business day. You'll receive an Order ID and tracking number.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK INFO -->
+  <section style="padding: 0 0 80px;">
+    <div class="container" style="max-width: 760px;">
+      <div class="text-center mb-8">
+        <div class="section-label">Useful Information</div>
+        <h2 class="section-title" style="font-size:30px;">Before You Message Us</h2>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon">⏰</div>
+        <div>
+          <div class="info-label">Response Times</div>
+          <div class="info-value">We typically respond within 1–3 hours during business hours (Mon–Sat, 9am–6pm AEST). Orders confirmed before midday are dispatched same day.</div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon">💳</div>
+        <div>
+          <div class="info-label">Payment Methods</div>
+          <div class="info-value">Bank Transfer (EFT), Bitcoin, Monero, USDT. Payment details are provided via Telegram after order confirmation.</div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon">📦</div>
+        <div>
+          <div class="info-label">Minimum Order</div>
+          <div class="info-value">$50 AUD minimum order value. Bulk and wholesale enquiries are welcome — ask about our researcher loyalty rates.</div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon">🚚</div>
+        <div>
+          <div class="info-label">Shipping</div>
+          <div class="info-value">Australia-wide only. Metro areas: 1–3 days. Regional: 3–6 days. Express shipping available on request.</div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon">📋</div>
+        <div>
+          <div class="info-label">Certificates of Analysis</div>
+          <div class="info-value">CoAs are available for every product. Request them via Telegram before or with your order — we're happy to provide full documentation.</div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon">⚠️</div>
+        <div>
+          <div class="info-label">Research Use Only</div>
+          <div class="info-value">All products are strictly for in-vitro scientific research. By ordering, you confirm compliance with our full <a href="about.html#legal" style="color:var(--accent);">legal disclaimer</a>.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding: 0 0 80px;">
+    <div class="container">
+      <div class="cta-section">
+        <div class="section-label">Ready to Order?</div>
+        <h2 class="section-title" style="margin-top:12px;font-size:32px;">Message Us on Telegram</h2>
+        <p class="section-sub" style="margin-bottom:36px;">We're just a message away. Send us your product list and we'll handle everything from there.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://t.me/fussyaussie" target="_blank" class="btn btn-primary" style="font-size:16px;padding:14px 32px;">✈ @fussyaussie</a>
+          <a href="https://t.me/toyaussie" target="_blank" class="btn btn-outline" style="font-size:16px;padding:14px 32px;">✈ @toyaussie</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo-wrap">
+            <div class="logo-icon" style="width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;">O</div>
+            Ozzy<span style="color:var(--accent)">Peps</span>
+          </div>
+          <p class="footer-desc">Premium research-grade peptides supplied to qualified scientists and research facilities. For laboratory use only.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Support</div>
+          <ul class="footer-links">
+            <li><a href="track-order.html">Track Order</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="about.html#legal">Legal &amp; Disclaimer</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Order via Telegram</div>
+          <a href="https://t.me/fussyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @fussyaussie</a>
+          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;">✈ @toyaussie</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 OzzyPeps. All rights reserved. For research use only.</div>
+        <div style="font-size:12px;color:var(--text-muted);">Not for human consumption · Not a therapeutic product</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    window.addEventListener('scroll', () => {
+      const st = document.getElementById('scrollTop');
+      if (window.scrollY > 400) st.classList.add('visible');
+      else st.classList.remove('visible');
+    });
+  </script>
+</body>
+</html>
