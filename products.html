@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Products – OzzyPeps Research Peptides</title>
-  <meta name="description" content="Browse OzzyPeps' full catalogue of high-purity research peptides. For scientific and laboratory use only." />
+  <meta name="description" content="Browse OzzyPeps' full catalogue of high-purity research peptides with pricing in AUD. For scientific and laboratory use only." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,7 +45,7 @@
     <div class="container">
       <div class="section-label">Product Catalogue</div>
       <h1 class="section-title">Research Peptides &amp; Compounds</h1>
-      <p class="section-sub">All products are for in-vitro research and scientific laboratory use only. Not for human or animal administration.</p>
+      <p class="section-sub">All prices in AUD. Shipping: <strong style="color:var(--accent);">$89 AUD flat rate</strong> Australia-wide — fully insured. Research use only.</p>
     </div>
   </section>
 
@@ -54,7 +54,7 @@
     <div class="disclaimer-banner">
       <div class="disclaimer-icon">⚠️</div>
       <div class="disclaimer-text">
-        <strong>Research Use Only.</strong> The compounds listed below are sold exclusively for laboratory and scientific research. To enquire about pricing and availability, or to place an order, please contact us on Telegram: <a href="https://t.me/fussyaussie" target="_blank" style="color:var(--accent);">@fussyaussie</a> or <a href="https://t.me/toyaussie" target="_blank" style="color:var(--accent);">@toyaussie</a>.
+        <strong>Research Use Only.</strong> The compounds listed below are sold exclusively for laboratory and scientific research. To place an order or enquire, contact us on Telegram: <a href="https://t.me/fussyaussie" target="_blank" style="color:var(--accent);">@fussyaussie</a> or <a href="https://t.me/toyaussie" target="_blank" style="color:var(--accent);">@toyaussie</a>.
       </div>
     </div>
   </div>
@@ -63,17 +63,22 @@
   <section style="padding: 16px 0 0;">
     <div class="container">
       <div class="search-bar">
-        <input type="text" class="search-input" id="searchInput" placeholder="Search products..." oninput="filterProducts()" />
+        <input type="text" class="search-input" id="searchInput" placeholder="Search products (e.g. semaglutide, BPC-157)..." oninput="filterProducts()" />
       </div>
 
       <div class="filter-tabs" id="filterTabs">
         <button class="filter-tab active" onclick="setFilter('all', this)">All Products</button>
-        <button class="filter-tab" onclick="setFilter('healing', this)">Healing Peptides</button>
-        <button class="filter-tab" onclick="setFilter('glp1', this)">GLP-1 / Metabolic</button>
-        <button class="filter-tab" onclick="setFilter('ghrh', this)">GHRH / GH</button>
-        <button class="filter-tab" onclick="setFilter('melanocortin', this)">Melanocortin</button>
-        <button class="filter-tab" onclick="setFilter('nootropic', this)">Nootropic</button>
-        <button class="filter-tab" onclick="setFilter('other', this)">Other</button>
+        <button class="filter-tab" onclick="setFilter('glp1', this)">GLP-1 &amp; Weight Loss</button>
+        <button class="filter-tab" onclick="setFilter('gh', this)">Growth Hormone</button>
+        <button class="filter-tab" onclick="setFilter('healing', this)">Healing &amp; Recovery</button>
+        <button class="filter-tab" onclick="setFilter('nootropic', this)">Cognitive &amp; Nootropic</button>
+        <button class="filter-tab" onclick="setFilter('longevity', this)">Longevity &amp; Anti-Aging</button>
+        <button class="filter-tab" onclick="setFilter('sexual', this)">Sexual &amp; Reproductive</button>
+        <button class="filter-tab" onclick="setFilter('aesthetic', this)">Aesthetic &amp; Pigmentation</button>
+        <button class="filter-tab" onclick="setFilter('metabolic', this)">Fat Loss &amp; Metabolic</button>
+        <button class="filter-tab" onclick="setFilter('immune', this)">Immunity</button>
+        <button class="filter-tab" onclick="setFilter('blends', this)">Blends</button>
+        <button class="filter-tab" onclick="setFilter('supplies', this)">Solvents &amp; Supplies</button>
       </div>
     </div>
   </section>
@@ -83,15 +88,366 @@
     <div class="container">
       <div class="products-grid" id="productsGrid">
 
-        <!-- HEALING -->
-        <div class="product-card" data-cat="healing" data-name="bpc-157 pentadecapeptide healing tissue gut">
-          <div class="product-img">🧬<div class="product-badge hot">Popular</div></div>
+        <!-- ═══════════════════════════════════════
+             GLP-1 & WEIGHT LOSS
+             ═══════════════════════════════════════ -->
+
+        <div class="product-card" data-cat="glp1" data-name="semaglutide glp-1 weight loss metabolic">
+          <div class="product-img">💊<div class="product-badge hot">Bestseller</div></div>
           <div class="product-body">
+            <div class="product-code">SM-Series</div>
+            <div class="product-category">GLP-1 Analogue</div>
+            <div class="product-name">Semaglutide</div>
+            <div class="product-desc">Long-acting GLP-1 receptor agonist studied in metabolic and appetite-regulation research. Extended plasma half-life.</div>
+            <div class="product-from-price">From <strong>$140 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$140</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$171</span></div>
+              <div class="spec-row"><span class="spec-size">15mg × 10 vials</span><span class="spec-price">$217</span></div>
+              <div class="spec-row"><span class="spec-size">20mg × 10 vials</span><span class="spec-price">$248</span></div>
+              <div class="spec-row"><span class="spec-size">30mg × 10 vials</span><span class="spec-price">$310</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="glp1" data-name="tirzepatide dual gip glp-1 metabolic weight">
+          <div class="product-img">🧪<div class="product-badge hot">Bestseller</div></div>
+          <div class="product-body">
+            <div class="product-code">TR-Series</div>
+            <div class="product-category">Dual GIP / GLP-1</div>
+            <div class="product-name">Tirzepatide</div>
+            <div class="product-desc">Novel dual agonist targeting both GIP and GLP-1 receptors. Used in advanced metabolic syndrome research.</div>
+            <div class="product-from-price">From <strong>$155 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$155</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$186</span></div>
+              <div class="spec-row"><span class="spec-size">15mg × 10 vials</span><span class="spec-price">$233</span></div>
+              <div class="spec-row"><span class="spec-size">20mg × 10 vials</span><span class="spec-price">$264</span></div>
+              <div class="spec-row"><span class="spec-size">30mg × 10 vials</span><span class="spec-price">$326</span></div>
+              <div class="spec-row"><span class="spec-size">40mg × 10 vials</span><span class="spec-price">$388</span></div>
+              <div class="spec-row"><span class="spec-size">50mg × 10 vials</span><span class="spec-price">$481</span></div>
+              <div class="spec-row"><span class="spec-size">60mg × 10 vials</span><span class="spec-price">$558</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="glp1" data-name="retatrutide triple agonist gcg gip glp-1 weight">
+          <div class="product-img">⚡<div class="product-badge new">New</div></div>
+          <div class="product-body">
+            <div class="product-code">RT-Series</div>
+            <div class="product-category">Triple Agonist</div>
+            <div class="product-name">Retatrutide</div>
+            <div class="product-desc">Next-generation triple receptor agonist (GLP-1, GIP, glucagon) studied in advanced obesity and metabolic research models.</div>
+            <div class="product-from-price">From <strong>$202 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$202</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$279</span></div>
+              <div class="spec-row"><span class="spec-size">15mg × 10 vials</span><span class="spec-price">$357</span></div>
+              <div class="spec-row"><span class="spec-size">20mg × 10 vials</span><span class="spec-price">$434</span></div>
+              <div class="spec-row"><span class="spec-size">30mg × 10 vials</span><span class="spec-price">$558</span></div>
+              <div class="spec-row"><span class="spec-size">40mg × 10 vials</span><span class="spec-price">$682</span></div>
+              <div class="spec-row"><span class="spec-size">50mg × 10 vials</span><span class="spec-price">$822</span></div>
+              <div class="spec-row"><span class="spec-size">60mg × 10 vials</span><span class="spec-price">$930</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="glp1" data-name="cagrilintide amylin analogue metabolic appetite">
+          <div class="product-img">🌟</div>
+          <div class="product-body">
+            <div class="product-code">CGL-Series</div>
+            <div class="product-category">Amylin Analogue</div>
+            <div class="product-name">Cagrilintide</div>
+            <div class="product-desc">Long-acting amylin analogue studied for synergistic effects with GLP-1 agonists in satiety and metabolic research.</div>
+            <div class="product-from-price">From <strong>$357 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$357</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$605</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="glp1 blends" data-name="cagrisema cagrilintide semaglutide combination glp-1 amylin">
+          <div class="product-img">🔬<div class="product-badge hot">Hot</div></div>
+          <div class="product-body">
+            <div class="product-code">CS10</div>
+            <div class="product-category">Combo Peptide</div>
+            <div class="product-name">CagriSema (Cagrilintide 5mg + Semaglutide 5mg)</div>
+            <div class="product-desc">Synergistic blend pairing an amylin analogue with a GLP-1 agonist — explored in advanced metabolic research.</div>
+            <div class="product-from-price">From <strong>$620 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$620</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="glp1" data-name="mazdutide glp-1 glucagon dual agonist metabolic">
+          <div class="product-img">💠</div>
+          <div class="product-body">
+            <div class="product-code">MDT10</div>
+            <div class="product-category">Dual Agonist</div>
+            <div class="product-name">Mazdutide</div>
+            <div class="product-desc">Investigational GLP-1 / glucagon dual receptor agonist studied for energy expenditure and glycemic regulation.</div>
+            <div class="product-from-price">From <strong>$636 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$636</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="glp1" data-name="survodutide glp-1 glucagon dual agonist obesity">
+          <div class="product-img">💎</div>
+          <div class="product-body">
+            <div class="product-code">SUR10</div>
+            <div class="product-category">Dual Agonist</div>
+            <div class="product-name">Survodutide</div>
+            <div class="product-desc">Glucagon / GLP-1 receptor co-agonist studied in obesity and hepatic metabolism research.</div>
+            <div class="product-from-price">From <strong>$868 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$868</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             GROWTH HORMONE / GH PEPTIDES
+             ═══════════════════════════════════════ -->
+
+        <div class="product-card" data-cat="gh" data-name="hgh human growth hormone somatropin">
+          <div class="product-img">📈<div class="product-badge hot">Popular</div></div>
+          <div class="product-body">
+            <div class="product-code">H-Series</div>
+            <div class="product-category">Recombinant HGH</div>
+            <div class="product-name">HGH (Recombinant)</div>
+            <div class="product-desc">Recombinant human growth hormone used in protein expression, cellular growth, and IGF-1 axis research.</div>
+            <div class="product-from-price">From <strong>$233 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10 iu × 10 vials</span><span class="spec-price">$233</span></div>
+              <div class="spec-row"><span class="spec-size">24 iu × 10 vials</span><span class="spec-price">$434</span></div>
+              <div class="spec-row"><span class="spec-size">36 iu × 10 vials</span><span class="spec-price">$558</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="gh" data-name="ipamorelin ghrelin mimetic growth hormone selective">
+          <div class="product-img">🌡️<div class="product-badge hot">Popular</div></div>
+          <div class="product-body">
+            <div class="product-code">IP-Series</div>
+            <div class="product-category">Ghrelin Mimetic</div>
+            <div class="product-name">Ipamorelin</div>
+            <div class="product-desc">Highly selective GHRP with minimal cortisol or prolactin elevation in studies. Pulsatile GH release modelling.</div>
+            <div class="product-from-price">From <strong>$171 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$171</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$279</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="gh" data-name="cjc-1295 dac ghrh growth hormone drug affinity complex">
+          <div class="product-img">🔭</div>
+          <div class="product-body">
+            <div class="product-code">CD5</div>
+            <div class="product-category">GHRH Analogue</div>
+            <div class="product-name">CJC-1295 W/DAC</div>
+            <div class="product-desc">Modified GHRH conjugated with Drug Affinity Complex — extended half-life GH secretion research.</div>
+            <div class="product-from-price">From <strong>$527 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$527</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="gh" data-name="cjc-1295 no dac ghrh modgrf 1-29 growth hormone">
+          <div class="product-img">🔬</div>
+          <div class="product-body">
+            <div class="product-code">CND-Series</div>
+            <div class="product-category">GHRH Analogue</div>
+            <div class="product-name">CJC-1295 WO/DAC (Mod-GRF 1-29)</div>
+            <div class="product-desc">Modified GHRH 1-29 without DAC — short-acting analogue used in pulsatile GH release studies.</div>
+            <div class="product-from-price">From <strong>$295 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$295</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$496</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="gh blends" data-name="cjc ipamorelin blend ghrh growth hormone combo">
+          <div class="product-img">🧪<div class="product-badge">Top Rated</div></div>
+          <div class="product-body">
+            <div class="product-code">CP10</div>
+            <div class="product-category">GH Blend</div>
+            <div class="product-name">CJC-1295 WO/DAC 5mg + Ipamorelin 5mg</div>
+            <div class="product-desc">Synergistic blend combining a GHRH analogue with a selective ghrelin mimetic — popular in GH research protocols.</div>
+            <div class="product-from-price">From <strong>$326 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$326</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="gh" data-name="sermorelin acetate ghrh fragment 1-29 growth hormone">
+          <div class="product-img">📊</div>
+          <div class="product-body">
+            <div class="product-code">SMO-Series</div>
+            <div class="product-category">GHRH Fragment</div>
+            <div class="product-name">Sermorelin Acetate</div>
+            <div class="product-desc">Synthetic analogue of the first 29 amino acids of endogenous GHRH — pituitary stimulation research.</div>
+            <div class="product-from-price">From <strong>$248 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$248</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$403</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="gh" data-name="tesamorelin ghrh visceral fat lipodystrophy">
+          <div class="product-img">🎯</div>
+          <div class="product-body">
+            <div class="product-code">TSM-Series</div>
+            <div class="product-category">GHRH Analogue</div>
+            <div class="product-name">Tesamorelin</div>
+            <div class="product-desc">Stabilised GHRH analogue widely studied in visceral adipose tissue and lipodystrophy research.</div>
+            <div class="product-from-price">From <strong>$372 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$372</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$605</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="gh" data-name="ghrp-2 growth hormone releasing peptide hexapeptide">
+          <div class="product-img">⚡</div>
+          <div class="product-body">
+            <div class="product-code">G2-Series</div>
+            <div class="product-category">GH Secretagogue</div>
+            <div class="product-name">GHRP-2</div>
+            <div class="product-desc">Synthetic hexapeptide that stimulates GH secretion via ghrelin receptor activation — metabolic and GH research.</div>
+            <div class="product-from-price">From <strong>$171 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$171</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$248</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="gh" data-name="ghrp-6 acetate growth hormone releasing peptide">
+          <div class="product-img">🔋</div>
+          <div class="product-body">
+            <div class="product-code">G6-Series</div>
+            <div class="product-category">GH Secretagogue</div>
+            <div class="product-name">GHRP-6 Acetate</div>
+            <div class="product-desc">Potent ghrelin receptor agonist studied for GH release and appetite stimulation pathways.</div>
+            <div class="product-from-price">From <strong>$248 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$248</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$322</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="gh" data-name="igf-1 lr3 long arg3 insulin growth factor">
+          <div class="product-img">📐</div>
+          <div class="product-body">
+            <div class="product-code">IG-Series</div>
+            <div class="product-category">IGF Analogue</div>
+            <div class="product-name">IGF-1 LR3</div>
+            <div class="product-desc">Long arginine-3 IGF-1 analogue with reduced binding to IGFBPs — extended biological half-life in research.</div>
+            <div class="product-from-price">From <strong>$155 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">0.1mg × 10 vials</span><span class="spec-price">$155</span></div>
+              <div class="spec-row"><span class="spec-size">1mg × 10 vials</span><span class="spec-price">$614</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             HEALING & RECOVERY
+             ═══════════════════════════════════════ -->
+
+        <div class="product-card" data-cat="healing" data-name="bpc-157 pentadecapeptide healing tissue gastric">
+          <div class="product-img">🧬<div class="product-badge hot">Bestseller</div></div>
+          <div class="product-body">
+            <div class="product-code">BC-Series</div>
             <div class="product-category">Healing Peptide</div>
             <div class="product-name">BPC-157</div>
-            <div class="product-desc">Pentadecapeptide studied extensively for tissue repair, GI tract modelling, and tendon/ligament regeneration research. Stable in acidic environments.</div>
+            <div class="product-desc">Pentadecapeptide widely studied for tissue repair, gastrointestinal, and tendon/ligament regeneration models.</div>
+            <div class="product-from-price">From <strong>$155 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$155</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$248</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 99.1% Purity</div>
+              <div class="product-purity">✓ 99%+ Purity</div>
               <a href="contact.html" class="product-inquiry">Enquire →</a>
             </div>
           </div>
@@ -100,263 +456,839 @@
         <div class="product-card" data-cat="healing" data-name="tb-500 thymosin beta-4 muscle tissue vascular">
           <div class="product-img">⚗️<div class="product-badge">Top Rated</div></div>
           <div class="product-body">
+            <div class="product-code">BT-Series</div>
             <div class="product-category">Tissue Research</div>
             <div class="product-name">TB-500 (Thymosin β4 Analogue)</div>
-            <div class="product-desc">Synthetic fragment of Thymosin Beta-4 used in studies related to muscle healing, vascular remodelling, and cellular migration pathways.</div>
+            <div class="product-desc">Synthetic fragment of Thymosin Beta-4 — muscle healing, vascular remodelling, and cell migration studies.</div>
+            <div class="product-from-price">From <strong>$264 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$264</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$465</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 99.3% Purity</div>
+              <div class="product-purity">✓ 99%+ Purity</div>
               <a href="contact.html" class="product-inquiry">Enquire →</a>
             </div>
           </div>
         </div>
 
-        <div class="product-card" data-cat="healing" data-name="kpv anti-inflammatory tripeptide gut colitis">
+        <div class="product-card" data-cat="healing blends" data-name="bpc-157 tb-500 blend healing tissue combo">
+          <div class="product-img">🔗<div class="product-badge hot">Popular</div></div>
+          <div class="product-body">
+            <div class="product-code">BB-Series</div>
+            <div class="product-category">Healing Blend</div>
+            <div class="product-name">BPC-157 + TB-500 Blend</div>
+            <div class="product-desc">Pre-mixed healing blend pairing BPC-157 with TB-500 — convenient combination for tissue repair research.</div>
+            <div class="product-from-price">From <strong>$326 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials (5+5)</span><span class="spec-price">$326</span></div>
+              <div class="spec-row"><span class="spec-size">20mg × 10 vials (10+10)</span><span class="spec-price">$558</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="healing aesthetic" data-name="ghk-cu copper peptide skin healing collagen">
+          <div class="product-img">🔶</div>
+          <div class="product-body">
+            <div class="product-code">CU-Series</div>
+            <div class="product-category">Copper Peptide</div>
+            <div class="product-name">GHK-CU</div>
+            <div class="product-desc">Tripeptide copper complex studied for collagen synthesis, wound healing, and anti-fibrotic research.</div>
+            <div class="product-from-price">From <strong>$124 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">50mg × 10 vials</span><span class="spec-price">$124</span></div>
+              <div class="spec-row"><span class="spec-size">100mg × 10 vials</span><span class="spec-price">$171</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="healing aesthetic" data-name="ahk-cu copper peptide hair follicle research">
+          <div class="product-img">🟠</div>
+          <div class="product-body">
+            <div class="product-code">AHK-CU</div>
+            <div class="product-category">Copper Peptide</div>
+            <div class="product-name">AHK-CU</div>
+            <div class="product-desc">Copper-binding tripeptide studied for hair follicle activity and dermal cell proliferation research.</div>
+            <div class="product-from-price">From <strong>$242 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">100mg × 10 vials</span><span class="spec-price">$242</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="healing immune" data-name="kpv tripeptide anti-inflammatory gut colitis">
           <div class="product-img">🌿</div>
           <div class="product-body">
+            <div class="product-code">KPV10</div>
             <div class="product-category">Anti-Inflammatory</div>
             <div class="product-name">KPV Tripeptide</div>
-            <div class="product-desc">A tripeptide (Lys-Pro-Val) fragment of alpha-MSH, explored for anti-inflammatory signalling in gastrointestinal research models.</div>
+            <div class="product-desc">Lys-Pro-Val tripeptide derived from α-MSH — anti-inflammatory signalling in GI research models.</div>
+            <div class="product-from-price">From <strong>$217 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$217</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 99.0% Purity</div>
+              <div class="product-purity">✓ 99%+ Purity</div>
               <a href="contact.html" class="product-inquiry">Enquire →</a>
             </div>
           </div>
         </div>
 
-        <div class="product-card" data-cat="healing" data-name="ghrp-2 growth hormone releasing peptide">
-          <div class="product-img">🔧</div>
+        <div class="product-card" data-cat="healing blends" data-name="bbg70 ghk-cu bpc-157 tb-500 blend healing skin">
+          <div class="product-img">🎁<div class="product-badge new">New</div></div>
           <div class="product-body">
-            <div class="product-category">GH Secretagogue</div>
-            <div class="product-name">GHRP-2</div>
-            <div class="product-desc">Synthetic hexapeptide that stimulates GH secretion via ghrelin receptor activation. Used in metabolic and growth hormone research studies.</div>
+            <div class="product-code">BBG70</div>
+            <div class="product-category">Premium Blend</div>
+            <div class="product-name">GHK-CU 50mg + BPC-157 10mg + TB-500 10mg</div>
+            <div class="product-desc">Triple-action blend combining the leading healing and copper peptides — convenient for combined research protocols.</div>
+            <div class="product-from-price">From <strong>$527 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">70mg × 10 vials</span><span class="spec-price">$527</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 98.8% Purity</div>
+              <div class="product-purity">✓ 99%+ Purity</div>
               <a href="contact.html" class="product-inquiry">Enquire →</a>
             </div>
           </div>
         </div>
 
-        <!-- GLP-1 / METABOLIC -->
-        <div class="product-card" data-cat="glp1" data-name="semaglutide glp-1 metabolic obesity diabetes">
-          <div class="product-img">💊<div class="product-badge new">New</div></div>
+        <div class="product-card" data-cat="healing blends" data-name="klow80 ghk-cu bpc-157 tb-500 kpv blend">
+          <div class="product-img">🏆<div class="product-badge hot">Premium</div></div>
           <div class="product-body">
-            <div class="product-category">GLP-1 Analogue</div>
-            <div class="product-name">Semaglutide</div>
-            <div class="product-desc">Long-acting GLP-1 receptor agonist analogue for metabolic, insulin secretion, and appetite regulation research. High receptor affinity and extended half-life.</div>
+            <div class="product-code">KLOW80</div>
+            <div class="product-category">Premium Blend</div>
+            <div class="product-name">"KLOW" — GHK-CU 50mg + BPC-157 10mg + TB-500 10mg + KPV 10mg</div>
+            <div class="product-desc">Our most comprehensive healing blend — four leading research compounds in one convenient vial.</div>
+            <div class="product-from-price">From <strong>$636 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">80mg × 10 vials</span><span class="spec-price">$636</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 98.9% Purity</div>
+              <div class="product-purity">✓ 99%+ Purity</div>
               <a href="contact.html" class="product-inquiry">Enquire →</a>
             </div>
           </div>
         </div>
 
-        <div class="product-card" data-cat="glp1" data-name="tirzepatide gip glp-1 dual agonist">
-          <div class="product-img">🧪<div class="product-badge hot">Hot</div></div>
-          <div class="product-body">
-            <div class="product-category">Dual GIP/GLP-1</div>
-            <div class="product-name">Tirzepatide</div>
-            <div class="product-desc">Novel dual agonist targeting both GIP and GLP-1 receptors. Used in advanced metabolic syndrome and adipose tissue research.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 98.7% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
-            </div>
-          </div>
-        </div>
+        <!-- ═══════════════════════════════════════
+             COGNITIVE & NOOTROPIC
+             ═══════════════════════════════════════ -->
 
-        <div class="product-card" data-cat="glp1" data-name="liraglutide glp-1 metabolic diabetes research">
-          <div class="product-img">💉</div>
-          <div class="product-body">
-            <div class="product-category">GLP-1 Analogue</div>
-            <div class="product-name">Liraglutide</div>
-            <div class="product-desc">Medium-acting GLP-1 receptor agonist analogue with wide use in insulin secretion, beta-cell function, and cardioprotective research.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 99.0% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- GHRH / GH -->
-        <div class="product-card" data-cat="ghrh" data-name="cjc-1295 dac ghrh growth hormone releasing">
-          <div class="product-img">🔭</div>
-          <div class="product-body">
-            <div class="product-category">GHRH Analogue</div>
-            <div class="product-name">CJC-1295 DAC</div>
-            <div class="product-desc">Modified GHRH analogue conjugated with a Drug Affinity Complex to extend plasma half-life. Widely used in GH secretion and IGF-1 modelling studies.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 99.0% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="ghrh" data-name="ipamorelin ghrelin mimetic growth hormone">
-          <div class="product-img">🌡️<div class="product-badge hot">Popular</div></div>
-          <div class="product-body">
-            <div class="product-category">Ghrelin Mimetic</div>
-            <div class="product-name">Ipamorelin</div>
-            <div class="product-desc">Highly selective GHRP with minimal side-effect profile in studies. Stimulates GH without significant cortisol or prolactin elevation in research models.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 99.4% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="ghrh" data-name="sermorelin ghrh growth hormone secretagogue">
-          <div class="product-img">📈</div>
-          <div class="product-body">
-            <div class="product-category">GHRH Fragment</div>
-            <div class="product-name">Sermorelin</div>
-            <div class="product-desc">Synthetic analogue of the first 29 amino acids of endogenous GHRH. Used in pituitary function and natural GH secretion research protocols.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 98.9% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="ghrh" data-name="ghrp-6 growth hormone releasing hexapeptide">
-          <div class="product-img">⚡</div>
-          <div class="product-body">
-            <div class="product-category">GH Secretagogue</div>
-            <div class="product-name">GHRP-6</div>
-            <div class="product-desc">Potent ghrelin receptor agonist studied for GH release and appetite stimulation pathways in animal research models.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 99.1% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="ghrh" data-name="hexarelin ghrp growth hormone pituitary">
-          <div class="product-img">🔬</div>
-          <div class="product-body">
-            <div class="product-category">GH Secretagogue</div>
-            <div class="product-name">Hexarelin</div>
-            <div class="product-desc">Synthetic hexapeptide with high GH-releasing potency. Studied for cardiac protective effects and IGF-1 elevation in research settings.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 99.0% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- MELANOCORTIN -->
-        <div class="product-card" data-cat="melanocortin" data-name="pt-141 bremelanotide melanocortin sexual">
-          <div class="product-img">🌙</div>
-          <div class="product-body">
-            <div class="product-category">Melanocortin</div>
-            <div class="product-name">PT-141 (Bremelanotide)</div>
-            <div class="product-desc">Melanocortin receptor 4 agonist studied in sexual dysfunction and CNS neuroendocrine research. Cyclic heptapeptide structure.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 99.2% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="melanocortin" data-name="melanotan ii mt2 tanning melanocyte">
-          <div class="product-img">☀️<div class="product-badge hot">Popular</div></div>
-          <div class="product-body">
-            <div class="product-category">Melanocortin</div>
-            <div class="product-name">Melanotan II (MT-II)</div>
-            <div class="product-desc">Analogue of alpha-MSH studied for melanogenesis stimulation, skin pigmentation pathways, and appetite suppression mechanisms.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 99.0% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- NOOTROPIC -->
-        <div class="product-card" data-cat="nootropic" data-name="selank anxiolytic nootropic cognitive anxiety">
-          <div class="product-img">🧠</div>
-          <div class="product-body">
-            <div class="product-category">Nootropic Peptide</div>
-            <div class="product-name">Selank</div>
-            <div class="product-desc">Heptapeptide analogue of tuftsin with anxiolytic and nootropic properties studied in stress-response and immune modulation research.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 99.1% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="nootropic" data-name="semax cognitive nootropic neurological bdnf">
+        <div class="product-card" data-cat="nootropic" data-name="semax nootropic cognitive bdnf neurological">
           <div class="product-img">💡</div>
           <div class="product-body">
+            <div class="product-code">XA-Series</div>
             <div class="product-category">Nootropic Peptide</div>
             <div class="product-name">Semax</div>
-            <div class="product-desc">Heptapeptide derived from ACTH(4-7) studied for BDNF upregulation, neuroprotection, and cognitive enhancement in neurological models.</div>
+            <div class="product-desc">Heptapeptide derived from ACTH(4-7) — BDNF upregulation, neuroprotection, and cognitive enhancement studies.</div>
+            <div class="product-from-price">From <strong>$155 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$155</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$186</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 98.9% Purity</div>
+              <div class="product-purity">✓ 99%+ Purity</div>
               <a href="contact.html" class="product-inquiry">Enquire →</a>
             </div>
           </div>
         </div>
 
-        <div class="product-card" data-cat="nootropic" data-name="dihexa nootropic brain cognitive alzheimer">
-          <div class="product-img">🔮</div>
+        <div class="product-card" data-cat="nootropic" data-name="selank anxiolytic nootropic cognitive tuftsin">
+          <div class="product-img">🧠</div>
           <div class="product-body">
+            <div class="product-code">SK-Series</div>
             <div class="product-category">Nootropic Peptide</div>
-            <div class="product-name">Dihexa</div>
-            <div class="product-desc">Angiotensin IV analogue with high blood-brain barrier penetrance. Explored in Alzheimer's and neurodegenerative disease research models.</div>
+            <div class="product-name">Selank</div>
+            <div class="product-desc">Heptapeptide analogue of tuftsin with anxiolytic and nootropic properties — stress-response and immune modulation research.</div>
+            <div class="product-from-price">From <strong>$155 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$155</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$186</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 99.0% Purity</div>
+              <div class="product-purity">✓ 99%+ Purity</div>
               <a href="contact.html" class="product-inquiry">Enquire →</a>
             </div>
           </div>
         </div>
 
-        <!-- OTHER -->
-        <div class="product-card" data-cat="other" data-name="epithalon epitalon telomere pineal aging">
-          <div class="product-img">✨<div class="product-badge new">New</div></div>
+        <div class="product-card" data-cat="nootropic" data-name="dsip delta sleep inducing peptide sleep">
+          <div class="product-img">🌙</div>
           <div class="product-body">
+            <div class="product-code">DS-Series</div>
+            <div class="product-category">Sleep Research</div>
+            <div class="product-name">DSIP (Delta Sleep-Inducing Peptide)</div>
+            <div class="product-desc">Neuropeptide studied for sleep regulation, EEG delta wave modulation, and stress-response research.</div>
+            <div class="product-from-price">From <strong>$171 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$171</span></div>
+              <div class="spec-row"><span class="spec-size">15mg × 10 vials</span><span class="spec-price">$295</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="nootropic" data-name="cerebrolysin nootropic neurological brain peptide">
+          <div class="product-img">🧠</div>
+          <div class="product-body">
+            <div class="product-code">CBL60</div>
+            <div class="product-category">Neurotrophic</div>
+            <div class="product-name">Cerebrolysin</div>
+            <div class="product-desc">Peptide preparation derived from porcine brain proteins — neurotrophic and neuroprotective research applications.</div>
+            <div class="product-from-price">From <strong>$121 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">60mg × 10 vials</span><span class="spec-price">$121</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="nootropic longevity" data-name="pinealon neuropeptide pineal aging cognitive">
+          <div class="product-img">✨</div>
+          <div class="product-body">
+            <div class="product-code">PI-Series</div>
+            <div class="product-category">Neuropeptide</div>
+            <div class="product-name">Pinealon</div>
+            <div class="product-desc">Short tripeptide bioregulator studied for cognitive function and neuroprotective research in aging models.</div>
+            <div class="product-from-price">From <strong>$202 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$202</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$248</span></div>
+              <div class="spec-row"><span class="spec-size">20mg × 10 vials</span><span class="spec-price">$341</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="nootropic aesthetic" data-name="snap-8 acetyl octapeptide wrinkle cosmetic">
+          <div class="product-img">🪄</div>
+          <div class="product-body">
+            <div class="product-code">NP810</div>
+            <div class="product-category">Cosmetic Peptide</div>
+            <div class="product-name">SNAP-8 (Acetyl Octapeptide-3)</div>
+            <div class="product-desc">Acetyl octapeptide studied for inhibiting muscle contraction — expression line and cosmetic research applications.</div>
+            <div class="product-from-price">From <strong>$155 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$155</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             LONGEVITY & ANTI-AGING
+             ═══════════════════════════════════════ -->
+
+        <div class="product-card" data-cat="longevity" data-name="epithalon epitalon telomere pineal longevity">
+          <div class="product-img">🌌<div class="product-badge new">Featured</div></div>
+          <div class="product-body">
+            <div class="product-code">ET-Series</div>
             <div class="product-category">Longevity Research</div>
-            <div class="product-name">Epithalon</div>
-            <div class="product-desc">Synthetic tetrapeptide analogue of the pineal hormone Epithalamin. Studied extensively in telomere biology and anti-aging research models.</div>
+            <div class="product-name">Epithalon (Epitalon)</div>
+            <div class="product-desc">Synthetic tetrapeptide analogue of Epithalamin — studied in telomere biology and anti-aging research models.</div>
+            <div class="product-from-price">From <strong>$180 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$180</span></div>
+              <div class="spec-row"><span class="spec-size">50mg × 10 vials</span><span class="spec-price">$496</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 99.3% Purity</div>
+              <div class="product-purity">✓ 99%+ Purity</div>
               <a href="contact.html" class="product-inquiry">Enquire →</a>
             </div>
           </div>
         </div>
 
-        <div class="product-card" data-cat="other" data-name="ll-37 antimicrobial cathelicidin immune peptide">
-          <div class="product-img">🛡️</div>
+        <div class="product-card" data-cat="longevity" data-name="nad nicotinamide adenine dinucleotide longevity">
+          <div class="product-img">🔮<div class="product-badge hot">Popular</div></div>
           <div class="product-body">
-            <div class="product-category">Antimicrobial Peptide</div>
-            <div class="product-name">LL-37</div>
-            <div class="product-desc">Human cathelicidin antimicrobial peptide studied for immunomodulatory, wound healing, and anti-biofilm properties in laboratory settings.</div>
+            <div class="product-code">NJ-Series</div>
+            <div class="product-category">Coenzyme</div>
+            <div class="product-name">NAD+</div>
+            <div class="product-desc">Nicotinamide adenine dinucleotide — central to cellular energy metabolism, sirtuin activity, and longevity research.</div>
+            <div class="product-from-price">From <strong>$155 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">100mg × 10 vials</span><span class="spec-price">$155</span></div>
+              <div class="spec-row"><span class="spec-size">500mg × 10 vials</span><span class="spec-price">$279</span></div>
+              <div class="spec-row"><span class="spec-size">1000mg × 10 vials</span><span class="spec-price">$434</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 98.8% Purity</div>
+              <div class="product-purity">✓ 99%+ Purity</div>
               <a href="contact.html" class="product-inquiry">Enquire →</a>
             </div>
           </div>
         </div>
 
-        <div class="product-card" data-cat="other" data-name="fgl peptide fibronectin neuroprotection neural">
-          <div class="product-img">🕸️</div>
-          <div class="product-body">
-            <div class="product-category">Neural Research</div>
-            <div class="product-name">FGL Peptide</div>
-            <div class="product-desc">Fibronectin-derived NCAM-binding peptide studied for neuroprotective properties and synaptic plasticity enhancement in CNS research models.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 99.0% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card" data-cat="other" data-name="ss-31 mitochondria oxidative stress cardioprotective">
+        <div class="product-card" data-cat="longevity" data-name="ss-31 elamipretide mitochondria oxidative">
           <div class="product-img">⚙️</div>
           <div class="product-body">
             <div class="product-category">Mitochondrial Research</div>
+            <div class="product-code">2S-Series</div>
             <div class="product-name">SS-31 (Elamipretide)</div>
-            <div class="product-desc">Mitochondria-targeted tetrapeptide studied for reducing oxidative stress, improving cardiac function, and mitochondrial membrane stabilisation.</div>
+            <div class="product-desc">Mitochondria-targeted tetrapeptide studied for reducing oxidative stress and stabilising mitochondrial membranes.</div>
+            <div class="product-from-price">From <strong>$298 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$298</span></div>
+              <div class="spec-row"><span class="spec-size">50mg × 10 vials</span><span class="spec-price">$915</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 99.2% Purity</div>
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="longevity" data-name="mots-c mitochondrial peptide longevity metabolic">
+          <div class="product-img">🔋</div>
+          <div class="product-body">
+            <div class="product-code">MS-Series</div>
+            <div class="product-category">Mitochondrial Research</div>
+            <div class="product-name">MOTS-C</div>
+            <div class="product-desc">Mitochondrial-derived peptide studied for metabolic regulation, insulin sensitivity, and exercise-mimetic effects.</div>
+            <div class="product-from-price">From <strong>$233 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$233</span></div>
+              <div class="spec-row"><span class="spec-size">40mg × 10 vials</span><span class="spec-price">$605</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="longevity immune" data-name="glutathione antioxidant detox longevity">
+          <div class="product-img">💧</div>
+          <div class="product-body">
+            <div class="product-code">GTT</div>
+            <div class="product-category">Antioxidant</div>
+            <div class="product-name">Glutathione</div>
+            <div class="product-desc">Tripeptide and master antioxidant — central to redox homeostasis, detoxification, and immune function research.</div>
+            <div class="product-from-price">From <strong>$279 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">1500mg × 10 vials</span><span class="spec-price">$279</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="longevity metabolic" data-name="5-amino-1mq nicotinamide methylation longevity">
+          <div class="product-img">🧊</div>
+          <div class="product-body">
+            <div class="product-code">5AM</div>
+            <div class="product-category">Methylation Research</div>
+            <div class="product-name">5-Amino-1MQ</div>
+            <div class="product-desc">Selective NNMT inhibitor studied for adipocyte metabolism, NAD+ preservation, and longevity-related pathways.</div>
+            <div class="product-from-price">From <strong>$171 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$171</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             SEXUAL & REPRODUCTIVE
+             ═══════════════════════════════════════ -->
+
+        <div class="product-card" data-cat="sexual" data-name="pt-141 bremelanotide melanocortin sexual">
+          <div class="product-img">🔥<div class="product-badge hot">Popular</div></div>
+          <div class="product-body">
+            <div class="product-code">P41</div>
+            <div class="product-category">Melanocortin</div>
+            <div class="product-name">PT-141 (Bremelanotide)</div>
+            <div class="product-desc">Melanocortin receptor 4 agonist studied in sexual dysfunction and CNS neuroendocrine research.</div>
+            <div class="product-from-price">From <strong>$217 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$217</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="sexual" data-name="oxytocin nonapeptide bonding social hormone">
+          <div class="product-img">💞</div>
+          <div class="product-body">
+            <div class="product-code">OT2</div>
+            <div class="product-category">Neuropeptide</div>
+            <div class="product-name">Oxytocin</div>
+            <div class="product-desc">Nonapeptide hormone studied in social behaviour, pair bonding, lactation, and labour physiology research.</div>
+            <div class="product-from-price">From <strong>$109 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">2mg × 10 vials</span><span class="spec-price">$109</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="sexual" data-name="kisspeptin-10 gnrh reproductive hormone fertility">
+          <div class="product-img">💗</div>
+          <div class="product-body">
+            <div class="product-code">KS-Series</div>
+            <div class="product-category">Reproductive Research</div>
+            <div class="product-name">Kisspeptin-10</div>
+            <div class="product-desc">Decapeptide that stimulates GnRH release — extensively studied in reproductive endocrinology and puberty onset research.</div>
+            <div class="product-from-price">From <strong>$186 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$186</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$295</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="sexual" data-name="hcg human chorionic gonadotropin fertility">
+          <div class="product-img">🧫</div>
+          <div class="product-body">
+            <div class="product-code">G-Series</div>
+            <div class="product-category">Glycoprotein Hormone</div>
+            <div class="product-name">HCG (Human Chorionic Gonadotropin)</div>
+            <div class="product-desc">Glycoprotein hormone studied in reproductive endocrinology, gonadal function, and pregnancy research.</div>
+            <div class="product-from-price">From <strong>$295 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5,000 iu × 10 vials</span><span class="spec-price">$295</span></div>
+              <div class="spec-row"><span class="spec-size">10,000 iu × 10 vials</span><span class="spec-price">$527</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="sexual" data-name="hmg menotropin gonadotropin fertility fsh lh">
+          <div class="product-img">🌸</div>
+          <div class="product-body">
+            <div class="product-code">G75</div>
+            <div class="product-category">Gonadotropin</div>
+            <div class="product-name">HMG (Human Menopausal Gonadotropin)</div>
+            <div class="product-desc">Mixture of FSH and LH activity — studied in ovarian stimulation and fertility research protocols.</div>
+            <div class="product-from-price">From <strong>$217 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">75 iu × 10 vials</span><span class="spec-price">$217</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="sexual" data-name="dermorphin opioid analgesic peptide">
+          <div class="product-img">🌑</div>
+          <div class="product-body">
+            <div class="product-code">DR5</div>
+            <div class="product-category">Opioid Peptide</div>
+            <div class="product-name">Dermorphin</div>
+            <div class="product-desc">Heptapeptide opioid analogue with high mu-receptor selectivity — analgesic and neurological research applications.</div>
+            <div class="product-from-price">From <strong>$202 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$202</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             AESTHETIC & PIGMENTATION
+             ═══════════════════════════════════════ -->
+
+        <div class="product-card" data-cat="aesthetic" data-name="melanotan mt1 alpha-msh pigmentation tanning">
+          <div class="product-img">☀️</div>
+          <div class="product-body">
+            <div class="product-code">MT1</div>
+            <div class="product-category">Melanocortin</div>
+            <div class="product-name">Melanotan I</div>
+            <div class="product-desc">Synthetic analogue of α-MSH studied for melanocyte stimulation and skin pigmentation pathway research.</div>
+            <div class="product-from-price">From <strong>$171 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$171</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="aesthetic" data-name="melanotan ii mt2 acetate pigmentation tanning appetite">
+          <div class="product-img">🌞<div class="product-badge hot">Popular</div></div>
+          <div class="product-body">
+            <div class="product-code">ML10</div>
+            <div class="product-category">Melanocortin</div>
+            <div class="product-name">Melanotan II (MT-2 Acetate)</div>
+            <div class="product-desc">Analogue of α-MSH studied for melanogenesis stimulation, pigmentation, and appetite-related pathways.</div>
+            <div class="product-from-price">From <strong>$171 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$171</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             FAT LOSS & METABOLIC
+             ═══════════════════════════════════════ -->
+
+        <div class="product-card" data-cat="metabolic" data-name="aod 9604 fat loss frag growth hormone fragment">
+          <div class="product-img">⚖️</div>
+          <div class="product-body">
+            <div class="product-code">5AD</div>
+            <div class="product-category">Lipolytic Peptide</div>
+            <div class="product-name">AOD-9604</div>
+            <div class="product-desc">Modified fragment of HGH (176-191) studied for lipolytic activity and adipose tissue metabolism research.</div>
+            <div class="product-from-price">From <strong>$357 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$357</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="metabolic" data-name="aicar exercise mimetic ampk metabolic">
+          <div class="product-img">🚴</div>
+          <div class="product-body">
+            <div class="product-code">AR50</div>
+            <div class="product-category">AMPK Activator</div>
+            <div class="product-name">AICAR</div>
+            <div class="product-desc">AMP-activated protein kinase activator studied as an exercise mimetic for metabolic and endurance research.</div>
+            <div class="product-from-price">From <strong>$223 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">50mg × 10 vials</span><span class="spec-price">$223</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="metabolic" data-name="adipotide prohibitin tnp-470 adipose targeting">
+          <div class="product-img">🎯</div>
+          <div class="product-body">
+            <div class="product-code">AP-Series</div>
+            <div class="product-category">Adipose Research</div>
+            <div class="product-name">Adipotide (FTPP)</div>
+            <div class="product-desc">Pro-apoptotic peptidomimetic targeting prohibitin in adipose vasculature — obesity and adipose tissue research.</div>
+            <div class="product-from-price">From <strong>$248 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">2mg × 10 vials</span><span class="spec-price">$248</span></div>
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$496</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="metabolic" data-name="slu-pp-322 erra exercise mimetic">
+          <div class="product-img">🏃<div class="product-badge new">New</div></div>
+          <div class="product-body">
+            <div class="product-code">322</div>
+            <div class="product-category">ERR Agonist</div>
+            <div class="product-name">SLU-PP-322</div>
+            <div class="product-desc">Pan-ERR agonist studied as a potential exercise-mimetic — fatty acid oxidation and skeletal muscle research.</div>
+            <div class="product-from-price">From <strong>$341 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$341</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="metabolic aesthetic" data-name="lemon bottle lipolysis fat dissolving solution">
+          <div class="product-img">🍋<div class="product-badge hot">Trending</div></div>
+          <div class="product-body">
+            <div class="product-code">LB</div>
+            <div class="product-category">Lipolytic Solution</div>
+            <div class="product-name">Lemon Bottle</div>
+            <div class="product-desc">Pre-mixed lipolytic research solution containing riboflavin, lecithin, and bromelain — adipose research applications.</div>
+            <div class="product-from-price">From <strong>$341 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10ml × 10 vials</span><span class="spec-price">$341</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ Research Grade</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="metabolic" data-name="lc120 lipo c compound injectable">
+          <div class="product-img">🧴</div>
+          <div class="product-body">
+            <div class="product-code">LC120</div>
+            <div class="product-category">Lipo Compound</div>
+            <div class="product-name">LC120 Compound</div>
+            <div class="product-desc">Pre-mixed lipotropic solution for metabolic and adipose tissue research applications.</div>
+            <div class="product-from-price">From <strong>$217 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10ml × 10 vials</span><span class="spec-price">$217</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ Research Grade</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="metabolic" data-name="lipo-c b12 methionine inositol choline mic">
+          <div class="product-img">🧪</div>
+          <div class="product-body">
+            <div class="product-code">LC216</div>
+            <div class="product-category">Lipotropic Blend</div>
+            <div class="product-name">Lipo-C with Vitamin B12</div>
+            <div class="product-desc">Pre-mixed lipotropic blend featuring methionine, inositol, choline and B12 — metabolic research applications.</div>
+            <div class="product-from-price">From <strong>$264 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10ml × 10 vials</span><span class="spec-price">$264</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ Research Grade</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="metabolic" data-name="b12 cyanocobalamin methylcobalamin vitamin">
+          <div class="product-img">🟥</div>
+          <div class="product-body">
+            <div class="product-code">B12</div>
+            <div class="product-category">Vitamin</div>
+            <div class="product-name">Vitamin B12 (1mg/ml)</div>
+            <div class="product-desc">Solution form of cobalamin used in metabolic, neurological, and erythropoiesis-related research.</div>
+            <div class="product-from-price">From <strong>$140 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10ml × 10 vials</span><span class="spec-price">$140</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ Research Grade</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="metabolic" data-name="l-carnitine amino acid fat oxidation">
+          <div class="product-img">🟧</div>
+          <div class="product-body">
+            <div class="product-code">LC600</div>
+            <div class="product-category">Amino Acid</div>
+            <div class="product-name">L-Carnitine (600mg/ml)</div>
+            <div class="product-desc">Amino acid derivative central to fatty acid transport across the mitochondrial membrane — metabolism research.</div>
+            <div class="product-from-price">From <strong>$279 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10ml × 10 vials</span><span class="spec-price">$279</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ Research Grade</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             IMMUNITY & ANTI-INFLAMMATORY
+             ═══════════════════════════════════════ -->
+
+        <div class="product-card" data-cat="immune longevity" data-name="thymosin alpha-1 immune peptide thymic">
+          <div class="product-img">🛡️</div>
+          <div class="product-body">
+            <div class="product-code">TA-Series</div>
+            <div class="product-category">Immune Peptide</div>
+            <div class="product-name">Thymosin Alpha-1</div>
+            <div class="product-desc">28-amino-acid thymic peptide widely studied for immune modulation, T-cell maturation, and infection research.</div>
+            <div class="product-from-price">From <strong>$279 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$279</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$481</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="immune" data-name="ll-37 cathelicidin antimicrobial immune peptide">
+          <div class="product-img">🛡️</div>
+          <div class="product-body">
+            <div class="product-code">3750</div>
+            <div class="product-category">Antimicrobial Peptide</div>
+            <div class="product-name">LL-37</div>
+            <div class="product-desc">Human cathelicidin AMP studied for immunomodulation, wound healing, and anti-biofilm activity.</div>
+            <div class="product-from-price">From <strong>$326 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$326</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="immune healing" data-name="ara290 cibinetide tissue protective cytokine receptor">
+          <div class="product-img">🩹</div>
+          <div class="product-body">
+            <div class="product-code">ARA</div>
+            <div class="product-category">Tissue Protective</div>
+            <div class="product-name">ARA-290 (Cibinetide)</div>
+            <div class="product-desc">11-amino-acid EPO-derived peptide studied for tissue protection, neuropathic pain, and inflammatory pathway research.</div>
+            <div class="product-from-price">From <strong>$279 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$279</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="immune nootropic" data-name="vip vasoactive intestinal peptide neuropeptide">
+          <div class="product-img">🌀</div>
+          <div class="product-body">
+            <div class="product-code">VIP-Series</div>
+            <div class="product-category">Neuropeptide</div>
+            <div class="product-name">Vasoactive Intestinal Peptide (VIP)</div>
+            <div class="product-desc">28-amino-acid neuropeptide studied for vasodilation, anti-inflammatory effects, and neuroprotection.</div>
+            <div class="product-from-price">From <strong>$264 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$264</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$481</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             OTHER / SLEEP / SUPPLIES
+             ═══════════════════════════════════════ -->
+
+        <div class="product-card" data-cat="nootropic" data-name="melatonin sleep circadian hormone pineal">
+          <div class="product-img">🌜</div>
+          <div class="product-body">
+            <div class="product-code">MT10</div>
+            <div class="product-category">Sleep Research</div>
+            <div class="product-name">Melatonin</div>
+            <div class="product-desc">Pineal hormone studied in circadian rhythm regulation, sleep onset, and antioxidant pathways.</div>
+            <div class="product-from-price">From <strong>$202 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$202</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ 99%+ Purity</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="supplies" data-name="phosphate buffered saline pbs solvent reconstitution">
+          <div class="product-img">💧</div>
+          <div class="product-body">
+            <div class="product-code">WA-Series</div>
+            <div class="product-category">Solvent</div>
+            <div class="product-name">Phosphate Buffered Saline (PBS)</div>
+            <div class="product-desc">Isotonic buffered solution used for peptide reconstitution and laboratory dilutions.</div>
+            <div class="product-from-price">From <strong>$16 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">3ml × 10 vials</span><span class="spec-price">$16</span></div>
+              <div class="spec-row"><span class="spec-size">10ml × 10 vials</span><span class="spec-price">$31</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ Research Grade</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="supplies" data-name="bacteriostatic water benzyl alcohol solvent">
+          <div class="product-img">💦</div>
+          <div class="product-body">
+            <div class="product-code">BA-Series</div>
+            <div class="product-category">Solvent</div>
+            <div class="product-name">Bacteriostatic Water 0.9%</div>
+            <div class="product-desc">Sterile water with 0.9% benzyl alcohol — preferred solvent for extended-storage reconstitution of lyophilised peptides.</div>
+            <div class="product-from-price">From <strong>$16 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">3ml × 10 vials</span><span class="spec-price">$16</span></div>
+              <div class="spec-row"><span class="spec-size">10ml × 10 vials</span><span class="spec-price">$31</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ Research Grade</div>
+              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-cat="supplies" data-name="acetic acid water solvent ph adjustment">
+          <div class="product-img">🧴</div>
+          <div class="product-body">
+            <div class="product-code">AA-Series</div>
+            <div class="product-category">Solvent</div>
+            <div class="product-name">Acetic Acid Water 0.6%</div>
+            <div class="product-desc">Mild acetic acid solution suited to reconstituting hydrophobic or pH-sensitive research peptides.</div>
+            <div class="product-from-price">From <strong>$16 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">3ml × 10 vials</span><span class="spec-price">$16</span></div>
+              <div class="spec-row"><span class="spec-size">10ml × 10 vials</span><span class="spec-price">$31</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✓ Research Grade</div>
               <a href="contact.html" class="product-inquiry">Enquire →</a>
             </div>
           </div>
@@ -371,6 +1303,18 @@
         <p style="margin-top:8px;color:var(--text-muted);">Try a different search term or filter.</p>
       </div>
 
+    </div>
+  </section>
+
+  <!-- SHIPPING NOTE -->
+  <section style="padding: 0 0 60px;">
+    <div class="container" style="max-width: 900px;">
+      <div class="cta-section" style="padding: 40px 32px;">
+        <h2 class="section-title" style="font-size:24px;">🇦🇺 Flat-Rate Shipping &amp; Insurance</h2>
+        <p style="color:var(--text-secondary);max-width:580px;margin: 12px auto 0;">
+          Shipping is a flat <strong style="color:var(--accent);">$89 AUD</strong> Australia-wide and includes <strong style="color:var(--text-primary);">full transit insurance</strong>. If your parcel is lost or damaged in transit, we replace it or refund — at our discretion — at no extra cost to you.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -451,10 +1395,11 @@
       let visible = 0;
 
       cards.forEach(card => {
-        const cat = card.dataset.cat;
+        const cats = (card.dataset.cat || '').split(/\s+/);
         const name = (card.dataset.name || '').toLowerCase();
-        const catMatch = activeFilter === 'all' || cat === activeFilter;
-        const searchMatch = !query || name.includes(query);
+        const text = card.textContent.toLowerCase();
+        const catMatch = activeFilter === 'all' || cats.includes(activeFilter);
+        const searchMatch = !query || name.includes(query) || text.includes(query);
 
         if (catMatch && searchMatch) {
           card.style.display = '';
