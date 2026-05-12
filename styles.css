@@ -1459,6 +1459,21 @@ img { max-width: 100%; display: block; }
   transition: all var(--transition);
 }
 .coa-dl-btn:hover { background: rgba(0,229,160,0.15); color: var(--success); }
+.coa-dl-btn.coa-verified {
+  background: linear-gradient(135deg, rgba(0,229,160,0.18), rgba(0,212,255,0.18));
+  border-color: var(--success);
+  color: var(--success);
+  font-weight: 700;
+  padding: 12px;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 0 24px rgba(0,229,160,0.18);
+}
+.coa-dl-btn.coa-verified:hover {
+  background: linear-gradient(135deg, rgba(0,229,160,0.28), rgba(0,212,255,0.28));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 32px rgba(0,229,160,0.35);
+}
 
 /* Description */
 .modal-desc {
