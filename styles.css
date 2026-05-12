@@ -405,6 +405,7 @@ img { max-width: 100%; display: block; }
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding: 28px 0;
+  margin-top: 20px;
 }
 
 .trust-bar-inner {
