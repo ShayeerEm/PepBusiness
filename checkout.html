@@ -404,7 +404,7 @@
         <!-- DOWNLOAD / PRINT ACTIONS -->
         <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin: 4px 0 24px;">
           <button class="btn btn-primary" onclick="downloadReceipt()" style="font-size:13px;">⬇ Download Receipt</button>
-          <button class="btn btn-outline" onclick="window.print()" style="font-size:13px;">🖨 Print Receipt</button>
+          <button class="btn btn-outline" onclick="printReceipt()" style="font-size:13px;">🖨 Print Receipt</button>
         </div>
 
         <!-- ORDER RECEIPT (also used for download/print) -->
@@ -852,6 +852,131 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+    }
+
+    function printReceipt() {
+      if (!savedOrder) return;
+      const o = savedOrder;
+      const fmt2 = n => '$' + n.toFixed(2);
+      const dateStr = o.submittedAt.toLocaleString('en-AU', { timeZone: 'Australia/Sydney', dateStyle: 'long', timeStyle: 'short' });
+
+      const rows = o.items.map(i => `
+        <tr>
+          <td class="td-name">${i.emoji || '🧪'} ${i.name}<span class="size-tag">${i.size}</span></td>
+          <td class="td-center">× ${i.qty}</td>
+          <td class="td-right">${fmt2(i.price * i.qty)}</td>
+        </tr>`).join('');
+
+      const addrLines = o.customer.address.replace(/\n/g, '<br>');
+
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>OzzyPeps Receipt — ${o.orderNumber}</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #fff; color: #1a1a2e; padding: 40px 48px; max-width: 680px; margin: 0 auto; }
+  .header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 24px; border-bottom: 3px solid #00d4ff; margin-bottom: 28px; }
+  .brand { display: flex; flex-direction: column; }
+  .brand-name { font-size: 28px; font-weight: 900; color: #090e1a; letter-spacing: -0.5px; }
+  .brand-name span { color: #00d4ff; }
+  .brand-tagline { font-size: 11px; color: #6b7280; margin-top: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .receipt-label { text-align: right; }
+  .receipt-title { font-size: 13px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 1px; }
+  .order-num { font-size: 22px; font-weight: 900; color: #00d4ff; margin-top: 4px; letter-spacing: 0.5px; }
+  .receipt-date { font-size: 11px; color: #9ca3af; margin-top: 4px; }
+  .section-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #9ca3af; margin-bottom: 10px; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; }
+  .customer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 32px; font-size: 13px; margin-bottom: 28px; }
+  .customer-row { display: flex; flex-direction: column; padding: 4px 0; }
+  .customer-key { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #9ca3af; margin-bottom: 2px; }
+  .customer-val { font-size: 13px; color: #1a1a2e; font-weight: 500; }
+  .address-block { grid-column: 1 / -1; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 0; }
+  thead tr { background: #f9fafb; }
+  th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #6b7280; padding: 10px 12px; text-align: left; }
+  th:nth-child(2) { text-align: center; }
+  th:last-child { text-align: right; }
+  tbody tr { border-bottom: 1px solid #f3f4f6; }
+  tbody tr:last-child { border-bottom: none; }
+  td { padding: 11px 12px; vertical-align: top; }
+  .td-name { font-size: 13px; font-weight: 600; color: #1a1a2e; }
+  .size-tag { display: block; font-size: 11px; font-weight: 400; color: #9ca3af; margin-top: 2px; }
+  .td-center { text-align: center; font-size: 13px; color: #6b7280; }
+  .td-right { text-align: right; font-size: 13px; font-weight: 700; color: #1a1a2e; white-space: nowrap; }
+  .totals { border-top: 2px solid #e5e7eb; margin-top: 8px; padding-top: 14px; }
+  .total-row { display: flex; justify-content: space-between; padding: 5px 12px; font-size: 13px; color: #4b5563; }
+  .total-final { display: flex; justify-content: space-between; padding: 13px 12px; margin-top: 8px; background: #f0fdff; border-radius: 8px; font-size: 16px; font-weight: 900; color: #1a1a2e; border: 1px solid #bfebf5; }
+  .total-final span:last-child { color: #0099b8; }
+  .disclaimer { margin-top: 28px; padding: 14px 16px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; font-size: 11px; color: #92400e; line-height: 1.6; }
+  .footer { margin-top: 28px; padding-top: 20px; border-top: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: flex-end; }
+  .footer-contact { font-size: 11px; color: #6b7280; line-height: 1.8; }
+  .footer-contact strong { color: #1a1a2e; }
+  .footer-tg { font-size: 10px; color: #9ca3af; text-align: right; }
+  @media print {
+    body { padding: 20px 28px; }
+    button { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      <div class="brand-name">Ozzy<span>Peps</span></div>
+      <div class="brand-tagline">Research Compounds · Australia</div>
+    </div>
+    <div class="receipt-label">
+      <div class="receipt-title">Order Receipt</div>
+      <div class="order-num">${o.orderNumber}</div>
+      <div class="receipt-date">${dateStr}</div>
+    </div>
+  </div>
+
+  <div class="section-title">Customer Details</div>
+  <div class="customer-grid">
+    <div class="customer-row"><span class="customer-key">Full Name</span><span class="customer-val">${o.customer.name}</span></div>
+    <div class="customer-row"><span class="customer-key">Email</span><span class="customer-val">${o.customer.email}</span></div>
+    <div class="customer-row"><span class="customer-key">Phone</span><span class="customer-val">${o.customer.phone}</span></div>
+    <div class="customer-row"><span class="customer-key">Telegram</span><span class="customer-val">${o.customer.telegram}</span></div>
+    <div class="customer-row address-block"><span class="customer-key">Shipping Address</span><span class="customer-val" style="line-height:1.6;">${addrLines}</span></div>
+    ${o.customer.notes ? `<div class="customer-row address-block"><span class="customer-key">Notes</span><span class="customer-val">${o.customer.notes}</span></div>` : ''}
+  </div>
+
+  <div class="section-title">Order Items</div>
+  <table>
+    <thead><tr><th>Product</th><th>Qty</th><th>Subtotal</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>
+
+  <div class="totals">
+    <div class="total-row"><span>Subtotal</span><span>${fmt2(o.totals.subtotal)}</span></div>
+    <div class="total-row"><span>Shipping (insured, flat-rate)</span><span>${fmt2(o.totals.shipping)}</span></div>
+    <div class="total-final"><span>Estimated Total</span><span>${fmt2(o.totals.total)}</span></div>
+  </div>
+
+  <div class="disclaimer">
+    ⚠ Final pricing — including any bulk discounts — is confirmed via Telegram before payment is arranged. No payment has been taken at this stage.
+  </div>
+
+  <div class="footer">
+    <div class="footer-contact">
+      <strong>OzzyPeps</strong> · research-grade peptides<br>
+      To confirm your order, message us on Telegram with order number <strong>${o.orderNumber}</strong>
+    </div>
+    <div class="footer-tg">
+      @fussyaussie<br>@toyaussie<br>@jamallincoln
+    </div>
+  </div>
+
+  <script>window.onload = function() { window.print(); };<\/script>
+</body>
+</html>`;
+
+      const w = window.open('', '_blank', 'width=760,height=900,scrollbars=yes');
+      if (!w) { alert('Please allow popups for this site to print your receipt.'); return; }
+      w.document.open();
+      w.document.write(html);
+      w.document.close();
     }
 
     /* ── Init ── */

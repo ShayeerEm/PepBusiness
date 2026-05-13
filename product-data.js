@@ -5756,7 +5756,7 @@ function openProduct(id) {
     <div class="modal-spec-row">
       <span class="modal-spec-size">${s.size}</span>
       <span class="modal-spec-price">${s.price}</span>
-      <button class="modal-spec-add" onclick="cart.add('${id}', ${i})">+ Add to Cart</button>
+      <button class="modal-spec-add" onclick="cartAddFeedback(this,'${id}',${i})">+ Add to Cart</button>
     </div>`).join('');
 
   // Uses
@@ -5788,6 +5788,19 @@ function openProduct(id) {
   const overlay = document.getElementById('productModal');
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+
+function cartAddFeedback(btn, id, idx) {
+  cart.add(id, idx);
+  const orig = btn.textContent;
+  btn.textContent = '✓ Added!';
+  btn.classList.add('added');
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = orig;
+    btn.classList.remove('added');
+    btn.disabled = false;
+  }, 1600);
 }
 
 function closeModal() {
