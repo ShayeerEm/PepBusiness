@@ -162,21 +162,27 @@
         </div>
         <div class="cart-drawer-list" id="cartDrawerList"></div>
         <div class="cart-drawer-footer" id="cartDrawerFooter">
-          <div class="cart-disclaimer">
-            <span>ℹ️</span>
-            <span>Prices shown are per-box estimates. Bulk discounts and final totals are confirmed via Telegram after submission.</span>
-          </div>
           <div class="cart-summary-row">
             <span>Subtotal</span><span id="cartSubtotal">$0.00</span>
           </div>
           <div class="cart-summary-row">
-            <span>Shipping (flat rate, insured)</span><span id="cartShipping">$0.00</span>
+            <span>
+              Shipping (flat rate, insured)
+              <span class="info-tip" tabindex="0" aria-label="Pricing info">
+                <span class="info-tip-icon">i</span>
+                <span class="info-tip-body">Prices shown are per-box estimates. Bulk discounts and final totals are confirmed via Telegram after submission.</span>
+              </span>
+            </span>
+            <span id="cartShipping">$0.00</span>
           </div>
           <div class="cart-summary-row total">
             <span>Estimated Total</span><span id="cartTotal">$0.00</span>
           </div>
-          <div class="cart-referral-notice">
-            💬 Been referred by someone? Let us know their <strong>@telegram handle</strong> when we chat and we'll sort you a discount.
+          <div class="cart-referral-row">
+            <span class="info-tip info-tip-text" tabindex="0">
+              <span class="info-tip-trigger">🏷️ Have a referral?</span>
+              <span class="info-tip-body">Tell us in DMs and we'll give you a discount!</span>
+            </span>
           </div>
           <a href="checkout.html" class="btn btn-primary cart-checkout-btn">Proceed to Checkout →</a>
           <button onclick="cart.close()" class="btn btn-ghost cart-continue-btn">Continue Shopping</button>
