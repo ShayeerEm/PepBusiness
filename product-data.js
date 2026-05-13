@@ -5724,7 +5724,8 @@ function injectModal() {
     </div>
 
     <div class="modal-footer">
-      <a href="contact.html" class="btn btn-primary">✈ Order via Telegram</a>
+      <button onclick="cart.open()" class="btn btn-primary">🛒 View Cart</button>
+      <a href="contact.html" class="btn btn-ghost">✈ Order via Telegram</a>
       <button onclick="closeModal()" class="btn btn-ghost">Close</button>
     </div>
 
@@ -5751,10 +5752,11 @@ function openProduct(id) {
 
   // Specs
   const specsEl = document.getElementById('mSpecs');
-  specsEl.innerHTML = p.specs.map(s => `
+  specsEl.innerHTML = p.specs.map((s, i) => `
     <div class="modal-spec-row">
       <span class="modal-spec-size">${s.size}</span>
       <span class="modal-spec-price">${s.price}</span>
+      <button class="modal-spec-add" onclick="cart.add('${id}', ${i})">+ Add to Cart</button>
     </div>`).join('');
 
   // Uses
