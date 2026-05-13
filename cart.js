@@ -31,7 +31,9 @@
   // ── Public API ────────────────────────────────────────────────────────────
   window.cart = {
     add(productId, specIndex) {
-      const p = (window.PRODUCTS || {})[productId];
+      // PRODUCTS is a top-level const in product-data.js — not a window property
+      const allProducts = typeof PRODUCTS !== 'undefined' ? PRODUCTS : {};
+      const p = allProducts[productId];
       if (!p) return;
       const spec = p.specs[specIndex || 0];
       if (!spec) return;

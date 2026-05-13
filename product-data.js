@@ -5724,7 +5724,7 @@ function injectModal() {
     </div>
 
     <div class="modal-footer">
-      <button onclick="cart.open()" class="btn btn-primary">🛒 View Cart</button>
+      <button onclick="closeModal(); cart.open();" class="btn btn-primary">🛒 View Cart</button>
       <a href="contact.html" class="btn btn-ghost">✈ Order via Telegram</a>
       <button onclick="closeModal()" class="btn btn-ghost">Close</button>
     </div>
