@@ -292,18 +292,6 @@
     </div>
   </section>
 
-  <!-- ── EMPTY CART ─────────────────────────────────────── -->
-  <section style="padding: 0 0 80px;" id="emptyCartView" style="display:none;">
-    <div class="container">
-      <div class="empty-cart-state">
-        <div class="empty-cart-state-icon">🛒</div>
-        <div class="empty-cart-state-title">Your cart is empty</div>
-        <div class="empty-cart-state-sub">Browse our catalogue to add research compounds to your cart.</div>
-        <a href="products.html" class="btn btn-primary">Browse Products →</a>
-      </div>
-    </div>
-  </section>
-
   <!-- ── CHECKOUT FORM ──────────────────────────────────── -->
   <section style="padding: 0 0 80px;" id="checkoutView">
     <div class="container">
@@ -317,6 +305,7 @@
             <div class="field">
               <label class="field-label" for="fName">Full Name <span class="req">*</span></label>
               <input class="field-input" type="text" id="fName" placeholder="John Smith" autocomplete="name" />
+              <div class="field-hint">Please enter your first and last name.</div>
             </div>
             <div class="field">
               <label class="field-label" for="fEmail">Email Address <span class="req">*</span></label>
@@ -326,15 +315,21 @@
 
           <div class="row-2">
             <div class="field">
-              <label class="field-label" for="fTelegram">Telegram Handle <span class="req">*</span></label>
-              <input class="field-input" type="text" id="fTelegram" placeholder="@yourhandle" />
-              <div class="field-hint">We confirm and arrange payment via Telegram.</div>
+              <label class="field-label" for="fEmailConfirm">Confirm Email <span class="req">*</span></label>
+              <input class="field-input" type="email" id="fEmailConfirm" placeholder="re-enter your email" autocomplete="off" onpaste="event.preventDefault(); return false;" />
+              <div class="field-hint">Paste is disabled — please re-type to verify.</div>
             </div>
             <div class="field">
-              <label class="field-label" for="fPhone">Phone Number</label>
+              <label class="field-label" for="fPhone">Phone Number <span class="req">*</span></label>
               <input class="field-input" type="tel" id="fPhone" placeholder="04XX XXX XXX" autocomplete="tel" />
-              <div class="field-hint">Optional. Used only if Telegram is unresponsive.</div>
+              <div class="field-hint">Australian mobile or landline.</div>
             </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="fTelegram">Telegram Handle <span class="req">*</span></label>
+            <input class="field-input" type="text" id="fTelegram" placeholder="@yourhandle" />
+            <div class="field-hint">We confirm and arrange payment via Telegram.</div>
           </div>
 
           <div class="checkout-section-title" style="margin-top:32px;">Shipping Address</div>
@@ -399,29 +394,42 @@
       <div class="success-state">
         <div class="success-check">✓</div>
         <div class="success-title">Order Received!</div>
-        <div class="success-sub">Thank you — your order has been sent through to the OzzyPeps team. Please save your order number below.</div>
+        <div class="success-sub">Thank you — your order has been sent to the OzzyPeps team. Save your receipt below; we recommend downloading or printing it now.</div>
 
         <div class="order-number-box">
           <div class="order-number-label">Your Order Number</div>
           <div class="order-number-value" id="successOrderNum">OP-2026-00000</div>
         </div>
 
+        <!-- DOWNLOAD / PRINT ACTIONS -->
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin: 4px 0 24px;">
+          <button class="btn btn-primary" onclick="downloadReceipt()" style="font-size:13px;">⬇ Download Receipt</button>
+          <button class="btn btn-outline" onclick="window.print()" style="font-size:13px;">🖨 Print Receipt</button>
+        </div>
+
+        <!-- ORDER RECEIPT (also used for download/print) -->
+        <div id="receiptDetails" style="text-align:left;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;margin-top:8px;"></div>
+
         <div class="next-steps">
           <div style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:10px;">Next Steps</div>
           <div class="next-step-row">
             <div class="next-step-num">1</div>
-            <div><strong>Message us on Telegram</strong> using one of the buttons below.</div>
+            <div><strong>Save or download this receipt</strong> — it's your only copy.</div>
           </div>
           <div class="next-step-row">
             <div class="next-step-num">2</div>
-            <div><strong>Quote your order number</strong> so we can quickly locate your order.</div>
+            <div><strong>Message us on Telegram</strong> using one of the buttons below.</div>
           </div>
           <div class="next-step-row">
             <div class="next-step-num">3</div>
-            <div>We'll <strong>confirm pricing, availability and dispatch</strong>, then provide payment instructions.</div>
+            <div><strong>Quote your order number</strong> so we can quickly locate your order.</div>
           </div>
           <div class="next-step-row">
             <div class="next-step-num">4</div>
+            <div>We'll <strong>confirm pricing, availability and dispatch</strong>, then provide payment instructions.</div>
+          </div>
+          <div class="next-step-row">
+            <div class="next-step-num">5</div>
             <div>Once payment is received, your order is <strong>packed and dispatched same business day</strong> (if before midday AEST).</div>
           </div>
         </div>
@@ -530,14 +538,11 @@
     function renderSummary() {
       const items = cart.items;
 
-      if (items.length === 0) {
-        document.getElementById('checkoutView').style.display = 'none';
-        document.getElementById('emptyCartView').style.display = 'block';
+      // If cart is empty, redirect to products (no empty-state UI on checkout)
+      if (items.length === 0 && !window.__orderSubmitted) {
+        window.location.href = 'products.html';
         return;
       }
-
-      document.getElementById('checkoutView').style.display = 'block';
-      document.getElementById('emptyCartView').style.display = 'none';
 
       const html = items.map(i => `
         <div class="summary-item">
@@ -556,24 +561,79 @@
       document.getElementById('sumTotal').textContent    = fmt(cart.total);
     }
 
+    // Known disposable / fake email domain patterns (basic guard)
+    const DISPOSABLE_DOMAINS = /@(mailinator|10minutemail|guerrillamail|tempmail|throwaway|trashmail|yopmail|fakeinbox|sharklasers|maildrop|getairmail|mintemail|dispostable)\./i;
+
+    // Suggest fixes for common typos
+    const TYPO_DOMAINS = {
+      'gmial.com':'gmail.com','gmaill.com':'gmail.com','gnail.com':'gmail.com','gmail.con':'gmail.com','gmail.co':'gmail.com',
+      'yaho.com':'yahoo.com','yahooo.com':'yahoo.com','yahoo.con':'yahoo.com',
+      'hotmial.com':'hotmail.com','hotmail.con':'hotmail.com','hotnail.com':'hotmail.com',
+      'outlok.com':'outlook.com','outlook.con':'outlook.com',
+    };
+
     /* ── Validate form ── */
     function validate() {
       const required = [
-        ['fName', 'Full name is required.'],
-        ['fEmail', 'Email address is required.'],
-        ['fTelegram', 'Telegram handle is required so we can confirm your order.'],
-        ['fAddress', 'Shipping address is required.'],
+        ['fName',         'Full name is required.'],
+        ['fEmail',        'Email address is required.'],
+        ['fEmailConfirm', 'Please re-enter your email to confirm.'],
+        ['fPhone',        'Phone number is required.'],
+        ['fTelegram',     'Telegram handle is required so we can confirm your order.'],
+        ['fAddress',      'Shipping address is required.'],
       ];
       for (const [id, msg] of required) {
         const el = document.getElementById(id);
         if (!el.value.trim()) { showError(msg); el.focus(); return false; }
       }
-      const email = document.getElementById('fEmail').value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showError('Please enter a valid email address.');
+
+      // Full name: must be at least 2 words, each ≥ 2 alphabetic chars
+      const name = document.getElementById('fName').value.trim();
+      const parts = name.split(/\s+/).filter(w => /^[a-zA-ZÀ-ÿ'\-]{2,}$/.test(w));
+      if (parts.length < 2) {
+        showError('Please enter your full first AND last name (e.g. "John Smith").');
+        document.getElementById('fName').focus();
+        return false;
+      }
+
+      // Email format
+      const email = document.getElementById('fEmail').value.trim().toLowerCase();
+      const emailConfirm = document.getElementById('fEmailConfirm').value.trim().toLowerCase();
+      const emailRegex = /^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,24}$/i;
+      if (!emailRegex.test(email)) {
+        showError('Please enter a valid email address (e.g. you@example.com).');
         document.getElementById('fEmail').focus();
         return false;
       }
+      // Match confirmation
+      if (email !== emailConfirm) {
+        showError('Your email addresses do not match. Please re-type to confirm.');
+        document.getElementById('fEmailConfirm').focus();
+        return false;
+      }
+      // Disposable domain check
+      if (DISPOSABLE_DOMAINS.test(email)) {
+        showError('Disposable / temporary email addresses are not accepted. Please use a real address.');
+        document.getElementById('fEmail').focus();
+        return false;
+      }
+      // Common typo check
+      const domain = email.split('@')[1];
+      if (TYPO_DOMAINS[domain]) {
+        showError(`Did you mean ${email.split('@')[0]}@${TYPO_DOMAINS[domain]}? Please check your email.`);
+        document.getElementById('fEmail').focus();
+        return false;
+      }
+
+      // Phone: must contain at least 8 digits
+      const phone = document.getElementById('fPhone').value.trim();
+      const digits = phone.replace(/\D/g, '');
+      if (digits.length < 8 || digits.length > 15) {
+        showError('Please enter a valid phone number (8–15 digits).');
+        document.getElementById('fPhone').focus();
+        return false;
+      }
+
       return true;
     }
 
@@ -606,6 +666,9 @@
       document.getElementById('confirmOverlay').classList.remove('open');
     }
 
+    /* Saved order details for receipt rendering / download */
+    let savedOrder = null;
+
     /* ── Submit ── */
     async function submitOrder() {
       const submitBtn = document.getElementById('confirmSubmitBtn');
@@ -614,33 +677,45 @@
 
       const orderNumber = generateOrderNumber();
 
-      // Build a clean text breakdown
-      const itemsText = cart.items.map(i =>
+      const customer = {
+        name:     document.getElementById('fName').value.trim(),
+        email:    document.getElementById('fEmail').value.trim(),
+        phone:    document.getElementById('fPhone').value.trim(),
+        telegram: document.getElementById('fTelegram').value.trim(),
+        address:  document.getElementById('fAddress').value.trim(),
+        notes:    document.getElementById('fNotes').value.trim(),
+      };
+
+      const items = cart.items;
+      const totals = { subtotal: cart.subtotal, shipping: cart.shipping, total: cart.total, qty: cart.totalItems };
+
+      // Plain-text item breakdown for email
+      const itemsText = items.map(i =>
         `• ${i.name} — ${i.size} × ${i.qty} = $${(i.price * i.qty).toFixed(2)}`
       ).join('\n');
 
       const fields = {
         access_key: WEB3FORMS_ACCESS_KEY,
-        subject: `New Order ${orderNumber} — $${cart.total.toFixed(2)} AUD`,
+        subject: `New Order ${orderNumber} — $${totals.total.toFixed(2)} AUD`,
         from_name: 'OzzyPeps Website',
-        'Order Number': orderNumber,
-        'Customer Name': document.getElementById('fName').value.trim(),
-        'Customer Email': document.getElementById('fEmail').value.trim(),
-        'Telegram Handle': document.getElementById('fTelegram').value.trim(),
-        'Phone': document.getElementById('fPhone').value.trim() || '(not provided)',
-        'Shipping Address': document.getElementById('fAddress').value.trim(),
-        'Notes': document.getElementById('fNotes').value.trim() || '(none)',
-        'Order Items': '\n' + itemsText,
-        'Subtotal':    `$${cart.subtotal.toFixed(2)} AUD`,
-        'Shipping':    `$${cart.shipping.toFixed(2)} AUD`,
-        'Total':       `$${cart.total.toFixed(2)} AUD`,
-        'Item Count':  cart.totalItems,
-        'Submitted':   new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' }),
-        botcheck: '', // honeypot
+        'Order Number':     orderNumber,
+        'Customer Name':    customer.name,
+        'Customer Email':   customer.email,
+        'Telegram Handle':  customer.telegram,
+        'Phone':            customer.phone,
+        'Shipping Address': customer.address,
+        'Notes':            customer.notes || '(none)',
+        'Order Items':      '\n' + itemsText,
+        'Subtotal':         `$${totals.subtotal.toFixed(2)} AUD`,
+        'Shipping':         `$${totals.shipping.toFixed(2)} AUD`,
+        'Total':            `$${totals.total.toFixed(2)} AUD`,
+        'Item Count':       totals.qty,
+        'Submitted':        new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' }),
+        botcheck: '',
       };
 
       try {
-        if (WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY_HERE') {
+        if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY.includes('YOUR_')) {
           throw new Error('Web3Forms not configured. Please contact us on Telegram directly.');
         }
 
@@ -656,10 +731,16 @@
         }
 
         /* Success */
+        savedOrder = { orderNumber, customer, items, totals, submittedAt: new Date() };
+        window.__orderSubmitted = true;
+
         document.getElementById('successOrderNum').textContent = orderNumber;
+        renderReceipt(savedOrder);
+
         document.getElementById('checkoutView').style.display = 'none';
         document.getElementById('confirmOverlay').classList.remove('open');
         document.getElementById('successView').style.display = 'block';
+
         cart.clear();
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -669,6 +750,108 @@
         submitBtn.disabled = false;
         submitBtn.innerHTML = 'Yes, Submit Order';
       }
+    }
+
+    /* ── Receipt rendering & download ── */
+    function renderReceipt(o) {
+      const itemsHtml = o.items.map(i => `
+        <tr>
+          <td style="padding:8px 0;font-size:13px;">
+            <strong>${esc(i.name)}</strong><br>
+            <span style="color:var(--text-muted);font-size:12px;">${esc(i.size)}</span>
+          </td>
+          <td style="padding:8px 0;font-size:13px;text-align:center;color:var(--text-secondary);">× ${i.qty}</td>
+          <td style="padding:8px 0;font-size:13px;text-align:right;color:var(--accent);font-weight:700;">${fmt(i.price * i.qty)}</td>
+        </tr>`).join('');
+
+      document.getElementById('receiptDetails').innerHTML = `
+        <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;">Order Receipt</div>
+
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.8;margin-bottom:16px;">
+          <strong style="color:var(--text-primary);">Customer:</strong> ${esc(o.customer.name)}<br>
+          <strong style="color:var(--text-primary);">Email:</strong> ${esc(o.customer.email)}<br>
+          <strong style="color:var(--text-primary);">Phone:</strong> ${esc(o.customer.phone)}<br>
+          <strong style="color:var(--text-primary);">Telegram:</strong> ${esc(o.customer.telegram)}<br>
+          <strong style="color:var(--text-primary);">Shipping Address:</strong><br>
+          <span style="white-space:pre-line;display:inline-block;margin-left:8px;">${esc(o.customer.address)}</span>
+          ${o.customer.notes ? `<br><br><strong style="color:var(--text-primary);">Notes:</strong> ${esc(o.customer.notes)}` : ''}
+        </div>
+
+        <table style="width:100%;border-collapse:collapse;margin-top:10px;border-top:1px solid var(--border);">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border);">
+              <th style="padding:8px 0;text-align:left;font-size:11px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Product</th>
+              <th style="padding:8px 0;text-align:center;font-size:11px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Qty</th>
+              <th style="padding:8px 0;text-align:right;font-size:11px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>${itemsHtml}</tbody>
+        </table>
+
+        <div style="border-top:1px solid var(--border);margin-top:12px;padding-top:12px;font-size:13px;color:var(--text-secondary);">
+          <div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Subtotal</span><span>${fmt(o.totals.subtotal)}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Shipping (insured)</span><span>${fmt(o.totals.shipping)}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0 0;font-weight:800;color:var(--text-primary);font-size:15px;border-top:1px solid var(--border);margin-top:6px;"><span>Estimated Total</span><span style="color:var(--accent);font-size:18px;">${fmt(o.totals.total)}</span></div>
+        </div>
+
+        <div style="margin-top:14px;font-size:11px;color:var(--text-muted);line-height:1.6;">
+          Submitted ${o.submittedAt.toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })}<br>
+          Final pricing confirmed via Telegram before payment.
+        </div>`;
+    }
+
+    function downloadReceipt() {
+      if (!savedOrder) return;
+      const o = savedOrder;
+      const lines = [];
+      const sep = '═'.repeat(48);
+      lines.push(sep);
+      lines.push('          OzzyPeps — Order Receipt');
+      lines.push(sep);
+      lines.push('');
+      lines.push(`Order Number : ${o.orderNumber}`);
+      lines.push(`Submitted    : ${o.submittedAt.toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })}`);
+      lines.push('');
+      lines.push('── Customer ──────────────────────────────────');
+      lines.push(`Name      : ${o.customer.name}`);
+      lines.push(`Email     : ${o.customer.email}`);
+      lines.push(`Phone     : ${o.customer.phone}`);
+      lines.push(`Telegram  : ${o.customer.telegram}`);
+      lines.push('');
+      lines.push('── Shipping Address ──────────────────────────');
+      o.customer.address.split('\n').forEach(l => lines.push(l));
+      lines.push('');
+      if (o.customer.notes) {
+        lines.push('── Notes ─────────────────────────────────────');
+        lines.push(o.customer.notes);
+        lines.push('');
+      }
+      lines.push('── Items ─────────────────────────────────────');
+      o.items.forEach(i => {
+        lines.push(`• ${i.name} — ${i.size}`);
+        lines.push(`    × ${i.qty}   ${fmt(i.price * i.qty)}`);
+      });
+      lines.push('');
+      lines.push('── Totals ────────────────────────────────────');
+      lines.push(`Subtotal       : ${fmt(o.totals.subtotal)}`);
+      lines.push(`Shipping       : ${fmt(o.totals.shipping)}  (flat-rate, insured)`);
+      lines.push(`Estimated Total: ${fmt(o.totals.total)}`);
+      lines.push('');
+      lines.push(sep);
+      lines.push('To confirm and arrange payment, message us on');
+      lines.push('Telegram with your order number:');
+      lines.push('  @fussyaussie  ·  @toyaussie  ·  @jamallincoln');
+      lines.push(sep);
+
+      const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url;
+      a.download = `OzzyPeps_${o.orderNumber}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     }
 
     /* ── Init ── */

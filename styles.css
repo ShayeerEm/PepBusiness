@@ -1781,46 +1781,73 @@ img { max-width: 100%; display: block; }
 .modal-spec-add:hover { background: #29dcff; transform: translateY(-1px); }
 .modal-spec-add:active { transform: translateY(0); }
 
-/* ── Toasts ──────────────────────────────────────────────────────────────── */
+/* ── Toasts (black w/ red glow, left side) ──────────────────────────────── */
 .cart-toasts {
   position: fixed;
-  bottom: 24px; left: 50%;
-  transform: translateX(-50%);
+  left: 24px;
+  bottom: 24px;
   z-index: 1100;
   display: flex;
   flex-direction: column;
   gap: 10px;
   pointer-events: none;
+  max-width: calc(100vw - 48px);
 }
 .cart-toast {
-  background: var(--bg-card);
-  border: 1px solid var(--border-hover);
-  border-radius: 30px;
-  padding: 11px 22px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.4), 0 0 24px rgba(0,212,255,0.1);
+  background: #0a0a0d;
+  border: 1px solid rgba(255, 56, 96, 0.55);
+  border-radius: 12px;
+  padding: 14px 22px 14px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow:
+    0 0 0 1px rgba(255, 56, 96, 0.2),
+    0 0 18px rgba(255, 56, 96, 0.55),
+    0 0 36px rgba(255, 56, 96, 0.35),
+    0 10px 32px rgba(0,0,0,0.5);
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity .3s, transform .3s;
+  transform: translateX(-30px) scale(0.96);
+  transition: opacity .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   white-space: nowrap;
-  max-width: 90vw;
+  letter-spacing: 0.2px;
 }
-.cart-toast.show { opacity: 1; transform: translateY(0); }
+.cart-toast.show {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  animation: redGlowPulse 1.8s ease-in-out infinite;
+}
+@keyframes redGlowPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(255, 56, 96, 0.2),
+      0 0 18px rgba(255, 56, 96, 0.55),
+      0 0 36px rgba(255, 56, 96, 0.35),
+      0 10px 32px rgba(0,0,0,0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(255, 56, 96, 0.4),
+      0 0 26px rgba(255, 56, 96, 0.85),
+      0 0 52px rgba(255, 56, 96, 0.55),
+      0 10px 32px rgba(0,0,0,0.5);
+  }
+}
 .cart-toast-check {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px; height: 20px;
-  background: var(--success);
+  width: 22px; height: 22px;
+  background: #ff3860;
   color: #000;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 900;
+  box-shadow: 0 0 12px rgba(255, 56, 96, 0.7);
+  flex-shrink: 0;
 }
 
 /* ── Responsive ──────────────────────────────────────────────────────────── */

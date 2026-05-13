@@ -51,7 +51,7 @@
         });
       }
       save();
-      toast(`Added: ${p.name} (${spec.size})`);
+      toast('Added to cart!');
       pulseBadge();
     },
 
