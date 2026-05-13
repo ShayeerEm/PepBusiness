@@ -1,14 +1,17 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "ozzypeps",
-  "compatibility_date": "2026-05-11",
-  "observability": {
-    "enabled": true
-  },
+  "compatibility_date": "2026-05-13",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "workers_dev": true,
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
   },
-  "compatibility_flags": [
-    "nodejs_compat"
+  "routes": [
+    { "pattern": "ozzypeps.store",     "custom_domain": true },
+    { "pattern": "www.ozzypeps.store", "custom_domain": true }
   ]
 }
