@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.json">
+  <script>(function(){var t=localStorage.getItem('ozzypeps_theme')||'dark';document.documentElement.setAttribute('data-theme',t);})()</script>
 </head>
 <body>
 
@@ -27,6 +29,8 @@
         <li><a href="calculator.html">Dosage Calc</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+      <button class="wishlist-icon-wrap" onclick="window.location='wishlist.html'" aria-label="View wishlist">🤍 <span class="wishlist-badge">0</span></button>
       <button class="cart-icon-wrap" onclick="cart.open()" aria-label="Open cart">&#128722; <span class="cart-badge">0</span></button>
       <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
       <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
@@ -39,6 +43,8 @@
     <a href="faq.html">FAQ</a>
     <a href="calculator.html">Dosage Calc</a>
     <a href="contact.html">Contact</a>
+    <a href="wishlist.html">Wishlist 🤍</a>
+    <button class="btn btn-ghost" onclick="toggleTheme()" style="margin-top:8px;width:100%;justify-content:center;">Toggle Theme ☀️/🌙</button>
   </div>
 
   <!-- PAGE HERO -->
@@ -6409,6 +6415,15 @@
     </div>
   </section>
 
+  <!-- RECENTLY VIEWED -->
+  <section class="recently-viewed-section" id="recentlyViewedSection" style="display:none;">
+    <div class="container">
+      <div class="section-label">Recently Viewed</div>
+      <h3>Continue Browsing</h3>
+      <div class="rv-scroll" id="recentlyViewedScroll"></div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
@@ -6500,5 +6515,59 @@
   </script>
   <script src="product-data.js"></script>
   <script src="cart.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="compare.js"></script>
+  <script src="recently-viewed.js"></script>
+  <script src="theme.js"></script>
+  <script>
+    // Inject wishlist heart + compare button into every product card
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.product-card[onclick]').forEach(function(card) {
+        var m = card.getAttribute('onclick').match(/openProduct\('([^']+)'\)/);
+        if (!m) return;
+        var id = m[1];
+        var p = (typeof PRODUCTS !== 'undefined') ? PRODUCTS[id] : null;
+        if (!p) return;
+
+        // Heart button inside .product-img
+        var imgEl = card.querySelector('.product-img');
+        if (imgEl && !imgEl.querySelector('.heart-btn')) {
+          var heart = document.createElement('button');
+          heart.className = 'heart-btn' + (wishlist.has(id) ? ' wishlisted' : '');
+          heart.setAttribute('data-wishlist-id', id);
+          heart.setAttribute('aria-label', 'Add to wishlist');
+          heart.textContent = wishlist.has(id) ? '♥' : '♡';
+          heart.onclick = function(e) {
+            e.stopPropagation();
+            wishlist.toggle(id, p.name, p.emoji, p.category);
+            var inW = wishlist.has(id);
+            this.classList.toggle('wishlisted', inW);
+            this.textContent = inW ? '♥' : '♡';
+          };
+          imgEl.appendChild(heart);
+        }
+
+        // Compare button inside .product-meta
+        var metaEl = card.querySelector('.product-meta');
+        if (metaEl && !metaEl.querySelector('.compare-btn')) {
+          var cmp = document.createElement('button');
+          cmp.className = 'compare-btn' + (compareList.has(id) ? ' comparing' : '');
+          cmp.setAttribute('data-id', id);
+          cmp.textContent = compareList.has(id) ? '✓ Comparing' : '+ Compare';
+          cmp.onclick = function(e) {
+            e.stopPropagation();
+            compareList.toggle(id);
+          };
+          metaEl.appendChild(cmp);
+        }
+      });
+
+      // Render recently viewed
+      recentlyViewed.render('recentlyViewedScroll');
+      if (recentlyViewed.get().length > 0) {
+        document.getElementById('recentlyViewedSection').style.display = '';
+      }
+    });
+  </script>
 </body>
 </html>
