@@ -5744,7 +5744,12 @@ function openProduct(id) {
   const p = PRODUCTS[id];
   if (!p) return;
 
-  if (typeof recentlyViewed !== 'undefined') recentlyViewed.record(id);
+  if (typeof recentlyViewed !== 'undefined') {
+    recentlyViewed.record(id);
+    recentlyViewed.render('recentlyViewedScroll');
+    var rvSec = document.getElementById('recentlyViewedSection');
+    if (rvSec && recentlyViewed.get().length > 0) rvSec.style.display = '';
+  }
 
   injectModal();
 
