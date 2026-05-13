@@ -5725,7 +5725,6 @@ function injectModal() {
 
     <div class="modal-footer">
       <button id="modalWishlistBtn" class="btn btn-ghost" onclick="modalToggleWishlist()" style="min-width:0;padding:10px 14px;">♡</button>
-      <button id="modalCompareBtn" class="btn btn-ghost" onclick="modalToggleCompare()" style="font-size:12px;padding:10px 12px;">+ Compare</button>
       <button onclick="closeModal(); cart.open();" class="btn btn-primary">🛒 View Cart</button>
       <a href="contact.html" class="btn btn-ghost">✈ Telegram</a>
       <button onclick="closeModal()" class="btn btn-ghost">Close</button>
@@ -5743,13 +5742,6 @@ function injectModal() {
 function openProduct(id) {
   const p = PRODUCTS[id];
   if (!p) return;
-
-  if (typeof recentlyViewed !== 'undefined') {
-    recentlyViewed.record(id);
-    recentlyViewed.render('recentlyViewedScroll');
-    var rvSec = document.getElementById('recentlyViewedSection');
-    if (rvSec && recentlyViewed.get().length > 0) rvSec.style.display = '';
-  }
 
   injectModal();
 
@@ -5814,27 +5806,12 @@ function modalToggleWishlist() {
   }
 }
 
-function modalToggleCompare() {
-  if (!_modalCurrentId) return;
-  if (typeof compareList !== 'undefined') {
-    compareList.toggle(_modalCurrentId);
-    _syncModalButtons(_modalCurrentId);
-    if (typeof updateCompareButtons !== 'undefined') updateCompareButtons();
-  }
-}
-
 function _syncModalButtons(id) {
   const wBtn = document.getElementById('modalWishlistBtn');
-  const cBtn = document.getElementById('modalCompareBtn');
   if (wBtn && typeof wishlist !== 'undefined') {
     const inW = wishlist.has(id);
     wBtn.textContent = inW ? '♥' : '♡';
     wBtn.style.color = inW ? '#ff3860' : '';
-  }
-  if (cBtn && typeof compareList !== 'undefined') {
-    const inC = compareList.has(id);
-    cBtn.textContent = inC ? '✓ Comparing' : '+ Compare';
-    if (inC) cBtn.classList.add('comparing'); else cBtn.classList.remove('comparing');
   }
 }
 

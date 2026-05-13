@@ -6415,15 +6415,6 @@
     </div>
   </section>
 
-  <!-- RECENTLY VIEWED -->
-  <section class="recently-viewed-section" id="recentlyViewedSection" style="display:none;">
-    <div class="container">
-      <div class="section-label">Recently Viewed</div>
-      <h3>Continue Browsing</h3>
-      <div class="rv-scroll" id="recentlyViewedScroll"></div>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
@@ -6516,11 +6507,9 @@
   <script src="product-data.js"></script>
   <script src="cart.js"></script>
   <script src="wishlist.js"></script>
-  <script src="compare.js"></script>
-  <script src="recently-viewed.js"></script>
   <script src="theme.js"></script>
   <script>
-    // Inject wishlist heart + compare button into every product card
+    // Inject wishlist heart into every product card
     document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.product-card[onclick]').forEach(function(card) {
         var m = card.getAttribute('onclick').match(/openProduct\('([^']+)'\)/);
@@ -6529,7 +6518,6 @@
         var p = (typeof PRODUCTS !== 'undefined') ? PRODUCTS[id] : null;
         if (!p) return;
 
-        // Heart button inside .product-img
         var imgEl = card.querySelector('.product-img');
         if (imgEl && !imgEl.querySelector('.heart-btn')) {
           var heart = document.createElement('button');
@@ -6546,27 +6534,7 @@
           };
           imgEl.appendChild(heart);
         }
-
-        // Compare button inside .product-meta
-        var metaEl = card.querySelector('.product-meta');
-        if (metaEl && !metaEl.querySelector('.compare-btn')) {
-          var cmp = document.createElement('button');
-          cmp.className = 'compare-btn' + (compareList.has(id) ? ' comparing' : '');
-          cmp.setAttribute('data-id', id);
-          cmp.textContent = compareList.has(id) ? '✓ Comparing' : '+ Compare';
-          cmp.onclick = function(e) {
-            e.stopPropagation();
-            compareList.toggle(id);
-          };
-          metaEl.appendChild(cmp);
-        }
       });
-
-      // Render recently viewed
-      recentlyViewed.render('recentlyViewedScroll');
-      if (recentlyViewed.get().length > 0) {
-        document.getElementById('recentlyViewedSection').style.display = '';
-      }
     });
   </script>
 </body>
