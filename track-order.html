@@ -182,64 +182,13 @@
       else st.classList.remove('visible');
     });
 
-    /* Demo order data for UI demonstration */
-    const demoOrders = {
-      'OP-2025-00471': {
-        email: 'demo@research.com',
-        status: 'shipped',
-        statusLabel: 'In Transit',
-        carrier: 'Australia Post Express',
-        tracking: '1Z999AA10123456789',
-        eta: '11 May 2025',
-        steps: [
-          { label: 'Order Confirmed', date: '7 May 2025 · 10:14 AM', state: 'done' },
-          { label: 'Payment Received', date: '7 May 2025 · 10:32 AM', state: 'done' },
-          { label: 'Packed & Ready', date: '7 May 2025 · 2:05 PM', state: 'done' },
-          { label: 'Dispatched', date: '8 May 2025 · 9:20 AM', state: 'done' },
-          { label: 'In Transit', date: '9 May 2025 · 7:41 AM', state: 'active' },
-          { label: 'Delivered', date: 'Estimated 11 May 2025', state: 'pending' },
-        ]
-      },
-      'OP-2025-00388': {
-        email: 'researcher@lab.edu',
-        status: 'delivered',
-        statusLabel: 'Delivered',
-        carrier: 'StarTrack',
-        tracking: 'STR9871230912AU',
-        eta: 'Delivered 5 May 2025',
-        steps: [
-          { label: 'Order Confirmed', date: '2 May 2025 · 9:00 AM', state: 'done' },
-          { label: 'Payment Received', date: '2 May 2025 · 9:15 AM', state: 'done' },
-          { label: 'Packed & Ready', date: '2 May 2025 · 1:00 PM', state: 'done' },
-          { label: 'Dispatched', date: '3 May 2025 · 8:50 AM', state: 'done' },
-          { label: 'In Transit', date: '4 May 2025 · 6:30 AM', state: 'done' },
-          { label: 'Delivered', date: '5 May 2025 · 11:22 AM', state: 'done' },
-        ]
-      },
-      'OP-2025-00512': {
-        email: 'test@example.com',
-        status: 'processing',
-        statusLabel: 'Processing',
-        carrier: 'Pending assignment',
-        tracking: 'Not yet assigned',
-        eta: 'Estimated 14 May 2025',
-        steps: [
-          { label: 'Order Confirmed', date: '10 May 2025 · 8:02 AM', state: 'done' },
-          { label: 'Payment Received', date: '10 May 2025 · 8:20 AM', state: 'done' },
-          { label: 'Packed & Ready', date: 'In progress…', state: 'active' },
-          { label: 'Dispatched', date: 'Pending', state: 'pending' },
-          { label: 'In Transit', date: 'Pending', state: 'pending' },
-          { label: 'Delivered', date: 'Pending', state: 'pending' },
-        ]
-      }
-    };
-
-    function trackOrder() {
+    async function trackOrder() {
       const orderId = document.getElementById('orderId').value.trim().toUpperCase();
       const email = document.getElementById('orderEmail').value.trim().toLowerCase();
 
       const errorEl = document.getElementById('trackError');
       const resultEl = document.getElementById('trackResult');
+      const btn = document.querySelector('button[onclick="trackOrder()"]');
 
       errorEl.style.display = 'none';
       resultEl.classList.remove('visible');
@@ -251,12 +200,29 @@
         return;
       }
 
-      const order = demoOrders[orderId];
-      if (!order || order.email !== email) {
+      btn.disabled = true;
+      const originalText = btn.textContent;
+      btn.textContent = 'Looking up…';
+
+      let order;
+      try {
+        const res = await fetch(`/api/track?id=${encodeURIComponent(orderId)}&email=${encodeURIComponent(email)}`);
+        if (res.status === 404) {
+          errorEl.style.display = 'block';
+          errorEl.querySelector('.disclaimer-text').innerHTML =
+            '<strong style="color:#ff4d6d;">Order not found.</strong> Please double-check your Order ID and email address. If you\'re still having trouble, contact us on Telegram.';
+          return;
+        }
+        if (!res.ok) throw new Error('Network error');
+        order = await res.json();
+      } catch (e) {
         errorEl.style.display = 'block';
         errorEl.querySelector('.disclaimer-text').innerHTML =
-          '<strong style="color:#ff4d6d;">Order not found.</strong> Please double-check your Order ID and email address. If you\'re still having trouble, contact us on Telegram.';
+          '<strong style="color:#ff4d6d;">Something went wrong.</strong> Please try again in a moment or contact us on Telegram if the problem persists.';
         return;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
       }
 
       /* Populate status */
@@ -280,10 +246,13 @@
       }
 
       /* Carrier info */
+      const trackingDisplay = order.trackingUrl && order.tracking
+        ? `<a href="${order.trackingUrl}" target="_blank" rel="noopener" style="color:var(--accent);">${order.tracking} ↗</a>`
+        : (order.tracking || 'Not yet assigned');
       document.getElementById('carrierInfo').innerHTML =
-        `<span style="color:var(--text-primary);font-weight:600;">Carrier:</span> ${order.carrier}<br>` +
-        `<span style="color:var(--text-primary);font-weight:600;">Tracking #:</span> ${order.tracking}<br>` +
-        `<span style="color:var(--text-primary);font-weight:600;">ETA:</span> ${order.eta}`;
+        `<span style="color:var(--text-primary);font-weight:600;">Carrier:</span> ${order.carrier || 'Pending assignment'}<br>` +
+        `<span style="color:var(--text-primary);font-weight:600;">Tracking #:</span> ${trackingDisplay}<br>` +
+        `<span style="color:var(--text-primary);font-weight:600;">ETA:</span> ${order.eta || 'TBD'}`;
 
       /* Build timeline */
       const timeline = document.getElementById('timeline');

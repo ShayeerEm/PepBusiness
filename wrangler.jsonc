@@ -1,14 +1,32 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "ozzypeps",
+  "main": "src/worker.js",
   "compatibility_date": "2026-05-11",
-  "observability": {
-    "enabled": true
-  },
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+
+  // Static site assets — the worker falls through to these for non-API routes
+  // run_worker_first: true ensures /api/* hits the worker before static lookup
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": true
   },
-  "compatibility_flags": [
-    "nodejs_compat"
+
+  // KV namespace for order storage.
+  // Create with: wrangler kv namespace create ORDERS
+  // Then replace the placeholder IDs below with the real ones from the output.
+  "kv_namespaces": [
+    {
+      "binding": "ORDERS",
+      "id": "REPLACE_WITH_KV_NAMESPACE_ID",
+      "preview_id": "REPLACE_WITH_KV_PREVIEW_ID"
+    }
   ]
+
+  // IMPORTANT: Set your admin key as a secret, NOT in this file:
+  //   wrangler secret put ADMIN_KEY
+  // Then enter a strong random password when prompted.
+  // This key protects the /api/orders admin endpoints.
 }
