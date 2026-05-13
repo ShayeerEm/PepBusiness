@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="manifest" href="manifest.json">
   <script>(function(){var t=localStorage.getItem('ozzypeps_theme')||'dark';document.documentElement.setAttribute('data-theme',t);})()</script>
 </head>
 <body>
@@ -440,20 +439,6 @@
     </div>
   </section>
 
-  <!-- PWA INSTALL BANNER -->
-  <div class="pwa-banner" id="pwaBanner">
-    <div class="pwa-banner-icon">📲</div>
-    <div class="pwa-banner-text">
-      <div class="pwa-banner-title">Install OzzyPeps</div>
-      <div class="pwa-banner-sub">Add to your home screen for quick access</div>
-      <div class="pwa-banner-actions">
-        <button class="btn btn-primary" onclick="installPWA()">Install</button>
-        <button class="btn btn-ghost" onclick="dismissPWA()">Not now</button>
-      </div>
-    </div>
-    <button class="pwa-banner-close" onclick="dismissPWA()" aria-label="Close">✕</button>
-  </div>
-
   <!-- RECENTLY VIEWED -->
   <section class="recently-viewed-section" id="recentlyViewedSection" style="display:none;">
     <div class="container">
@@ -522,6 +507,7 @@
   <script src="product-data.js"></script>
   <script src="cart.js"></script>
   <script src="wishlist.js"></script>
+  <script src="compare.js"></script>
   <script src="recently-viewed.js"></script>
   <script src="theme.js"></script>
   <script>
@@ -532,34 +518,6 @@
         document.getElementById('recentlyViewedSection').style.display = '';
       }
     });
-
-    // Register service worker for PWA
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').catch(function() {});
-      });
-    }
-
-    // PWA install prompt
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', function(e) {
-      e.preventDefault();
-      deferredPrompt = e;
-      var banner = document.getElementById('pwaBanner');
-      if (banner) setTimeout(function() { banner.classList.add('visible'); }, 3000);
-    });
-    window.installPWA = function() {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(function() { deferredPrompt = null; });
-      var banner = document.getElementById('pwaBanner');
-      if (banner) banner.classList.remove('visible');
-    };
-    window.dismissPWA = function() {
-      var banner = document.getElementById('pwaBanner');
-      if (banner) banner.classList.remove('visible');
-      localStorage.setItem('pwa_dismissed', '1');
-    };
   </script>
 </body>
 </html>

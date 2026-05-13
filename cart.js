@@ -175,15 +175,8 @@
           <div class="cart-summary-row total">
             <span>Estimated Total</span><span id="cartTotal">$0.00</span>
           </div>
-          <div class="cart-referral" id="cartReferralWrap">
-            <button class="cart-referral-toggle" onclick="toggleCartReferral()" id="cartReferralToggleBtn">
-              🏷️ Have a referral or discount code?
-            </button>
-            <div class="cart-referral-form" id="cartReferralForm">
-              <input type="text" id="cartReferralInput" placeholder="Enter code" maxlength="32" />
-              <button onclick="applyCartReferral()">Apply</button>
-            </div>
-            <div class="cart-referral-applied" id="cartReferralApplied" style="display:none;"></div>
+          <div class="cart-referral-notice">
+            💬 Been referred by someone? Let us know their <strong>@telegram handle</strong> when we chat and we'll sort you a discount.
           </div>
           <a href="checkout.html" class="btn btn-primary cart-checkout-btn">Proceed to Checkout →</a>
           <button onclick="cart.close()" class="btn btn-ghost cart-continue-btn">Continue Shopping</button>
@@ -215,39 +208,6 @@
   document.addEventListener('DOMContentLoaded', () => {
     injectDrawer();
     updateBadge();
-  });
-
-  // ── Referral helpers (called from drawer HTML) ────────────────────────────
-  window.toggleCartReferral = function() {
-    const form = document.getElementById('cartReferralForm');
-    if (!form) return;
-    form.classList.toggle('open');
-    if (form.classList.contains('open')) document.getElementById('cartReferralInput')?.focus();
-  };
-
-  window.applyCartReferral = function() {
-    const input = document.getElementById('cartReferralInput');
-    const applied = document.getElementById('cartReferralApplied');
-    if (!input || !applied) return;
-    const code = input.value.trim().toUpperCase();
-    if (!code) return;
-    localStorage.setItem('ozzypeps_referral', code);
-    applied.textContent = `✓ Code "${code}" saved — discount confirmed via Telegram at checkout.`;
-    applied.style.display = 'block';
-    document.getElementById('cartReferralForm')?.classList.remove('open');
-    document.getElementById('cartReferralToggleBtn').textContent = `🏷️ Code applied: ${code}`;
-  };
-
-  // Restore applied referral on re-open
-  document.addEventListener('cart:changed', () => {
-    const saved = localStorage.getItem('ozzypeps_referral');
-    const applied = document.getElementById('cartReferralApplied');
-    const toggleBtn = document.getElementById('cartReferralToggleBtn');
-    if (saved && applied && toggleBtn) {
-      applied.textContent = `✓ Code "${saved}" saved — discount confirmed via Telegram at checkout.`;
-      applied.style.display = 'block';
-      toggleBtn.textContent = `🏷️ Code applied: ${saved}`;
-    }
   });
 
   document.addEventListener('keydown', e => {

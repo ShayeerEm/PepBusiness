@@ -353,12 +353,6 @@
             <textarea class="field-textarea" id="fNotes" placeholder="Bulk discount enquiries, dispatch preferences, CoA requests, etc."></textarea>
           </div>
 
-          <div class="field">
-            <label class="field-label" for="fReferral">Referral / Discount Code <span style="color:var(--text-muted);font-weight:500;">(optional)</span></label>
-            <input class="field-input" type="text" id="fReferral" placeholder="Enter code if you have one" maxlength="32" />
-            <div class="field-hint" id="fReferralHint">Discount confirmed via Telegram before payment.</div>
-          </div>
-
           <div class="disclaimer-banner" style="margin-top: 24px; padding: 14px 18px;">
             <div class="disclaimer-icon">📋</div>
             <div class="disclaimer-text" style="font-size:13px;">
@@ -698,7 +692,6 @@
         telegram: document.getElementById('fTelegram').value.trim(),
         address:  document.getElementById('fAddress').value.trim(),
         notes:    document.getElementById('fNotes').value.trim(),
-        referral: document.getElementById('fReferral').value.trim() || localStorage.getItem('ozzypeps_referral') || '',
       };
 
       const items = cart.items;
@@ -720,7 +713,6 @@
         'Phone':            customer.phone,
         'Shipping Address': customer.address,
         'Notes':            customer.notes || '(none)',
-        'Referral Code':    customer.referral || '(none)',
         'Order Items':      '\n' + itemsText,
         'Subtotal':         `$${totals.subtotal.toFixed(2)} AUD`,
         'Shipping':         `$${totals.shipping.toFixed(2)} AUD`,
@@ -998,13 +990,6 @@
     /* ── Init ── */
     renderSummary();
     document.addEventListener('cart:changed', renderSummary);
-
-    // Pre-fill referral code from cart drawer if set
-    const savedRef = localStorage.getItem('ozzypeps_referral');
-    if (savedRef) {
-      const rf = document.getElementById('fReferral');
-      if (rf) { rf.value = savedRef; document.getElementById('fReferralHint').textContent = `✓ Code "${savedRef}" applied — discount confirmed via Telegram.`; }
-    }
 
     /* Close confirm on overlay click */
     document.getElementById('confirmOverlay').addEventListener('click', e => {

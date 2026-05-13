@@ -2009,6 +2009,61 @@ img { max-width: 100%; display: block; }
 [data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--accent); }
 [data-theme="light"] { scrollbar-color: var(--accent) var(--bg-secondary); }
 
+/* Hardcoded-white text overrides */
+[data-theme="light"] a:hover { color: var(--accent); }
+[data-theme="light"] .nav-logo { color: var(--text-primary); }
+[data-theme="light"] .stat-num { color: var(--accent); }
+[data-theme="light"] .about-stat-num { color: var(--accent); }
+[data-theme="light"] .footer-logo-wrap { color: var(--text-primary); }
+[data-theme="light"] .footer-copy { color: var(--text-secondary); }
+[data-theme="light"] .footer-col-title { color: var(--text-muted); }
+[data-theme="light"] .footer-links a { color: var(--text-secondary); }
+[data-theme="light"] .footer-links a:hover { color: var(--accent); }
+[data-theme="light"] .mobile-menu a:hover { background: var(--accent-glow); color: var(--accent); }
+[data-theme="light"] .btn-ghost { background: rgba(0,0,0,0.04); }
+[data-theme="light"] .btn-ghost:hover { background: var(--accent-glow); color: var(--accent); }
+[data-theme="light"] .nav-links a:hover,
+[data-theme="light"] .nav-links a.active { color: var(--accent); }
+[data-theme="light"] .section-title,
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4 { color: var(--text-primary); }
+[data-theme="light"] .hero-title,
+[data-theme="light"] .hero-desc { color: var(--text-primary); }
+[data-theme="light"] .product-name { color: var(--text-primary); }
+[data-theme="light"] .product-desc { color: var(--text-secondary); }
+[data-theme="light"] .modal-title { color: var(--text-primary); }
+[data-theme="light"] .modal-desc { color: var(--text-secondary); }
+[data-theme="light"] .modal-tab { color: var(--text-secondary); }
+[data-theme="light"] .modal-tab.active { color: var(--accent); border-color: var(--accent); }
+[data-theme="light"] .modal-spec-size { color: var(--text-primary); }
+[data-theme="light"] .use-title { color: var(--text-primary); }
+[data-theme="light"] .use-sub { color: var(--text-secondary); }
+[data-theme="light"] .coa-key { color: var(--text-muted); }
+[data-theme="light"] .coa-val { color: var(--text-primary); }
+[data-theme="light"] .cart-item-name { color: var(--text-primary); }
+[data-theme="light"] .cart-item-size { color: var(--text-secondary); }
+[data-theme="light"] .cart-drawer-title { color: var(--text-primary); }
+[data-theme="light"] .cart-summary-row { color: var(--text-secondary); }
+[data-theme="light"] .cart-summary-row.total { color: var(--text-primary); }
+[data-theme="light"] .cart-empty-title { color: var(--text-primary); }
+[data-theme="light"] .cart-empty-sub { color: var(--text-secondary); }
+[data-theme="light"] .process-confirmation-title { color: var(--text-primary); }
+[data-theme="light"] .review-name { color: var(--text-primary); }
+[data-theme="light"] .section-desc { color: var(--text-secondary); }
+[data-theme="light"] .card-title { color: var(--text-primary); }
+[data-theme="light"] .card-desc { color: var(--text-secondary); }
+[data-theme="light"] .faq-q { color: var(--text-primary); }
+[data-theme="light"] .faq-a { color: var(--text-secondary); }
+[data-theme="light"] .field-label { color: var(--text-primary); }
+[data-theme="light"] .field-hint { color: var(--text-muted); }
+[data-theme="light"] .about-stat-label { color: var(--text-secondary); }
+[data-theme="light"] .tg-role { color: var(--text-secondary); }
+[data-theme="light"] .compare-bar { background: var(--bg-card); }
+[data-theme="light"] .hero-grid-lines { opacity: 0.04; }
+[data-theme="light"] .disclaimer-banner { color: var(--text-secondary); }
+
 /* ── Theme Toggle ─────────────────────────────────────── */
 .theme-toggle {
   background: none;
@@ -2277,93 +2332,13 @@ img { max-width: 100%; display: block; }
 .compare-spec-size { color: var(--text-secondary); }
 .compare-spec-price { color: var(--accent); font-weight: 700; }
 
-/* ── PWA Install Banner ─────────────────────────────────── */
-.pwa-banner {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: var(--bg-card);
-  border: 1px solid var(--border-hover);
-  border-radius: var(--radius-lg);
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  z-index: 2000;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
-  max-width: 360px;
-  width: calc(100vw - 48px);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.pwa-banner.visible { transform: translateX(-50%) translateY(0); }
-.pwa-banner-icon { font-size: 32px; flex-shrink: 0; }
-.pwa-banner-text { flex: 1; }
-.pwa-banner-title { font-size: 14px; font-weight: 800; color: var(--text-primary); }
-.pwa-banner-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-.pwa-banner-actions { display: flex; gap: 8px; margin-top: 10px; }
-.pwa-banner-actions .btn { font-size: 12px; padding: 6px 14px; }
-.pwa-banner-close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 16px;
-}
 
-/* ── Referral Code Field ─────────────────────────────────── */
-.cart-referral {
-  padding: 12px 16px;
+/* ── Referral Notice ─────────────────────────────────── */
+.cart-referral-notice {
+  padding: 10px 16px;
   border-top: 1px solid var(--border);
-}
-.cart-referral-toggle {
-  background: none;
-  border: none;
   font-size: 12px;
   color: var(--text-muted);
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: color var(--transition);
+  line-height: 1.6;
 }
-.cart-referral-toggle:hover { color: var(--accent); }
-.cart-referral-form {
-  display: none;
-  margin-top: 10px;
-}
-.cart-referral-form.open {
-  display: flex;
-  gap: 8px;
-}
-.cart-referral-form input {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text-primary);
-  font-size: 13px;
-  padding: 8px 12px;
-  outline: none;
-}
-.cart-referral-form input:focus { border-color: var(--accent); }
-.cart-referral-form button {
-  background: var(--accent);
-  border: none;
-  border-radius: var(--radius);
-  color: #000;
-  font-size: 12px;
-  font-weight: 800;
-  padding: 8px 14px;
-  cursor: pointer;
-}
-.cart-referral-applied {
-  margin-top: 8px;
-  font-size: 12px;
-  color: var(--success);
-  font-weight: 700;
-}
+.cart-referral-notice strong { color: var(--accent); }
