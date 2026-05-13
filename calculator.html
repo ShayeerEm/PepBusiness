@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peptide Dosage Calculator – OzzyPeps</title>
+  <meta name="description" content="Free peptide reconstitution and dosage calculator. Enter your vial size, BAC water volume and desired dose — instantly get your concentration and syringe units." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.json">
+  <script>(function(){var t=localStorage.getItem('ozzypeps_theme')||'dark';document.documentElement.setAttribute('data-theme',t);})()</script>
+  <style>
+
+    /* ── Calculator layout ── */
+    .calc-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    @media (max-width: 700px) { .calc-wrap { grid-template-columns: 1fr; } }
+
+    .calc-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+    }
+
+    .calc-panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* ── Preset chips ── */
+    .presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .preset-chip {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+    .preset-chip:hover { border-color: var(--accent); color: var(--accent); }
+    .preset-chip.active { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,.07); }
+
+    /* ── Form fields ── */
+    .calc-field { margin-bottom: 20px; }
+    .calc-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .calc-label-text { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+    .calc-label-unit { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+
+    .calc-input-wrap { position: relative; }
+    .calc-input {
+      width: 100%;
+      background: rgba(255,255,255,.04);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      padding: 14px 60px 14px 16px;
+      outline: none;
+      transition: border var(--transition);
+      -moz-appearance: textfield;
+    }
+    .calc-input::-webkit-outer-spin-button,
+    .calc-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .calc-input:focus { border-color: var(--accent); }
+    .calc-input-suffix {
+      position: absolute; right: 16px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px; font-weight: 700;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* ── Slider ── */
+    .calc-slider {
+      width: 100%; margin-top: 10px;
+      -webkit-appearance: none; appearance: none;
+      height: 4px; border-radius: 2px;
+      background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--pct, 50%), rgba(255,255,255,.1) var(--pct, 50%));
+      outline: none; cursor: pointer;
+    }
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--accent); border: 2px solid #000;
+      box-shadow: 0 0 8px rgba(0,212,255,.5);
+      cursor: pointer;
+    }
+    .calc-slider::-moz-range-thumb {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--accent); border: 2px solid #000; cursor: pointer;
+    }
+
+    /* ── Results panel ── */
+    .results-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .result-block {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+    .result-block.highlight {
+      background: rgba(0,212,255,.05);
+      border-color: rgba(0,212,255,.25);
+    }
+    .result-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+    .result-value { font-size: 32px; font-weight: 900; color: var(--text-primary); line-height: 1; }
+    .result-value .unit { font-size: 14px; font-weight: 600; color: var(--text-secondary); margin-left: 4px; }
+    .result-sub { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+
+    .result-block.highlight .result-value { color: var(--accent); }
+
+    /* ── Syringe visual ── */
+    .syringe-wrap {
+      margin: 20px 0;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .syringe-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .syringe-bar-wrap { position: relative; height: 36px; }
+    .syringe-track {
+      height: 36px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+    .syringe-fill {
+      height: 100%;
+      border-radius: 5px;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
+      transition: width .4s cubic-bezier(.4,0,.2,1);
+      position: relative;
+    }
+    .syringe-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.15) 0%, transparent 100%);
+      border-radius: inherit;
+    }
+    .syringe-ticks {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      padding: 0 2px;
+    }
+    .syringe-tick { font-size: 10px; color: var(--text-muted); }
+
+    /* ── Warning / info banners ── */
+    .calc-banner {
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .calc-banner.warn { background: rgba(255,152,0,.08); border: 1px solid rgba(255,152,0,.25); color: #ffb74d; }
+    .calc-banner.info { background: rgba(0,212,255,.06); border: 1px solid rgba(0,212,255,.18); color: var(--text-secondary); }
+
+    /* ── How-to steps ── */
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .how-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px 22px;
+    }
+    .how-num {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #000; font-weight: 800; font-size: 15px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .how-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .how-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+
+    /* ── Empty state ── */
+    .results-empty {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-muted);
+      padding: 20px;
+    }
+    .results-empty-icon { font-size: 48px; margin-bottom: 16px; opacity: .5; }
+    .results-empty-text { font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">O</div>
+        Ozzy<span>Peps</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="calculator.html" class="active">Dosage Calc</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+      <button class="wishlist-icon-wrap" onclick="window.location='wishlist.html'" aria-label="View wishlist">🤍 <span class="wishlist-badge">0</span></button>
+      <button class="cart-icon-wrap" onclick="cart.open()" aria-label="Open cart">&#128722; <span class="cart-badge">0</span></button>
+      <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
+      <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="calculator.html">Dosage Calc</a>
+    <a href="contact.html">Contact</a>
+    <a href="wishlist.html">Wishlist 🤍</a>
+    <button class="btn btn-ghost" onclick="toggleTheme()" style="margin-top:8px;width:100%;justify-content:center;">Toggle Theme ☀️/🌙</button>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero text-center">
+    <div class="container">
+      <div class="section-label">Research Tools</div>
+      <h1 class="section-title">Peptide Dosage Calculator</h1>
+      <p class="section-sub">Enter your vial size, the amount of bacteriostatic water you're adding, and your desired dose. Instantly get your concentration and the exact units to draw on a standard U100 insulin syringe.</p>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section style="padding: 0 0 80px;">
+    <div class="container">
+      <div class="calc-wrap">
+
+        <!-- INPUT PANEL -->
+        <div class="calc-panel">
+          <div class="calc-panel-title">01 — Your Setup</div>
+
+          <!-- Quick presets -->
+          <div style="font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Quick Presets</div>
+          <div class="presets" id="presets">
+            <div class="preset-chip" onclick="applyPreset(this, 5, 1, 250)">BPC-157 · 250mcg</div>
+            <div class="preset-chip" onclick="applyPreset(this, 5, 2, 250)">BPC-157 · 250mcg (2mL)</div>
+            <div class="preset-chip" onclick="applyPreset(this, 5, 1, 500)">TB-500 · 500mcg</div>
+            <div class="preset-chip" onclick="applyPreset(this, 10, 2, 2500)">TB-500 · 2.5mg</div>
+            <div class="preset-chip" onclick="applyPreset(this, 10, 2, 500)">Retatrutide · 500mcg</div>
+            <div class="preset-chip" onclick="applyPreset(this, 5, 1, 200)">Ipamorelin · 200mcg</div>
+            <div class="preset-chip" onclick="applyPreset(this, 10, 1, 1000)">Melanotan II · 1mg</div>
+            <div class="preset-chip" onclick="applyPreset(this, 5, 1, 100)">CJC-1295 · 100mcg</div>
+          </div>
+
+          <!-- Vial size -->
+          <div class="calc-field">
+            <div class="calc-label">
+              <span class="calc-label-text">Vial Size</span>
+              <span class="calc-label-unit">milligrams (mg)</span>
+            </div>
+            <div class="calc-input-wrap">
+              <input class="calc-input" type="number" id="vialMg" value="5" min="0.1" step="0.1" oninput="syncSlider('vialSlider', this, 0.5, 30); calculate()" />
+              <span class="calc-input-suffix">mg</span>
+            </div>
+            <input class="calc-slider" type="range" id="vialSlider" min="0.5" max="30" step="0.5" value="5"
+              oninput="document.getElementById('vialMg').value=this.value; updateSliderBg(this); calculate()" />
+            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:11px;color:var(--text-muted);">
+              <span>0.5 mg</span><span>5 mg</span><span>10 mg</span><span>20 mg</span><span>30 mg</span>
+            </div>
+          </div>
+
+          <!-- BAC water -->
+          <div class="calc-field">
+            <div class="calc-label">
+              <span class="calc-label-text">Bacteriostatic Water Added</span>
+              <span class="calc-label-unit">millilitres (mL)</span>
+            </div>
+            <div class="calc-input-wrap">
+              <input class="calc-input" type="number" id="waterMl" value="1" min="0.1" max="10" step="0.1" oninput="syncSlider('waterSlider', this, 0.1, 10); calculate()" />
+              <span class="calc-input-suffix">mL</span>
+            </div>
+            <input class="calc-slider" type="range" id="waterSlider" min="0.1" max="10" step="0.1" value="1"
+              oninput="document.getElementById('waterMl').value=this.value; updateSliderBg(this); calculate()" />
+            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:11px;color:var(--text-muted);">
+              <span>0.1 mL</span><span>1 mL</span><span>2 mL</span><span>5 mL</span><span>10 mL</span>
+            </div>
+          </div>
+
+          <!-- Desired dose -->
+          <div class="calc-field">
+            <div class="calc-label">
+              <span class="calc-label-text">Desired Dose</span>
+              <span class="calc-label-unit">micrograms (mcg)</span>
+            </div>
+            <div class="calc-input-wrap">
+              <input class="calc-input" type="number" id="doseMcg" value="250" min="1" step="1" oninput="calculate()" />
+              <span class="calc-input-suffix">mcg</span>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+              <button class="preset-chip" onclick="setDose(100)">100 mcg</button>
+              <button class="preset-chip" onclick="setDose(200)">200 mcg</button>
+              <button class="preset-chip" onclick="setDose(250)">250 mcg</button>
+              <button class="preset-chip" onclick="setDose(500)">500 mcg</button>
+              <button class="preset-chip" onclick="setDose(1000)">1 mg</button>
+              <button class="preset-chip" onclick="setDose(2500)">2.5 mg</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RESULTS PANEL -->
+        <div class="results-panel" id="resultsPanel">
+          <div class="calc-panel-title">02 — Your Results</div>
+          <div id="resultsContent">
+            <div class="results-empty">
+              <div class="results-empty-icon">💉</div>
+              <div class="results-empty-text">Fill in your values on the left<br>to see your dosage results.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- HOW TO USE -->
+      <div class="how-grid">
+        <div class="how-card">
+          <div class="how-num">1</div>
+          <div class="how-title">Reconstitute Your Vial</div>
+          <div class="how-desc">Using a fresh needle, draw the desired amount of bacteriostatic water and inject it slowly down the inside wall of the vial. Do not shake — gently swirl until clear.</div>
+        </div>
+        <div class="how-card">
+          <div class="how-num">2</div>
+          <div class="how-title">Use a U100 Insulin Syringe</div>
+          <div class="how-desc">This calculator is calibrated for standard U100 (100 units = 1 mL) insulin syringes, which are the most common tool for peptide administration in a research setting.</div>
+        </div>
+        <div class="how-card">
+          <div class="how-num">3</div>
+          <div class="how-title">Draw to the Unit Line</div>
+          <div class="how-desc">After reconstitution, insert the needle into the vial and draw back the plunger to the exact unit number shown in your results. Each small line on a U100 syringe = 1 unit = 0.01 mL.</div>
+        </div>
+        <div class="how-card">
+          <div class="how-num">4</div>
+          <div class="how-title">Store Correctly</div>
+          <div class="how-desc">Refrigerate reconstituted peptides at 2–8°C. Use within 4–6 weeks. Never freeze a reconstituted vial. Keep unreconstituted vials in a cool, dark place.</div>
+        </div>
+      </div>
+
+      <!-- DISCLAIMER -->
+      <div class="disclaimer-banner" style="max-width: 960px; margin: 48px auto 0;">
+        <div class="disclaimer-icon">⚗️</div>
+        <div class="disclaimer-text">
+          <strong>Research Use Only.</strong> This calculator is provided as a reference tool for in-vitro research purposes only. Results should be verified independently. OzzyPeps accepts no liability for calculation errors or misuse. All products are strictly for laboratory research.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding: 0 0 80px;">
+    <div class="container">
+      <div class="cta-section">
+        <div class="section-label">Need Product?</div>
+        <h2 class="section-title" style="margin-top:12px;font-size:32px;">Browse Our Catalogue</h2>
+        <p class="section-sub" style="margin-bottom:36px;">All peptides are HPLC-verified with Certificates of Analysis available on request. Order securely via Telegram.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+          <a href="products.html" class="btn btn-primary" style="font-size:16px;padding:14px 32px;">Browse Products →</a>
+          <a href="contact.html" class="btn btn-outline" style="font-size:16px;padding:14px 32px;">Order via Telegram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo-wrap">
+            <div class="logo-icon" style="width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;">O</div>
+            Ozzy<span style="color:var(--accent)">Peps</span>
+          </div>
+          <p class="footer-desc">Premium research-grade peptides supplied to qualified scientists and research facilities. For laboratory use only.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Tools & Support</div>
+          <ul class="footer-links">
+            <li><a href="calculator.html">Dosage Calculator</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="about.html#legal">Legal &amp; Disclaimer</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Order via Telegram</div>
+          <a href="https://t.me/fussyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @fussyaussie</a>
+          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @toyaussie</a>
+          <a href="https://t.me/jamallincoln" target="_blank" class="footer-tg" style="display:flex;">✈ @jamallincoln</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 OzzyPeps. All rights reserved. For research use only.</div>
+        <div style="font-size:12px;color:var(--text-muted);">Not for human consumption · Not a therapeutic product</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    window.addEventListener('scroll', () => {
+      const st = document.getElementById('scrollTop');
+      if (window.scrollY > 400) st.classList.add('visible');
+      else st.classList.remove('visible');
+    });
+
+    // ── Slider sync ──────────────────────────────────────────────────────────
+    function updateSliderBg(slider) {
+      const min = parseFloat(slider.min), max = parseFloat(slider.max), val = parseFloat(slider.value);
+      const pct = ((val - min) / (max - min) * 100).toFixed(1);
+      slider.style.setProperty('--pct', pct + '%');
+    }
+
+    function syncSlider(sliderId, input, min, max) {
+      const v = Math.min(Math.max(parseFloat(input.value) || min, min), max);
+      const sl = document.getElementById(sliderId);
+      sl.value = v;
+      updateSliderBg(sl);
+    }
+
+    // Init slider backgrounds on load
+    ['vialSlider','waterSlider'].forEach(id => updateSliderBg(document.getElementById(id)));
+
+    // ── Presets ──────────────────────────────────────────────────────────────
+    function applyPreset(el, vial, water, dose) {
+      document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('vialMg').value  = vial;
+      document.getElementById('waterMl').value = water;
+      document.getElementById('doseMcg').value = dose;
+      syncSlider('vialSlider',  document.getElementById('vialMg'),  0.5, 30);
+      syncSlider('waterSlider', document.getElementById('waterMl'), 0.1, 10);
+      calculate();
+    }
+
+    function setDose(mcg) {
+      document.getElementById('doseMcg').value = mcg;
+      document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('active'));
+      calculate();
+    }
+
+    // ── Core calculation ─────────────────────────────────────────────────────
+    function calculate() {
+      const vialMg  = parseFloat(document.getElementById('vialMg').value);
+      const waterMl = parseFloat(document.getElementById('waterMl').value);
+      const doseMcg = parseFloat(document.getElementById('doseMcg').value);
+
+      if (!vialMg || !waterMl || !doseMcg || vialMg <= 0 || waterMl <= 0 || doseMcg <= 0) {
+        document.getElementById('resultsContent').innerHTML = `
+          <div class="results-empty">
+            <div class="results-empty-icon">💉</div>
+            <div class="results-empty-text">Fill in all values on the left<br>to see your dosage results.</div>
+          </div>`;
+        return;
+      }
+
+      const vialMcg          = vialMg * 1000;
+      const concMcgPerMl     = vialMcg / waterMl;
+      const volPerDoseMl     = doseMcg / concMcgPerMl;
+      const unitsRaw         = volPerDoseMl * 100;        // U100 syringe
+      const units            = Math.round(unitsRaw * 10) / 10;
+      const dosesInVial      = vialMcg / doseMcg;
+      const fillPct          = Math.min((unitsRaw / 100) * 100, 100);
+
+      // Warnings
+      let warnings = '';
+      if (unitsRaw > 100) {
+        warnings += `<div class="calc-banner warn">⚠️ This dose exceeds one full 1 mL syringe (100 units). Consider using a larger BAC water volume, or splitting into multiple injections.</div>`;
+      }
+      if (unitsRaw < 1) {
+        warnings += `<div class="calc-banner warn">⚠️ This dose is less than 1 unit — very difficult to measure accurately on a standard syringe. Consider using less BAC water to increase concentration.</div>`;
+      }
+      if (dosesInVial < 1) {
+        warnings += `<div class="calc-banner warn">⚠️ Your desired dose exceeds the full vial amount.</div>`;
+      }
+
+      // Format helpers
+      const fmtConc   = concMcgPerMl >= 1000
+        ? (concMcgPerMl / 1000).toFixed(2) + ' mg/mL'
+        : concMcgPerMl.toFixed(1) + ' mcg/mL';
+      const fmtDoses  = dosesInVial >= 100
+        ? Math.floor(dosesInVial).toLocaleString()
+        : (Math.floor(dosesInVial * 10) / 10).toFixed(dosesInVial < 10 ? 1 : 0);
+      const fmtUnits  = units % 1 === 0 ? units.toString() : units.toFixed(1);
+
+      document.getElementById('resultsContent').innerHTML = `
+        ${warnings}
+
+        <div class="result-block highlight">
+          <div class="result-label">Draw to this line on your U100 syringe</div>
+          <div class="result-value">${fmtUnits}<span class="unit">units</span></div>
+          <div class="result-sub">(${volPerDoseMl < 0.01 ? '< 0.01' : volPerDoseMl.toFixed(3)} mL per dose)</div>
+        </div>
+
+        <div class="syringe-wrap">
+          <div class="syringe-label">Syringe Fill Level</div>
+          <div class="syringe-track">
+            <div class="syringe-fill" style="width: ${Math.min(fillPct, 100).toFixed(1)}%"></div>
+          </div>
+          <div class="syringe-ticks">
+            <span class="syringe-tick">0</span>
+            <span class="syringe-tick">25</span>
+            <span class="syringe-tick">50</span>
+            <span class="syringe-tick">75</span>
+            <span class="syringe-tick">100 units</span>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="result-block">
+            <div class="result-label">Concentration</div>
+            <div class="result-value" style="font-size:22px;">${fmtConc}</div>
+            <div class="result-sub">after adding ${waterMl} mL BAC water</div>
+          </div>
+          <div class="result-block">
+            <div class="result-label">Doses Per Vial</div>
+            <div class="result-value" style="font-size:22px;">${fmtDoses}</div>
+            <div class="result-sub">at ${doseMcg >= 1000 ? (doseMcg/1000)+'mg' : doseMcg+'mcg'} per dose</div>
+          </div>
+        </div>
+
+        <div class="calc-banner info" style="margin-top:4px;">
+          ℹ️ Calibrated for U100 insulin syringes (1 mL = 100 units). Each small line = 1 unit = 0.01 mL.
+        </div>`;
+    }
+
+    // Run on load with default values
+    calculate();
+  </script>
+  <script src="cart.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="theme.js"></script>
+</body>
+</html>

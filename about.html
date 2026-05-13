@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.json">
+  <script>(function(){var t=localStorage.getItem('ozzypeps_theme')||'dark';document.documentElement.setAttribute('data-theme',t);})()</script>
 </head>
 <body>
 
@@ -24,9 +26,12 @@
         <li><a href="products.html">Products</a></li>
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="track-order.html">Track Order</a></li>
+        <li><a href="calculator.html">Dosage Calc</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+      <button class="wishlist-icon-wrap" onclick="window.location='wishlist.html'" aria-label="View wishlist">🤍 <span class="wishlist-badge">0</span></button>
+      <button class="cart-icon-wrap" onclick="cart.open()" aria-label="Open cart">&#128722; <span class="cart-badge">0</span></button>
       <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
       <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     </div>
@@ -36,8 +41,10 @@
     <a href="products.html">Products</a>
     <a href="about.html">About</a>
     <a href="faq.html">FAQ</a>
-    <a href="track-order.html">Track Order</a>
+    <a href="calculator.html">Dosage Calc</a>
     <a href="contact.html">Contact</a>
+    <a href="wishlist.html">Wishlist 🤍</a>
+    <button class="btn btn-ghost" onclick="toggleTheme()" style="margin-top:8px;width:100%;justify-content:center;">Toggle Theme ☀️/🌙</button>
   </div>
 
   <!-- PAGE HERO -->
@@ -181,7 +188,7 @@
         <h3>⚠️ Important Disclaimer – Please Read Carefully</h3>
 
         <p>
-          All peptides and research compounds listed and sold by <strong>OzzyPeps</strong> are intended strictly for <strong>in-vitro laboratory research and scientific investigation</strong>. These products are <strong>not intended for human consumption, self-administration, veterinary use, or any therapeutic application</strong>.
+          <strong>OzzyPeps</strong> supplies two categories of products: (1) <strong>research peptides</strong>, intended strictly for in-vitro laboratory research and scientific investigation, and (2) <strong>pharmaceutical medications</strong>, sourced from licensed pharmacy partners and supplied directly to customers for personal use at their own discretion and responsibility. OzzyPeps is not a pharmacy or a licensed medical practitioner. We do not prescribe medications, dispense medical advice, diagnose conditions, or supervise treatment. Customers ordering pharmaceutical products do so on the understanding that they have independently obtained advice from a qualified healthcare professional and accept full personal responsibility for use.
         </p>
 
         <p>
@@ -243,7 +250,7 @@
         <div>
           <div class="footer-col-title">Support</div>
           <ul class="footer-links">
-            <li><a href="track-order.html">Track Order</a></li>
+            <li><a href="calculator.html">Dosage Calc</a></li>
             <li><a href="contact.html">Contact Us</a></li>
             <li><a href="about.html#legal">Legal &amp; Disclaimer</a></li>
           </ul>
@@ -251,7 +258,8 @@
         <div>
           <div class="footer-col-title">Order via Telegram</div>
           <a href="https://t.me/fussyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @fussyaussie</a>
-          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;">✈ @toyaussie</a>
+          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @toyaussie</a>
+          <a href="https://t.me/jamallincoln" target="_blank" class="footer-tg" style="display:flex;">✈ @jamallincoln</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -273,5 +281,8 @@
       else st.classList.remove('visible');
     });
   </script>
+  <script src="cart.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="theme.js"></script>
 </body>
 </html>

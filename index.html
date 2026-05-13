@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.json">
+  <script>(function(){var t=localStorage.getItem('ozzypeps_theme')||'dark';document.documentElement.setAttribute('data-theme',t);})()</script>
 </head>
 <body>
 
@@ -25,10 +27,13 @@
         <li><a href="products.html">Products</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="track-order.html">Track Order</a></li>
+        <li><a href="calculator.html">Dosage Calc</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
 
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+      <button class="wishlist-icon-wrap" onclick="window.location='wishlist.html'" aria-label="View wishlist">🤍 <span class="wishlist-badge">0</span></button>
+      <button class="cart-icon-wrap" onclick="cart.open()" aria-label="Open cart">&#128722; <span class="cart-badge">0</span></button>
       <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
 
       <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -43,8 +48,10 @@
     <a href="products.html">Products</a>
     <a href="about.html">About</a>
     <a href="faq.html">FAQ</a>
-    <a href="track-order.html">Track Order</a>
+    <a href="calculator.html">Dosage Calc</a>
     <a href="contact.html">Contact</a>
+    <a href="wishlist.html">Wishlist 🤍</a>
+    <button class="btn btn-ghost" onclick="toggleTheme()" style="margin-top:8px;width:100%;justify-content:center;">Toggle Theme ☀️/🌙</button>
   </div>
 
   <!-- HERO -->
@@ -107,10 +114,6 @@
     <div class="container">
       <div class="trust-bar-inner">
         <div class="trust-item">
-          <span class="icon">🔬</span>
-          <span>HPLC &amp; MS Verified</span>
-        </div>
-        <div class="trust-item">
           <span class="icon">🧪</span>
           <span>Lab-Grade Purity</span>
         </div>
@@ -119,12 +122,12 @@
           <span>Discreet Packaging</span>
         </div>
         <div class="trust-item">
-          <span class="icon">⚡</span>
-          <span>Fast Dispatch</span>
+          <span class="icon">🚚</span>
+          <span>$89 AUD Shipping · Insured</span>
         </div>
         <div class="trust-item">
           <span class="icon">🛡️</span>
-          <span>Secure Payments via Telegram</span>
+          <span>Secure Telegram Ordering</span>
         </div>
         <div class="trust-item">
           <span class="icon">🌏</span>
@@ -140,7 +143,7 @@
       <div class="disclaimer-banner">
         <div class="disclaimer-icon">⚠️</div>
         <div class="disclaimer-text">
-          <strong>Research Use Only.</strong> All products sold by OzzyPeps are intended exclusively for in-vitro laboratory research and scientific study. They are not for human or veterinary consumption, nor are they approved therapeutic agents. By browsing and purchasing, you confirm that you are a qualified researcher and will use these compounds in accordance with all applicable laws and regulations.
+          <strong>Important Notice.</strong> Research peptides supplied by OzzyPeps are intended for in-vitro laboratory study. Pharmaceutical medications are sourced from licensed pharmacies and supplied for personal use at the customer's own responsibility — these are not prescribed or dispensed by OzzyPeps. By ordering, you confirm you are using these products lawfully in your jurisdiction and acknowledge that OzzyPeps does not provide medical advice. See our full <a href="about.html#legal" style="color:var(--accent);">legal disclaimer</a>.
         </div>
       </div>
     </div>
@@ -158,93 +161,115 @@
       <div class="products-grid">
 
         <!-- BPC-157 -->
-        <div class="product-card">
-          <div class="product-img">🧬
-            <div class="product-badge hot">Popular</div>
-          </div>
+        <div class="product-card" onclick="openProduct('bpc157')">
+          <div class="product-img">🧬<div class="product-badge hot">Bestseller</div></div>
           <div class="product-body">
             <div class="product-category">Healing Peptide</div>
             <div class="product-name">BPC-157</div>
-            <div class="product-desc">A pentadecapeptide frequently studied for its role in tissue regeneration and gastrointestinal research models.</div>
+            <div class="product-desc">Pentadecapeptide widely studied for tissue regeneration and gastrointestinal research models.</div>
+            <div class="product-from-price">From <strong>$155 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$155</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$248</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 99.1% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
+              <div class="product-purity">✅ CoA Verified</div>
+              <span class="product-inquiry" onclick="openProduct('bpc157')">View Details →</span>
             </div>
           </div>
         </div>
 
         <!-- TB-500 -->
-        <div class="product-card">
-          <div class="product-img">⚗️
-            <div class="product-badge">Top Rated</div>
-          </div>
+        <div class="product-card" onclick="openProduct('tb500')">
+          <div class="product-img">⚗️<div class="product-badge hot">Popular</div></div>
           <div class="product-body">
-            <div class="product-category">Tissue Research</div>
+            <div class="product-category">Systemic Tissue Repair</div>
             <div class="product-name">TB-500</div>
-            <div class="product-desc">Synthetic analogue of Thymosin Beta-4, widely used in musculoskeletal and vascular tissue studies.</div>
+            <div class="product-desc">Synthetic Thymosin β4 fragment — whole-body healing, vascular remodelling and accelerated injury recovery.</div>
+            <div class="product-from-price">From <strong>$264 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$264</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$465</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 99.3% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
+              <div class="product-purity">✅ CoA Verified</div>
+              <span class="product-inquiry" onclick="openProduct('tb500')">View Details →</span>
             </div>
           </div>
         </div>
 
-        <!-- Semaglutide -->
-        <div class="product-card">
-          <div class="product-img">💊
-            <div class="product-badge new">New</div>
-          </div>
+        <!-- Retatrutide -->
+        <div class="product-card" onclick="openProduct('retatrutide')">
+          <div class="product-img">⚡<div class="product-badge new">Trending</div></div>
           <div class="product-body">
-            <div class="product-category">GLP-1 Analogue</div>
-            <div class="product-name">Semaglutide</div>
-            <div class="product-desc">A GLP-1 receptor agonist analogue used in metabolic research. Long-acting profile and high binding affinity.</div>
-            <div class="product-meta">
-              <div class="product-purity">✓ 98.9% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
+            <div class="product-category">Triple Agonist</div>
+            <div class="product-name">Retatrutide</div>
+            <div class="product-desc">Next-generation triple receptor agonist (GLP-1, GIP, glucagon) — strongest fat loss data of any peptide to date.</div>
+            <div class="product-from-price">From <strong>$202 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$202</span></div>
+              <div class="spec-row"><span class="spec-size">20mg × 10 vials</span><span class="spec-price">$434</span></div>
+              <div class="spec-row"><span class="spec-size">60mg × 10 vials</span><span class="spec-price">$930</span></div>
             </div>
-          </div>
-        </div>
-
-        <!-- CJC-1295 -->
-        <div class="product-card">
-          <div class="product-img">🔭</div>
-          <div class="product-body">
-            <div class="product-category">GHRH Analogue</div>
-            <div class="product-name">CJC-1295 DAC</div>
-            <div class="product-desc">Modified GHRH analogue with Drug Affinity Complex for extended half-life in GH secretion studies.</div>
             <div class="product-meta">
-              <div class="product-purity">✓ 99.0% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
+              <div class="product-purity">✅ CoA Verified</div>
+              <span class="product-inquiry" onclick="openProduct('retatrutide')">View Details →</span>
             </div>
           </div>
         </div>
 
         <!-- Ipamorelin -->
-        <div class="product-card">
-          <div class="product-img">🌡️
-            <div class="product-badge hot">Popular</div>
-          </div>
+        <div class="product-card" onclick="openProduct('ipamorelin')">
+          <div class="product-img">🌡️<div class="product-badge hot">Popular</div></div>
           <div class="product-body">
             <div class="product-category">Ghrelin Mimetic</div>
             <div class="product-name">Ipamorelin</div>
-            <div class="product-desc">Selective ghrelin receptor agonist studied for growth hormone release without cortisol or prolactin elevation.</div>
+            <div class="product-desc">Selective GH-releasing peptide with minimal cortisol or prolactin elevation. Clean GH pulse research.</div>
+            <div class="product-from-price">From <strong>$171 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$171</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$279</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 99.4% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
+              <div class="product-purity">✅ CoA Verified</div>
+              <span class="product-inquiry" onclick="openProduct('ipamorelin')">View Details →</span>
             </div>
           </div>
         </div>
 
-        <!-- PT-141 -->
-        <div class="product-card">
-          <div class="product-img">⚡</div>
+        <!-- Melanotan II -->
+        <div class="product-card" onclick="openProduct('melanotan2')">
+          <div class="product-img">🌞<div class="product-badge hot">Popular</div></div>
           <div class="product-body">
             <div class="product-category">Melanocortin</div>
-            <div class="product-name">PT-141 (Bremelanotide)</div>
-            <div class="product-desc">Melanocortin receptor agonist examined in neuroendocrine and CNS research applications.</div>
+            <div class="product-name">Melanotan II</div>
+            <div class="product-desc">α-MSH analogue studied for melanogenesis, pigmentation, and appetite-related pathways.</div>
+            <div class="product-from-price">From <strong>$171 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$171</span></div>
+            </div>
             <div class="product-meta">
-              <div class="product-purity">✓ 99.2% Purity</div>
-              <a href="contact.html" class="product-inquiry">Enquire →</a>
+              <div class="product-purity">✅ CoA Verified</div>
+              <span class="product-inquiry" onclick="openProduct('melanotan2')">View Details →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CJC-1295 -->
+        <div class="product-card" onclick="openProduct('cjc_nodac')">
+          <div class="product-img">🔬<div class="product-badge">Top Rated</div></div>
+          <div class="product-body">
+            <div class="product-category">GHRH Analogue</div>
+            <div class="product-name">CJC-1295 (No DAC)</div>
+            <div class="product-desc">Modified GHRH 1-29 — short-acting analogue used in pulsatile GH release research protocols.</div>
+            <div class="product-from-price">From <strong>$295 AUD</strong></div>
+            <div class="product-specs">
+              <div class="spec-row"><span class="spec-size">5mg × 10 vials</span><span class="spec-price">$295</span></div>
+              <div class="spec-row"><span class="spec-size">10mg × 10 vials</span><span class="spec-price">$496</span></div>
+            </div>
+            <div class="product-meta">
+              <div class="product-purity">✅ CoA Verified</div>
+              <span class="product-inquiry" onclick="openProduct('cjc_nodac')">View Details →</span>
             </div>
           </div>
         </div>
@@ -415,6 +440,29 @@
     </div>
   </section>
 
+  <!-- PWA INSTALL BANNER -->
+  <div class="pwa-banner" id="pwaBanner">
+    <div class="pwa-banner-icon">📲</div>
+    <div class="pwa-banner-text">
+      <div class="pwa-banner-title">Install OzzyPeps</div>
+      <div class="pwa-banner-sub">Add to your home screen for quick access</div>
+      <div class="pwa-banner-actions">
+        <button class="btn btn-primary" onclick="installPWA()">Install</button>
+        <button class="btn btn-ghost" onclick="dismissPWA()">Not now</button>
+      </div>
+    </div>
+    <button class="pwa-banner-close" onclick="dismissPWA()" aria-label="Close">✕</button>
+  </div>
+
+  <!-- RECENTLY VIEWED -->
+  <section class="recently-viewed-section" id="recentlyViewedSection" style="display:none;">
+    <div class="container">
+      <div class="section-label">Recently Viewed</div>
+      <h3>Continue Browsing</h3>
+      <div class="rv-scroll" id="recentlyViewedScroll"></div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
@@ -438,7 +486,7 @@
         <div>
           <div class="footer-col-title">Support</div>
           <ul class="footer-links">
-            <li><a href="track-order.html">Track Order</a></li>
+            <li><a href="calculator.html">Dosage Calc</a></li>
             <li><a href="contact.html">Contact Us</a></li>
             <li><a href="about.html#legal">Legal &amp; Disclaimer</a></li>
           </ul>
@@ -446,7 +494,8 @@
         <div>
           <div class="footer-col-title">Order via Telegram</div>
           <a href="https://t.me/fussyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @fussyaussie</a>
-          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;">✈ @toyaussie</a>
+          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @toyaussie</a>
+          <a href="https://t.me/jamallincoln" target="_blank" class="footer-tg" style="display:flex;">✈ @jamallincoln</a>
         </div>
       </div>
 
@@ -469,6 +518,48 @@
       if (window.scrollY > 400) st.classList.add('visible');
       else st.classList.remove('visible');
     });
+  </script>
+  <script src="product-data.js"></script>
+  <script src="cart.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="recently-viewed.js"></script>
+  <script src="theme.js"></script>
+  <script>
+    // Show recently viewed on home page
+    document.addEventListener('DOMContentLoaded', function() {
+      recentlyViewed.render('recentlyViewedScroll');
+      if (recentlyViewed.get().length > 0) {
+        document.getElementById('recentlyViewedSection').style.display = '';
+      }
+    });
+
+    // Register service worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').catch(function() {});
+      });
+    }
+
+    // PWA install prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      var banner = document.getElementById('pwaBanner');
+      if (banner) setTimeout(function() { banner.classList.add('visible'); }, 3000);
+    });
+    window.installPWA = function() {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function() { deferredPrompt = null; });
+      var banner = document.getElementById('pwaBanner');
+      if (banner) banner.classList.remove('visible');
+    };
+    window.dismissPWA = function() {
+      var banner = document.getElementById('pwaBanner');
+      if (banner) banner.classList.remove('visible');
+      localStorage.setItem('pwa_dismissed', '1');
+    };
   </script>
 </body>
 </html>

@@ -4,11 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact &amp; Order – OzzyPeps</title>
-  <meta name="description" content="Contact OzzyPeps to place your peptide order. Reach us on Telegram at @fussyaussie or @toyaussie." />
+  <meta name="description" content="Contact OzzyPeps to place your peptide order. Reach us on Telegram at @fussyaussie, @toyaussie or @jamallincoln." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.json">
+  <script>(function(){var t=localStorage.getItem('ozzypeps_theme')||'dark';document.documentElement.setAttribute('data-theme',t);})()</script>
   <style>
     .steps-grid {
       display: grid;
@@ -78,9 +80,12 @@
         <li><a href="products.html">Products</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="track-order.html">Track Order</a></li>
+        <li><a href="calculator.html">Dosage Calc</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+      <button class="wishlist-icon-wrap" onclick="window.location='wishlist.html'" aria-label="View wishlist">🤍 <span class="wishlist-badge">0</span></button>
+      <button class="cart-icon-wrap" onclick="cart.open()" aria-label="Open cart">&#128722; <span class="cart-badge">0</span></button>
       <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
       <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     </div>
@@ -90,8 +95,10 @@
     <a href="products.html">Products</a>
     <a href="about.html">About</a>
     <a href="faq.html">FAQ</a>
-    <a href="track-order.html">Track Order</a>
+    <a href="calculator.html">Dosage Calc</a>
     <a href="contact.html">Contact</a>
+    <a href="wishlist.html">Wishlist 🤍</a>
+    <button class="btn btn-ghost" onclick="toggleTheme()" style="margin-top:8px;width:100%;justify-content:center;">Toggle Theme ☀️/🌙</button>
   </div>
 
   <!-- PAGE HERO -->
@@ -112,8 +119,14 @@
         <div class="tg-card">
           <div class="tg-avatar">✈</div>
           <div class="tg-handle">@toyaussie</div>
-          <div class="tg-role">Secondary Contact · Orders &amp; Support</div>
+          <div class="tg-role">Primary Contact · Orders &amp; Support</div>
           <a href="https://t.me/toyaussie" target="_blank" class="tg-btn">Open Telegram →</a>
+        </div>
+        <div class="tg-card">
+          <div class="tg-avatar">✈</div>
+          <div class="tg-handle">@jamallincoln</div>
+          <div class="tg-role">Primary Contact · Orders &amp; Enquiries</div>
+          <a href="https://t.me/jamallincoln" target="_blank" class="tg-btn">Open Telegram →</a>
         </div>
       </div>
     </div>
@@ -137,7 +150,7 @@
         <div class="step-card">
           <div class="step-num">2</div>
           <div class="step-title">Message Us on Telegram</div>
-          <div class="step-desc">Contact @fussyaussie or @toyaussie on Telegram with your shopping list — product names, quantities, and any specific requirements.</div>
+          <div class="step-desc">Contact @fussyaussie, @toyaussie or @jamallincoln on Telegram with your shopping list — product names, quantities, and any specific requirements.</div>
         </div>
         <div class="step-card">
           <div class="step-num">3</div>
@@ -178,18 +191,18 @@
       </div>
 
       <div class="info-row">
-        <div class="info-icon">📦</div>
+        <div class="info-icon">🚚</div>
         <div>
-          <div class="info-label">Minimum Order</div>
-          <div class="info-value">$50 AUD minimum order value. Bulk and wholesale enquiries are welcome — ask about our researcher loyalty rates.</div>
+          <div class="info-label">Shipping &amp; Insurance</div>
+          <div class="info-value">Flat <strong style="color:var(--accent);">$89 AUD</strong> Australia-wide and <strong>fully insured</strong>. Metro areas: 1–3 days. Regional: 3–6 days. Express upgrade available on request.</div>
         </div>
       </div>
 
       <div class="info-row">
-        <div class="info-icon">🚚</div>
+        <div class="info-icon">📦</div>
         <div>
-          <div class="info-label">Shipping</div>
-          <div class="info-value">Australia-wide only. Metro areas: 1–3 days. Regional: 3–6 days. Express shipping available on request.</div>
+          <div class="info-label">Order Sizing</div>
+          <div class="info-value">No strict minimum — but since shipping is a flat rate, bundling multiple items in one order is the most cost-effective approach. Bulk and wholesale enquiries welcome.</div>
         </div>
       </div>
 
@@ -222,6 +235,7 @@
         <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
           <a href="https://t.me/fussyaussie" target="_blank" class="btn btn-primary" style="font-size:16px;padding:14px 32px;">✈ @fussyaussie</a>
           <a href="https://t.me/toyaussie" target="_blank" class="btn btn-outline" style="font-size:16px;padding:14px 32px;">✈ @toyaussie</a>
+          <a href="https://t.me/jamallincoln" target="_blank" class="btn btn-outline">✈ @jamallincoln</a>
         </div>
       </div>
     </div>
@@ -250,7 +264,7 @@
         <div>
           <div class="footer-col-title">Support</div>
           <ul class="footer-links">
-            <li><a href="track-order.html">Track Order</a></li>
+            <li><a href="calculator.html">Dosage Calc</a></li>
             <li><a href="contact.html">Contact Us</a></li>
             <li><a href="about.html#legal">Legal &amp; Disclaimer</a></li>
           </ul>
@@ -258,7 +272,8 @@
         <div>
           <div class="footer-col-title">Order via Telegram</div>
           <a href="https://t.me/fussyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @fussyaussie</a>
-          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;">✈ @toyaussie</a>
+          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @toyaussie</a>
+          <a href="https://t.me/jamallincoln" target="_blank" class="footer-tg" style="display:flex;">✈ @jamallincoln</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -280,5 +295,8 @@
       else st.classList.remove('visible');
     });
   </script>
+  <script src="cart.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="theme.js"></script>
 </body>
 </html>
