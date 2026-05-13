@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.json">
+  <script>(function(){var t=localStorage.getItem('ozzypeps_theme')||'dark';document.documentElement.setAttribute('data-theme',t);})()</script>
 </head>
 <body>
 
@@ -27,6 +29,8 @@
         <li><a href="calculator.html">Dosage Calc</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+      <button class="wishlist-icon-wrap" onclick="window.location='wishlist.html'" aria-label="View wishlist">🤍 <span class="wishlist-badge">0</span></button>
       <button class="cart-icon-wrap" onclick="cart.open()" aria-label="Open cart">&#128722; <span class="cart-badge">0</span></button>
       <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
       <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
@@ -39,6 +43,8 @@
     <a href="faq.html">FAQ</a>
     <a href="calculator.html">Dosage Calc</a>
     <a href="contact.html">Contact</a>
+    <a href="wishlist.html">Wishlist 🤍</a>
+    <button class="btn btn-ghost" onclick="toggleTheme()" style="margin-top:8px;width:100%;justify-content:center;">Toggle Theme ☀️/🌙</button>
   </div>
 
   <!-- PAGE HERO -->
@@ -276,5 +282,7 @@
     });
   </script>
   <script src="cart.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="theme.js"></script>
 </body>
 </html>

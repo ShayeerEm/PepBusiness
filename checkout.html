@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.json">
+  <script>(function(){var t=localStorage.getItem('ozzypeps_theme')||'dark';document.documentElement.setAttribute('data-theme',t);})()</script>
   <style>
     .checkout-grid {
       display: grid;
@@ -267,6 +269,8 @@
         <li><a href="calculator.html">Dosage Calc</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+      <button class="wishlist-icon-wrap" onclick="window.location='wishlist.html'" aria-label="View wishlist">🤍 <span class="wishlist-badge">0</span></button>
       <button class="cart-icon-wrap" onclick="cart.open()" aria-label="Open cart">
         🛒 <span class="cart-badge">0</span>
       </button>
@@ -281,6 +285,8 @@
     <a href="faq.html">FAQ</a>
     <a href="calculator.html">Dosage Calc</a>
     <a href="contact.html">Contact</a>
+    <a href="wishlist.html">Wishlist 🤍</a>
+    <button class="btn btn-ghost" onclick="toggleTheme()" style="margin-top:8px;width:100%;justify-content:center;">Toggle Theme ☀️/🌙</button>
   </div>
 
   <!-- ── HERO ───────────────────────────────────────────── -->
@@ -345,6 +351,12 @@
           <div class="field">
             <label class="field-label" for="fNotes">Order Notes <span style="color:var(--text-muted);font-weight:500;">(optional)</span></label>
             <textarea class="field-textarea" id="fNotes" placeholder="Bulk discount enquiries, dispatch preferences, CoA requests, etc."></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="fReferral">Referral / Discount Code <span style="color:var(--text-muted);font-weight:500;">(optional)</span></label>
+            <input class="field-input" type="text" id="fReferral" placeholder="Enter code if you have one" maxlength="32" />
+            <div class="field-hint" id="fReferralHint">Discount confirmed via Telegram before payment.</div>
           </div>
 
           <div class="disclaimer-banner" style="margin-top: 24px; padding: 14px 18px;">
@@ -513,6 +525,8 @@
   <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
   <script src="cart.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="theme.js"></script>
   <script>
     /* ════════════════════════════════════════════════════════
        Web3Forms Access Key
@@ -684,6 +698,7 @@
         telegram: document.getElementById('fTelegram').value.trim(),
         address:  document.getElementById('fAddress').value.trim(),
         notes:    document.getElementById('fNotes').value.trim(),
+        referral: document.getElementById('fReferral').value.trim() || localStorage.getItem('ozzypeps_referral') || '',
       };
 
       const items = cart.items;
@@ -705,6 +720,7 @@
         'Phone':            customer.phone,
         'Shipping Address': customer.address,
         'Notes':            customer.notes || '(none)',
+        'Referral Code':    customer.referral || '(none)',
         'Order Items':      '\n' + itemsText,
         'Subtotal':         `$${totals.subtotal.toFixed(2)} AUD`,
         'Shipping':         `$${totals.shipping.toFixed(2)} AUD`,
@@ -982,6 +998,13 @@
     /* ── Init ── */
     renderSummary();
     document.addEventListener('cart:changed', renderSummary);
+
+    // Pre-fill referral code from cart drawer if set
+    const savedRef = localStorage.getItem('ozzypeps_referral');
+    if (savedRef) {
+      const rf = document.getElementById('fReferral');
+      if (rf) { rf.value = savedRef; document.getElementById('fReferralHint').textContent = `✓ Code "${savedRef}" applied — discount confirmed via Telegram.`; }
+    }
 
     /* Close confirm on overlay click */
     document.getElementById('confirmOverlay').addEventListener('click', e => {

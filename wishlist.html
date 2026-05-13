@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Wishlist — OzzyPeps</title>
+  <meta name="description" content="Your saved OzzyPeps research peptide products — view and manage your wishlist." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(function(){var t=localStorage.getItem('ozzypeps_theme')||'dark';document.documentElement.setAttribute('data-theme',t);})()</script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">O</div>
+        Ozzy<span>Peps</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="calculator.html">Dosage Calc</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+      <button class="wishlist-icon-wrap" onclick="window.location='wishlist.html'" aria-label="View wishlist">🤍 <span class="wishlist-badge">0</span></button>
+      <button class="cart-icon-wrap" onclick="cart.open()" aria-label="Open cart">🛒 <span class="cart-badge">0</span></button>
+      <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
+
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="calculator.html">Dosage Calc</a>
+    <a href="contact.html">Contact</a>
+    <a href="wishlist.html">Wishlist 🤍</a>
+    <button class="btn btn-ghost" onclick="toggleTheme()" style="margin-top:8px;width:100%;">Toggle Theme ☀️/🌙</button>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero text-center">
+    <div class="container">
+      <div class="section-label">Saved Products</div>
+      <h1 class="section-title">Your Wishlist</h1>
+      <p class="section-sub">Products you've saved for later.</p>
+    </div>
+  </section>
+
+  <!-- WISHLIST CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div id="wishlistContent">
+        <!-- rendered by JS -->
+        <div style="text-align:center;padding:60px 24px;">
+          <div style="font-size:40px;opacity:0.3;margin-bottom:16px;">🤍</div>
+          <div style="color:var(--text-secondary);font-size:15px;">Loading wishlist…</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo-wrap">
+            <div class="logo-icon" style="width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;">O</div>
+            Ozzy<span style="color:var(--accent)">Peps</span>
+          </div>
+          <p class="footer-desc">Premium research-grade peptides supplied to qualified scientists and research facilities. For laboratory use only.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Tools</div>
+          <ul class="footer-links">
+            <li><a href="calculator.html">Dosage Calc</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="compare.html">Compare Products</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="about.html#legal">Legal &amp; Disclaimer</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Order via Telegram</div>
+          <a href="https://t.me/fussyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @fussyaussie</a>
+          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @toyaussie</a>
+          <a href="https://t.me/jamallincoln" target="_blank" class="footer-tg" style="display:flex;">✈ @jamallincoln</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 OzzyPeps. All rights reserved. For research use only.</div>
+        <div style="font-size:12px;color:var(--text-muted);">Not for human consumption · Not a therapeutic product</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    window.addEventListener('scroll', () => {
+      const st = document.getElementById('scrollTop');
+      if (window.scrollY > 400) st.classList.add('visible');
+      else st.classList.remove('visible');
+    });
+
+    function renderWishlistPage() {
+      const el = document.getElementById('wishlistContent');
+      const items = wishlist.items;
+      if (items.length === 0) {
+        el.innerHTML = `<div style="text-align:center;padding:60px 24px;max-width:480px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);">
+          <div style="font-size:64px;opacity:0.4;margin-bottom:20px;">🤍</div>
+          <div style="font-size:22px;font-weight:800;margin-bottom:10px;">Your wishlist is empty</div>
+          <div style="color:var(--text-secondary);margin-bottom:28px;">Browse our catalogue and save compounds you're interested in.</div>
+          <a href="products.html" class="btn btn-primary">Browse Products</a>
+        </div>`;
+        return;
+      }
+      el.innerHTML = `<div class="product-grid">${items.map(item => {
+        const p = typeof PRODUCTS !== 'undefined' ? PRODUCTS[item.id] : null;
+        const fromPrice = p ? p.specs[0].price : '';
+        return `<div class="product-card" style="position:relative;">
+          <div class="product-img">${item.emoji || '🧪'}</div>
+          <div class="product-body">
+            <div class="product-category">${item.category}</div>
+            <div class="product-name">${item.name}</div>
+            <div class="product-from-price">From <strong>${fromPrice} AUD</strong></div>
+            <div class="product-meta" style="gap:10px;">
+              <button class="btn btn-primary" style="font-size:12px;padding:8px 16px;" onclick="openProduct('${item.id}')">View Details</button>
+              <button class="btn btn-ghost" style="font-size:12px;padding:8px 14px;color:#ff6b8a;" onclick="wishlist.remove('${item.id}');renderWishlistPage();">Remove</button>
+            </div>
+          </div>
+        </div>`;
+      }).join('')}</div>`;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderWishlistPage();
+      document.addEventListener('wishlist:changed', renderWishlistPage);
+    });
+  </script>
+  <script src="product-data.js"></script>
+  <script src="cart.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="compare.js"></script>
+  <script src="theme.js"></script>
+</body>
+</html>
