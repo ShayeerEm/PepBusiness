@@ -11,6 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="manifest" href="manifest.json">
   <script>(function(){var t=localStorage.getItem('ozzypeps_theme')||'dark';document.documentElement.setAttribute('data-theme',t);})()</script>
+  <script>/* sw-killer: unregister any stale service workers from the old PWA build */
+  if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.unregister();});});}
+  if(window.caches){caches.keys().then(function(ks){ks.forEach(function(k){caches.delete(k);});});}
+  </script>
   <style>
 
     /* ── Calculator layout ── */
