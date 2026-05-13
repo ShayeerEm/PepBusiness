@@ -2049,6 +2049,108 @@ img { max-width: 100%; display: block; }
 [data-theme="light"] .field-hint { color: var(--text-muted); }
 [data-theme="light"] .about-stat-label { color: var(--text-secondary); }
 [data-theme="light"] .tg-role { color: var(--text-secondary); }
+
+/* Catch-all: force readable text colors in light mode for every common element */
+[data-theme="light"] .hero-content,
+[data-theme="light"] .hero-content *,
+[data-theme="light"] .section-title,
+[data-theme="light"] .section-sub,
+[data-theme="light"] .feature-title,
+[data-theme="light"] .feature-desc,
+[data-theme="light"] .review-text,
+[data-theme="light"] .review-name,
+[data-theme="light"] .product-name,
+[data-theme="light"] .product-desc,
+[data-theme="light"] .product-code,
+[data-theme="light"] .product-purity,
+[data-theme="light"] .product-from-price,
+[data-theme="light"] .product-inquiry,
+[data-theme="light"] .spec-size,
+[data-theme="light"] .spec-price,
+[data-theme="light"] .filter-tab,
+[data-theme="light"] .trust-bar,
+[data-theme="light"] .trust-bar-inner,
+[data-theme="light"] .trust-num,
+[data-theme="light"] .trust-label,
+[data-theme="light"] .category-card,
+[data-theme="light"] .category-name,
+[data-theme="light"] .category-count,
+[data-theme="light"] .process-step-title,
+[data-theme="light"] .process-step-desc,
+[data-theme="light"] .step-number,
+[data-theme="light"] .about-h,
+[data-theme="light"] .about-p,
+[data-theme="light"] .about-stat-num,
+[data-theme="light"] .about-stat-label,
+[data-theme="light"] .checkout-section-title,
+[data-theme="light"] .summary-item-name,
+[data-theme="light"] .summary-item-size,
+[data-theme="light"] .calc-result,
+[data-theme="light"] .calc-result-value,
+[data-theme="light"] .calc-result-label,
+[data-theme="light"] .faq-question,
+[data-theme="light"] .faq-answer-inner,
+[data-theme="light"] .hero-badge,
+[data-theme="light"] .modal-box *,
+[data-theme="light"] .cart-drawer *,
+[data-theme="light"] h1, [data-theme="light"] h2, [data-theme="light"] h3,
+[data-theme="light"] h4, [data-theme="light"] h5, [data-theme="light"] h6,
+[data-theme="light"] p, [data-theme="light"] span, [data-theme="light"] div,
+[data-theme="light"] li, [data-theme="light"] label, [data-theme="light"] strong {
+  color: inherit;
+}
+/* Re-assert accent / special colors that the catch-all just clobbered */
+[data-theme="light"] body { color: var(--text-primary); }
+[data-theme="light"] .text-accent,
+[data-theme="light"] a,
+[data-theme="light"] .product-from-price,
+[data-theme="light"] .spec-price,
+[data-theme="light"] .nav-logo span,
+[data-theme="light"] .gradient-text,
+[data-theme="light"] .product-category,
+[data-theme="light"] .star,
+[data-theme="light"] .footer-tg { color: var(--accent); }
+[data-theme="light"] .text-gold,
+[data-theme="light"] .disclaimer-text strong { color: var(--gold); }
+[data-theme="light"] .text-muted,
+[data-theme="light"] .product-code,
+[data-theme="light"] .product-purity,
+[data-theme="light"] .review-label,
+[data-theme="light"] .stat-label,
+[data-theme="light"] .footer-copy,
+[data-theme="light"] .field-hint { color: var(--text-muted); }
+[data-theme="light"] .section-sub,
+[data-theme="light"] .feature-desc,
+[data-theme="light"] .review-text,
+[data-theme="light"] .product-desc,
+[data-theme="light"] .hero-desc,
+[data-theme="light"] .faq-answer-inner,
+[data-theme="light"] .about-p,
+[data-theme="light"] .process-step-desc { color: var(--text-secondary); }
+[data-theme="light"] .nav-logo,
+[data-theme="light"] .nav-logo:not(span),
+[data-theme="light"] .footer-logo-wrap,
+[data-theme="light"] .stat-num,
+[data-theme="light"] .about-stat-num,
+[data-theme="light"] .hero-title,
+[data-theme="light"] .section-title,
+[data-theme="light"] .feature-title,
+[data-theme="light"] .review-name,
+[data-theme="light"] .product-name,
+[data-theme="light"] .modal-title,
+[data-theme="light"] .cart-item-name,
+[data-theme="light"] .checkout-section-title,
+[data-theme="light"] h1, [data-theme="light"] h2,
+[data-theme="light"] h3, [data-theme="light"] h4 { color: var(--text-primary); }
+/* Keep elements on coloured backgrounds white */
+[data-theme="light"] .logo-icon,
+[data-theme="light"] .review-avatar,
+[data-theme="light"] .tg-avatar,
+[data-theme="light"] .product-badge.hot,
+[data-theme="light"] .wishlist-badge,
+[data-theme="light"] .modal-spec-add.added,
+[data-theme="light"] .cart-toast { color: #fff; }
+[data-theme="light"] .btn-primary { color: #000; }
 [data-theme="light"] .hero-grid-lines { opacity: 0.04; }
 [data-theme="light"] .disclaimer-banner { color: var(--text-secondary); }
 
