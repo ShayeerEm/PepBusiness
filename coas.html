@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Wishlist — OzzyPeps</title>
-  <meta name="description" content="Your saved OzzyPeps research peptide products — view and manage your wishlist." />
+  <title>Certificates of Analysis — OzzyPeps</title>
+  <meta name="description" content="Third-party verified purity certificates for every OzzyPeps research peptide compound." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,6 +15,10 @@
   if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.unregister();});});}
   if(window.caches){caches.keys().then(function(ks){ks.forEach(function(k){caches.delete(k);});});}
   </script>
+  <style>
+@media(max-width:900px){#coaGrid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:540px){#coaGrid{grid-template-columns:1fr;}}
+  </style>
 </head>
 <body>
 
@@ -61,22 +65,17 @@
   <!-- PAGE HERO -->
   <section class="page-hero text-center">
     <div class="container">
-      <div class="section-label">Saved Products</div>
-      <h1 class="section-title">Your Wishlist</h1>
-      <p class="section-sub">Products you've saved for later.</p>
+      <div class="section-label">Transparency</div>
+      <h1 class="section-title">Certificates of Analysis</h1>
+      <p class="section-sub">Third-party verified purity for every compound we supply.</p>
     </div>
   </section>
 
-  <!-- WISHLIST CONTENT -->
+  <!-- COA CONTENT -->
   <section class="section">
     <div class="container">
-      <div id="wishlistContent">
-        <!-- rendered by JS -->
-        <div style="text-align:center;padding:60px 24px;">
-          <div style="font-size:40px;opacity:0.3;margin-bottom:16px;">🤍</div>
-          <div style="color:var(--text-secondary);font-size:15px;">Loading wishlist…</div>
-        </div>
-      </div>
+      <p style="margin-bottom:24px;color:var(--text-secondary);font-size:14px;">All batch certificates are independently verified. For products without a direct verification link, request the full CoA via <a href="https://t.me/fussyaussie" target="_blank" style="color:var(--accent);">Telegram</a>.</p>
+      <div id="coaGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;"></div>
     </div>
   </section>
 
@@ -137,39 +136,27 @@
       else st.classList.remove('visible');
     });
 
-    function renderWishlistPage() {
-      const el = document.getElementById('wishlistContent');
-      const items = wishlist.items;
-      if (items.length === 0) {
-        el.innerHTML = `<div style="text-align:center;padding:60px 24px;max-width:480px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);">
-          <div style="font-size:64px;opacity:0.4;margin-bottom:20px;">🤍</div>
-          <div style="font-size:22px;font-weight:800;margin-bottom:10px;">Your wishlist is empty</div>
-          <div style="color:var(--text-secondary);margin-bottom:28px;">Browse our catalogue and save compounds you're interested in.</div>
-          <a href="products.html" class="btn btn-primary">Browse Products</a>
-        </div>`;
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('coaGrid');
+      const entries = typeof PRODUCTS !== 'undefined' ? Object.entries(PRODUCTS) : [];
+      if (entries.length === 0) {
+        grid.innerHTML = '<p>Loading...</p>';
         return;
       }
-      el.innerHTML = `<div class="product-grid">${items.map(item => {
-        const p = typeof PRODUCTS !== 'undefined' ? PRODUCTS[item.id] : null;
-        const fromPrice = p ? p.specs[0].price : '';
-        return `<div class="product-card" style="position:relative;">
-          <div class="product-img">${item.emoji || '🧪'}</div>
-          <div class="product-body">
-            <div class="product-category">${item.category}</div>
-            <div class="product-name">${item.name}</div>
-            <div class="product-from-price">From <strong>${fromPrice} AUD</strong></div>
-            <div class="product-meta" style="gap:10px;">
-              <button class="btn btn-primary" style="font-size:12px;padding:8px 16px;" onclick="openProduct('${item.id}')">View Details</button>
-              <button class="btn btn-ghost" style="font-size:12px;padding:8px 14px;color:#ff6b8a;" onclick="wishlist.remove('${item.id}');renderWishlistPage();">Remove</button>
-            </div>
-          </div>
-        </div>`;
-      }).join('')}</div>`;
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      renderWishlistPage();
-      document.addEventListener('wishlist:changed', renderWishlistPage);
+      grid.innerHTML = entries.map(([id, p]) => {
+        const purityDisplay = /^[\d.]+$/.test(p.purity) ? '≥' + p.purity + '%' : p.purity;
+        const verifyBtn = p.coaUrl
+          ? `<a href="${p.coaUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:12px;padding:8px 16px;">✅ Verify COA →</a>`
+          : `<a href="https://t.me/fussyaussie" target="_blank" class="btn btn-ghost" style="font-size:12px;padding:8px 14px;">📄 Request via Telegram</a>`;
+        return `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px;">
+      <div style="font-size:32px;margin-bottom:4px;">${p.emoji}</div>
+      <div style="font-weight:700;font-size:15px;line-height:1.3;">${p.name}</div>
+      <div style="font-size:12px;color:var(--text-secondary);">${p.category}</div>
+      <div style="font-size:12px;margin-top:4px;"><span style="color:var(--text-secondary);">Purity: </span><span style="color:#00d4ff;font-weight:600;">${purityDisplay}</span></div>
+      <div style="font-size:11px;color:var(--text-muted);">Batch: ${p.batch}</div>
+      <div style="margin-top:8px;">${verifyBtn}</div>
+    </div>`;
+      }).join('');
     });
   </script>
   <script src="product-data.js"></script>
