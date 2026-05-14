@@ -21,32 +21,32 @@
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="nav-inner">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+
       <a href="index.html" class="nav-logo">
         <div class="logo-icon">O</div>
         Ozzy<span>Peps</span>
       </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="coas.html">COAs</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
-      <button class="wishlist-icon-wrap" onclick="window.location='wishlist.html'" aria-label="View wishlist">🤍 <span class="wishlist-badge">0</span></button>
-      <button class="cart-icon-wrap" onclick="cart.open()" aria-label="Open cart">&#128722; <span class="cart-badge">0</span></button>
-      <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
-      <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+        <button class="wishlist-icon-wrap" onclick="window.location='wishlist.html'" aria-label="View wishlist">🤍 <span class="wishlist-badge">0</span></button>
+        <button class="cart-icon-wrap" onclick="cart.open()" aria-label="Open cart">&#128722; <span class="cart-badge">0</span></button>
+        <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
-    <a href="about.html">About</a>
     <a href="faq.html">FAQ</a>
-    <a href="coas.html">COAs</a>
-    <a href="contact.html">Contact</a>
     <a href="wishlist.html">Wishlist 🤍</a>
     <button class="btn btn-ghost" onclick="toggleTheme()" style="margin-top:8px;width:100%;justify-content:center;">Toggle Theme ☀️/🌙</button>
   </div>
