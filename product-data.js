@@ -5685,8 +5685,6 @@ function injectModal() {
     </div>
 
     <div class="modal-body">
-      <!-- LEFT COL -->
-      <div class="modal-col">
 
         <div class="modal-section">
           <div class="modal-section-label">Specifications &amp; Pricing (AUD)</div>
@@ -5700,27 +5698,6 @@ function injectModal() {
           <div class="modal-shipping-item"><span class="modal-shipping-icon">📦</span><span>Plain, unmarked packaging — discreet return address. Metro 1–3 days, regional 3–6 days.</span></div>
         </div>
 
-        <div class="modal-section">
-          <div class="modal-section-label">Certificate of Analysis</div>
-          <div class="coa-block" id="mCoa"></div>
-        </div>
-
-      </div>
-
-      <!-- RIGHT COL -->
-      <div class="modal-col">
-
-        <div class="modal-section">
-          <div class="modal-section-label">About This Compound</div>
-          <p class="modal-desc" id="mDesc"></p>
-        </div>
-
-        <div class="modal-section">
-          <div class="modal-section-label">Potential Uses &amp; Benefits</div>
-          <div id="mUses"></div>
-        </div>
-
-      </div>
     </div>
 
     <div class="modal-footer">
@@ -5749,7 +5726,6 @@ function openProduct(id) {
   document.getElementById('mCategory').textContent = p.category;
   document.getElementById('mName').textContent = p.name;
   document.getElementById('mCode').textContent = 'Product Code: ' + p.code;
-  document.getElementById('mDesc').textContent = p.desc;
 
   // Specs
   const specsEl = document.getElementById('mSpecs');
@@ -5759,32 +5735,6 @@ function openProduct(id) {
       <span class="modal-spec-price">${s.price}</span>
       <button class="modal-spec-add" onclick="cartAddFeedback(this,'${id}',${i})">+ Add to Cart</button>
     </div>`).join('');
-
-  // Uses
-  const usesEl = document.getElementById('mUses');
-  usesEl.innerHTML = p.uses.map(u => `
-    <div class="use-item">
-      <span class="use-icon">${u.icon}</span>
-      <div class="use-text">
-        <div class="use-title">${u.title}</div>
-        <div class="use-sub">${u.sub}</div>
-      </div>
-    </div>`).join('');
-
-  // COA
-  const year = 2025;
-  const coaEl = document.getElementById('mCoa');
-  coaEl.innerHTML = `
-    <div class="coa-row"><span class="coa-key">Compound</span><span class="coa-val">${p.name}</span></div>
-    <div class="coa-row"><span class="coa-key">${/^[\d.]+$/.test(p.purity)?'Purity':'Grade'}</span><span class="coa-val green">${/^[\d.]+$/.test(p.purity)?'≥'+p.purity+'%':p.purity}</span></div>
-    <div class="coa-row"><span class="coa-key">Verification</span><span class="coa-val">${p.testMethod||'HPLC + Mass Spectrometry'}</span></div>
-    <div class="coa-row"><span class="coa-key">Form</span><span class="coa-val">${p.form||'White lyophilised powder'}</span></div>
-    <div class="coa-row"><span class="coa-key">Batch No.</span><span class="coa-val">${p.batch}</span></div>
-    <div class="coa-row"><span class="coa-key">Source</span><span class="coa-val">${p.source||'Independent 3rd-Party Lab'}</span></div>
-    ${p.coaUrl
-      ? `<a href="${p.coaUrl}" target="_blank" rel="noopener" class="coa-dl-btn coa-verified">✅ Verify Certificate of Analysis →</a>`
-      : `<a href="https://t.me/fussyaussie" target="_blank" class="coa-dl-btn">📄 Request Full CoA via Telegram</a>`}
-  `;
 
   _modalCurrentId = id;
   _syncModalButtons(id);
