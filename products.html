@@ -70,47 +70,59 @@
     </div>
   </div>
 
-  <!-- SEARCH + FILTER -->
-  <section style="padding: 16px 0 0;">
+  <!-- STORE LAYOUT (sidebar filters + product grid) -->
+  <section class="store-section">
     <div class="container">
-      <div class="search-bar">
-        <input type="text" class="search-input" id="searchInput" placeholder="Search products (e.g. semaglutide, BPC-157)..." oninput="filterProducts()" />
-      </div>
+      <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" aria-label="Toggle filters">☰ Filters</button>
+      <div class="store-layout">
+        <aside class="store-sidebar" id="storeSidebar">
+          <div class="sidebar-title">Filters</div>
 
-      <div class="filter-tabs" id="filterTabs">
-        <button class="filter-tab active" onclick="setFilter('all', this)">All Products</button>
-        <button class="filter-tab" onclick="setFilter('glp1', this)">GLP-1 &amp; Weight Loss</button>
-        <button class="filter-tab" onclick="setFilter('gh', this)">Growth Hormone</button>
-        <button class="filter-tab" onclick="setFilter('healing', this)">Healing &amp; Recovery</button>
-        <button class="filter-tab" onclick="setFilter('nootropic', this)">Cognitive &amp; Nootropic</button>
-        <button class="filter-tab" onclick="setFilter('longevity', this)">Longevity &amp; Anti-Aging</button>
-        <button class="filter-tab" onclick="setFilter('sexual', this)">Sexual &amp; Reproductive</button>
-        <button class="filter-tab" onclick="setFilter('aesthetic', this)">Aesthetic &amp; Pigmentation</button>
-        <button class="filter-tab" onclick="setFilter('metabolic', this)">Fat Loss &amp; Metabolic</button>
-        <button class="filter-tab" onclick="setFilter('immune', this)">Immune &amp; Biologics</button>
-        <button class="filter-tab" onclick="setFilter('hormone', this)">Hormones &amp; Fertility</button>
-        <button class="filter-tab" onclick="setFilter('bone', this)">Bone Health</button>
-        <button class="filter-tab" onclick="setFilter('cardio', this)">Cardiovascular</button>
-        <button class="filter-tab" onclick="setFilter('diabetes', this)">Diabetes &amp; Thyroid</button>
-        <button class="filter-tab" onclick="setFilter('gi', this)">Gastrointestinal</button>
-        <button class="filter-tab" onclick="setFilter('urology', this)">Bladder &amp; Prostate</button>
-        <button class="filter-tab" onclick="setFilter('neuro', this)">Neurology</button>
-        <button class="filter-tab" onclick="setFilter('psych', this)">Mental Health &amp; Sleep</button>
-        <button class="filter-tab" onclick="setFilter('pain', this)">Pain &amp; Vertigo</button>
-        <button class="filter-tab" onclick="setFilter('allergy', this)">Allergy</button>
-        <button class="filter-tab" onclick="setFilter('abx', this)">Anti-Infectives</button>
-        <button class="filter-tab" onclick="setFilter('antiviral', this)">Antivirals</button>
-        <button class="filter-tab" onclick="setFilter('oncology', this)">Oncology</button>
-        <button class="filter-tab" onclick="setFilter('blends', this)">Blends</button>
-        <button class="filter-tab" onclick="setFilter('supplies', this)">Solvents &amp; Supplies</button>
-      </div>
-    </div>
-  </section>
+          <div class="sidebar-block">
+            <div class="sidebar-label">Search</div>
+            <div class="search-bar">
+              <input type="text" class="search-input" id="searchInput" placeholder="Search products..." oninput="filterProducts()" />
+            </div>
+          </div>
 
-  <!-- PRODUCTS GRID -->
-  <section style="padding: 12px 0 80px;">
-    <div class="container">
-      <div class="products-grid" id="productsGrid">
+          <div class="sidebar-block">
+            <div class="sidebar-label">Categories</div>
+            <ul class="sidebar-cats filter-tabs" id="filterTabs">
+              <li><button class="sidebar-cat filter-tab active" onclick="setFilter('all', this)"><span class="cat-name">All Products</span><span class="cat-num">/00</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('glp1', this)"><span class="cat-name">GLP-1 &amp; Weight Loss</span><span class="cat-num">/01</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('gh', this)"><span class="cat-name">Growth Hormone</span><span class="cat-num">/02</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('healing', this)"><span class="cat-name">Healing &amp; Recovery</span><span class="cat-num">/03</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('nootropic', this)"><span class="cat-name">Cognitive &amp; Nootropic</span><span class="cat-num">/04</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('longevity', this)"><span class="cat-name">Longevity &amp; Anti-Aging</span><span class="cat-num">/05</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('sexual', this)"><span class="cat-name">Sexual &amp; Reproductive</span><span class="cat-num">/06</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('aesthetic', this)"><span class="cat-name">Aesthetic &amp; Pigmentation</span><span class="cat-num">/07</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('metabolic', this)"><span class="cat-name">Fat Loss &amp; Metabolic</span><span class="cat-num">/08</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('immune', this)"><span class="cat-name">Immune &amp; Biologics</span><span class="cat-num">/09</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('hormone', this)"><span class="cat-name">Hormones &amp; Fertility</span><span class="cat-num">/10</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('bone', this)"><span class="cat-name">Bone Health</span><span class="cat-num">/11</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('cardio', this)"><span class="cat-name">Cardiovascular</span><span class="cat-num">/12</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('diabetes', this)"><span class="cat-name">Diabetes &amp; Thyroid</span><span class="cat-num">/13</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('gi', this)"><span class="cat-name">Gastrointestinal</span><span class="cat-num">/14</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('urology', this)"><span class="cat-name">Bladder &amp; Prostate</span><span class="cat-num">/15</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('neuro', this)"><span class="cat-name">Neurology</span><span class="cat-num">/16</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('psych', this)"><span class="cat-name">Mental Health &amp; Sleep</span><span class="cat-num">/17</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('pain', this)"><span class="cat-name">Pain &amp; Vertigo</span><span class="cat-num">/18</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('allergy', this)"><span class="cat-name">Allergy</span><span class="cat-num">/19</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('abx', this)"><span class="cat-name">Anti-Infectives</span><span class="cat-num">/20</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('antiviral', this)"><span class="cat-name">Antivirals</span><span class="cat-num">/21</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('oncology', this)"><span class="cat-name">Oncology</span><span class="cat-num">/22</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('blends', this)"><span class="cat-name">Blends</span><span class="cat-num">/23</span></button></li>
+              <li><button class="sidebar-cat filter-tab" onclick="setFilter('supplies', this)"><span class="cat-name">Solvents &amp; Supplies</span><span class="cat-num">/24</span></button></li>
+            </ul>
+          </div>
+        </aside>
+
+        <div class="store-main">
+          <div class="store-main-header">
+            <h2 class="store-main-title" id="storeMainTitle">All Products</h2>
+            <div class="store-main-count"><span id="storeProductCount">—</span> products</div>
+          </div>
+          <div class="products-grid" id="productsGrid">
 
         <!-- ═══════════════════════════════════════
              GLP-1 & WEIGHT LOSS
@@ -6380,15 +6392,16 @@
           </div>
         </div>
 
-      </div>
+          </div>
 
-      <!-- No results -->
-      <div class="no-results" id="noResults">
-        <div class="no-results-icon">🔍</div>
-        <h3>No products found</h3>
-        <p style="margin-top:8px;color:var(--text-muted);">Try a different search term or filter.</p>
-      </div>
-
+          <!-- No results -->
+          <div class="no-results" id="noResults">
+            <div class="no-results-icon">🔍</div>
+            <h3>No products found</h3>
+            <p style="margin-top:8px;color:var(--text-muted);">Try a different search term or filter.</p>
+          </div>
+        </div><!-- /store-main -->
+      </div><!-- /store-layout -->
     </div>
   </section>
 
@@ -6470,10 +6483,23 @@
       document.getElementById('mobileMenu').classList.toggle('open');
     }
 
+    function toggleSidebar() {
+      document.getElementById('storeSidebar').classList.toggle('open');
+    }
+
     function setFilter(cat, el) {
       activeFilter = cat;
       document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
       el.classList.add('active');
+      const titleEl = document.getElementById('storeMainTitle');
+      if (titleEl) {
+        const label = el.querySelector('.cat-name');
+        titleEl.textContent = label ? label.textContent.trim() : (el.textContent.trim() || 'All Products');
+      }
+      // On mobile, close the sidebar after a selection
+      if (window.matchMedia('(max-width: 900px)').matches) {
+        document.getElementById('storeSidebar').classList.remove('open');
+      }
       filterProducts();
     }
 
@@ -6500,7 +6526,12 @@
       const noRes = document.getElementById('noResults');
       if (visible === 0) noRes.classList.add('visible');
       else noRes.classList.remove('visible');
+
+      const countEl = document.getElementById('storeProductCount');
+      if (countEl) countEl.textContent = visible;
     }
+
+    document.addEventListener('DOMContentLoaded', filterProducts);
 
     window.addEventListener('scroll', () => {
       const st = document.getElementById('scrollTop');
