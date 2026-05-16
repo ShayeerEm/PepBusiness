@@ -2357,6 +2357,36 @@ img { max-width: 100%; display: block; }
   align-items: start;
 }
 
+/* Prominent search bar above the layout */
+.store-search {
+  position: relative;
+  margin: 0 0 24px;
+}
+.store-search .search-input {
+  width: 100%;
+  padding: 14px 18px 14px 46px;
+  font-size: 15px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  transition: all var(--transition);
+}
+.store-search .search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+  outline: none;
+}
+.store-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 /* ── Sidebar ─────────────────────────────────────────────────────────────── */
 .store-sidebar {
   position: sticky;

@@ -73,17 +73,14 @@
   <!-- STORE LAYOUT (sidebar filters + product grid) -->
   <section class="store-section">
     <div class="container">
+      <div class="store-search">
+        <span class="store-search-icon" aria-hidden="true">🔍</span>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search products (e.g. semaglutide, BPC-157)..." oninput="filterProducts()" />
+      </div>
       <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" aria-label="Toggle filters">☰ Filters</button>
       <div class="store-layout">
         <aside class="store-sidebar" id="storeSidebar">
           <div class="sidebar-title">Filters</div>
-
-          <div class="sidebar-block">
-            <div class="sidebar-label">Search</div>
-            <div class="search-bar">
-              <input type="text" class="search-input" id="searchInput" placeholder="Search products..." oninput="filterProducts()" />
-            </div>
-          </div>
 
           <div class="sidebar-block">
             <div class="sidebar-label">Categories</div>
