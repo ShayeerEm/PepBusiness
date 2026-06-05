@@ -2,6 +2,20 @@
 
 const PRODUCTS = {
 
+  /* ═══════════ TEST PRODUCT (admin) ═══════════ */
+
+  test1: {
+    emoji: '🧪', name: 'Test #1', category: 'Test Product', code: 'TEST-001',
+    purity: 'N/A', batch: 'TEST-BATCH',
+    desc: 'Internal test product used to verify the on-site checkout, payment processing, and admin dashboard end-to-end. Not a real research compound. Safe to remove once testing is complete.',
+    uses: [
+      { icon: '🧪', title: 'Checkout Test', sub: 'A $1 line item to validate the full order → payment → confirmation flow.' },
+    ],
+    specs: [
+      { size: 'Test unit', price: '$1' },
+    ],
+  },
+
   /* ═══════════ GLP-1 / WEIGHT LOSS ═══════════ */
 
   semaglutide: {
