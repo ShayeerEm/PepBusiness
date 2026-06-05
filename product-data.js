@@ -5703,7 +5703,7 @@ function injectModal() {
     <div class="modal-footer">
       <button id="modalWishlistBtn" class="btn btn-ghost" onclick="modalToggleWishlist()" style="min-width:0;padding:10px 14px;">♡</button>
       <button onclick="closeModal(); cart.open();" class="btn btn-primary">🛒 View Cart</button>
-      <a href="contact.html" class="btn btn-ghost">✈ Telegram</a>
+      <a href="contact.html" class="btn btn-ghost">Contact</a>
       <button onclick="closeModal()" class="btn btn-ghost">Close</button>
     </div>
 

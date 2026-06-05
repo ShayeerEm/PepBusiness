@@ -1,4 +1,7 @@
 wrangler.jsonc
+worker
+schema.sql
+DEPLOY.md
 .assetsignore
 .gitignore
 .git

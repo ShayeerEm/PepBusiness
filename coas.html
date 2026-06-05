@@ -40,7 +40,6 @@
         <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
         <button class="wishlist-icon-wrap" onclick="window.location='wishlist.html'" aria-label="View wishlist">🤍 <span class="wishlist-badge">0</span></button>
         <button class="cart-icon-wrap" onclick="cart.open()" aria-label="Open cart">🛒 <span class="cart-badge">0</span></button>
-        <a href="contact.html" class="btn btn-primary nav-cta">Order via Telegram</a>
         <div class="hamburger" id="hamburger" onclick="toggleMenu()">
           <span></span><span></span><span></span>
         </div>
@@ -69,7 +68,7 @@
   <!-- COA CONTENT -->
   <section class="section">
     <div class="container">
-      <p style="margin-bottom:24px;color:var(--text-secondary);font-size:14px;">All batch certificates are independently verified. For products without a direct verification link, request the full CoA via <a href="https://t.me/fussyaussie" target="_blank" style="color:var(--accent);">Telegram</a>.</p>
+      <p style="margin-bottom:24px;color:var(--text-secondary);font-size:14px;">All batch certificates are independently verified. For products without a direct verification link, <a href="contact.html" style="color:var(--accent);">contact us</a> to request the full CoA.</p>
       <div id="coaGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;"></div>
     </div>
   </section>
@@ -104,10 +103,9 @@
           </ul>
         </div>
         <div>
-          <div class="footer-col-title">Order via Telegram</div>
-          <a href="https://t.me/fussyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @fussyaussie</a>
-          <a href="https://t.me/toyaussie" target="_blank" class="footer-tg" style="display:flex;margin-bottom:10px;">✈ @toyaussie</a>
-          <a href="https://t.me/jamallincoln" target="_blank" class="footer-tg" style="display:flex;">✈ @jamallincoln</a>
+          <div class="footer-col-title">Get in Touch</div>
+          <p class="footer-desc" style="margin-bottom:12px;">Questions about an order or product? Our team is here to help.</p>
+          <a href="contact.html" class="btn btn-outline" style="font-size:13px;">Contact Us</a>
         </div>
       </div>
 
@@ -142,7 +140,7 @@
         const purityDisplay = /^[\d.]+$/.test(p.purity) ? '≥' + p.purity + '%' : p.purity;
         const verifyBtn = p.coaUrl
           ? `<a href="${p.coaUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:12px;padding:8px 16px;">✅ Verify COA →</a>`
-          : `<a href="https://t.me/fussyaussie" target="_blank" class="btn btn-ghost" style="font-size:12px;padding:8px 14px;">📄 Request via Telegram</a>`;
+          : `<a href="contact.html" class="btn btn-ghost" style="font-size:12px;padding:8px 14px;">📄 Request CoA</a>`;
         return `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px;">
       <div style="font-size:32px;margin-bottom:4px;">${p.emoji}</div>
       <div style="font-weight:700;font-size:15px;line-height:1.3;">${p.name}</div>

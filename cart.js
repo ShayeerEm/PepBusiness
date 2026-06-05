@@ -170,7 +170,7 @@
               Shipping (flat rate, insured)
               <span class="info-tip" tabindex="0" aria-label="Pricing info">
                 <span class="info-tip-icon">i</span>
-                <span class="info-tip-body">Prices shown are per-box estimates. Bulk discounts and final totals are confirmed via Telegram after submission.</span>
+                <span class="info-tip-body">Flat $89 AUD shipping, fully insured. Your total is finalised at checkout and paid securely in crypto.</span>
               </span>
             </span>
             <span id="cartShipping">$0.00</span>
@@ -181,7 +181,7 @@
           <div class="cart-referral-row">
             <span class="info-tip info-tip-text" tabindex="0">
               <span class="info-tip-trigger">🏷️ Have a referral?</span>
-              <span class="info-tip-body">Tell us in DMs and we'll give you a discount!</span>
+              <span class="info-tip-body">Contact us with your referral and we'll apply your discount!</span>
             </span>
           </div>
           <a href="checkout.html" class="btn btn-primary cart-checkout-btn">Proceed to Checkout →</a>
