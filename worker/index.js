@@ -19,7 +19,7 @@
      PUBLIC_BASE_URL         e.g. https://ozzypeps.store (for callback/return URLs)
    ════════════════════════════════════════════════════════════════════════════ */
 
-const SHIPPING_AUD = 0; // TEMP: $0 for checkout testing — revert to 89 after
+const SHIPPING_AUD = 89;
 const JSON_HEADERS = { 'content-type': 'application/json; charset=utf-8' };
 
 export default {
