@@ -1,14 +1,37 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "ozzypeps",
+  "main": "worker/index.js",
   "compatibility_date": "2026-05-13",
   "compatibility_flags": ["nodejs_compat"],
   "observability": { "enabled": true },
   "workers_dev": true,
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
+  },
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // ORDERS DATABASE (Cloudflare D1)
+  // The backend (checkout + admin) needs this binding. It is intentionally
+  // left commented out so the site keeps deploying until you provision it.
+  // To enable:
+  //   1) wrangler d1 create ozzypeps-orders
+  //   2) wrangler d1 execute ozzypeps-orders --remote --file=./schema.sql
+  //   3) uncomment the block below and paste the database_id from step 1
+  // ──────────────────────────────────────────────────────────────────────────
+  // "d1_databases": [
+  //   {
+  //     "binding": "DB",
+  //     "database_name": "ozzypeps-orders",
+  //     "database_id": "PASTE_DATABASE_ID_HERE"
+  //   }
+  // ],
+
+  "vars": {
+    "PUBLIC_BASE_URL": "https://ozzypeps.store"
   },
   "routes": [
     { "pattern": "ozzypeps.store",     "custom_domain": true },
