@@ -10,7 +10,11 @@
     "directory": ".",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
+    "html_handling": "auto-trailing-slash",
+    // Run the Worker first for dynamic routes so GET requests to /admin and the
+    // API reach worker/index.js instead of being short-circuited to the static
+    // 404 page. Everything else still serves static assets directly (fast path).
+    "run_worker_first": ["/api/*", "/admin", "/admin/*"]
   },
 
   // ──────────────────────────────────────────────────────────────────────────
