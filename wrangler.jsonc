@@ -15,20 +15,16 @@
 
   // ──────────────────────────────────────────────────────────────────────────
   // ORDERS DATABASE (Cloudflare D1)
-  // The backend (checkout + admin) needs this binding. It is intentionally
-  // left commented out so the site keeps deploying until you provision it.
-  // To enable:
-  //   1) wrangler d1 create ozzypeps-orders
-  //   2) wrangler d1 execute ozzypeps-orders --remote --file=./schema.sql
-  //   3) uncomment the block below and paste the database_id from step 1
+  // database_id is a public identifier (not a secret) — access still requires
+  // your Cloudflare API token. Schema lives in ./schema.sql.
   // ──────────────────────────────────────────────────────────────────────────
-  // "d1_databases": [
-  //   {
-  //     "binding": "DB",
-  //     "database_name": "ozzypeps-orders",
-  //     "database_id": "PASTE_DATABASE_ID_HERE"
-  //   }
-  // ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ozzypeps-orders",
+      "database_id": "5e431ba7-02aa-4b48-9b23-d262be52283b"
+    }
+  ],
 
   "vars": {
     "PUBLIC_BASE_URL": "https://ozzypeps.store"
