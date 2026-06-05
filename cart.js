@@ -8,7 +8,7 @@
   'use strict';
 
   const STORAGE_KEY  = 'ozzypeps_cart_v1';
-  const SHIPPING_AUD = 89;
+  const SHIPPING_AUD = 0; // TEMP: $0 for checkout testing — revert to 89 after
 
   // ── State ─────────────────────────────────────────────────────────────────
   let items = [];
